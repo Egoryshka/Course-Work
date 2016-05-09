@@ -244,7 +244,7 @@
                             </a></h4>
                             <div class="article-info">
                                 <spring:message code="label.post.postCategory"/>:
-                                <a href="${pageContext.request.contextPath}/user/login/category={{post.category}}">
+                                <a href="${pageContext.request.contextPath}/user/home/category={{post.category}}">
                                     {{post.category}}
                                 </a>,
                                 <spring:message code="label.post.PostDate"/>: {{convertDate(post.date)}}

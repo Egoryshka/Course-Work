@@ -11,7 +11,7 @@
     <import resource="exampleApplicationContext-security.xml"/>
     <import resource="exampleApplicationContext-social.xml"/>
 
-    <context:component-scan base-package="com.KafanovAndRomanovich.user.service"/>
+    <context:component-scan base-package="com.romanovich.user.service"/>
 
 
 </beans>

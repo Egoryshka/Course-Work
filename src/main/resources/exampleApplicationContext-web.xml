@@ -12,9 +12,9 @@
     <mvc:resources mapping="/static/**" location="/static/"/>
     <mvc:default-servlet-handler/>
 
-    <context:component-scan base-package="com.KafanovAndRomanovich.common.controller"/>
-    <context:component-scan base-package="com.KafanovAndRomanovich.security.controller"/>
-    <context:component-scan base-package="com.KafanovAndRomanovich.user.controller"/>
+    <context:component-scan base-package="com.romanovich.common.controller"/>
+    <context:component-scan base-package="com.romanovich.security.controller"/>
+    <context:component-scan base-package="com.romanovich.user.controller"/>
 
     <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">

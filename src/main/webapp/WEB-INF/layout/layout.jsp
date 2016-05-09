@@ -42,7 +42,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <span ><a class="navbar-brand"  href="${pageContext.request.contextPath}/login">iLearning</a></span>
+            <span ><a class="navbar-brand"  href="${pageContext.request.contextPath}/home">iLearning</a></span>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">

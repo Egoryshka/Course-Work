@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.KafanovAndRomanovich</groupId>
+    <groupId>com.romanovich</groupId>
     <artifactId>CourseProject</artifactId>
     <packaging>war</packaging>
     <version>0.1</version>
@@ -122,7 +122,7 @@
                             <!-- Sets the path to the file which contains the execution data. -->
                             <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
                             <excludes>
-                                <exclude>com/KafanovAndRomanovich/config/**</exclude>
+                                <exclude>com/romanovich/config/**</exclude>
                             </excludes>
                             <!-- Sets the output directory for the code coverage report. -->
                             <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>

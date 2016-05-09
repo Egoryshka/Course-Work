@@ -173,7 +173,7 @@
 
                                             <div class="article-info">
                                                 <spring:message code="label.post.postCategory"/>:
-                                                <a href="${pageContext.request.contextPath}/user/login/category={{post.category}}"
+                                                <a href="${pageContext.request.contextPath}/user/home/category={{post.category}}"
                                                    class="text-primary">{{post.category}}</a>,
                                                 <spring:message code="label.post.PostDate"/>: {{convertDate(post.date)}}
                                                 <div style="float: right;"><a
@@ -186,7 +186,7 @@
 
                                             <div>
                                                 <a ng-repeat="tag in post.tags"
-                                                   href="${pageContext.request.contextPath}/user/login/tags={{post.tags[$index].text}}"
+                                                   href="${pageContext.request.contextPath}/user/home/tags={{post.tags[$index].text}}"
                                                    class="tag label label-primary" style="margin-right: 4px;">
                                                     {{post.tags[$index].text}}
                                                 </a>
