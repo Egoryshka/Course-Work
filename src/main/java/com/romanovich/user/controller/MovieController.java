@@ -21,7 +21,7 @@ import java.util.Map;
  * Created by Alex on 10.02.2016.
  */
 @RestController
-public class PostController {
+public class MovieController {
 
     private static final String CLOUD_PROFILE = "cloudinary://755363552657861:iq9Ne5O6BaM1Mxbd-ewBTFPjBRE@bbproject";
 
@@ -198,9 +198,9 @@ public class PostController {
     @ResponseBody
     Rating getPersonalRating(@RequestBody Long id, Principal principal) {
         if (principal != null) {
-            Post post = postService.findOne(id);
+            Movie post = postService.findOne(id);
             User user = userService.findUser(principal.getName());
-            Rating rating = ratingService.findByUserAndPost(user, post);
+            Rating rating = ratingService.findByUserAndMovie(user, post);
             return rating;
         }
         return null;

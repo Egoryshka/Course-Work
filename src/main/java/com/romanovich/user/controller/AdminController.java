@@ -20,10 +20,8 @@ import java.util.List;
 public class AdminController {
     @Autowired
     UserService userService;
-    @Autowired
-    PostService postService;
-    @Autowired
-    TagService tagService;
+
+
 
     @RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
     public List<User> getPosts() {

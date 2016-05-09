@@ -6,6 +6,7 @@ import com.romanovich.user.dto.RegistrationFormBuilder;
 import com.romanovich.user.model.SocialMediaService;
 import com.romanovich.user.model.User;
 import com.romanovich.user.repository.UserRepository;
+import com.romanovich.user.service.Impl.UserServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;

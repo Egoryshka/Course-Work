@@ -4,7 +4,7 @@ import com.romanovich.security.service.RepositoryUserDetailsService;
 import com.romanovich.security.service.SimpleSocialUserDetailsService;
 import com.romanovich.user.repository.*;
 import com.romanovich.user.search.SearchServiceImpl;
-import com.romanovich.user.service.*;
+import com.romanovich.user.service.Impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -29,15 +29,49 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
     private static PasswordEncoder encoder;
 
     @Autowired
-    private UserRepository userRepository;
+    private ActorRepository actorRepository;
+
+    @Autowired
+    private GenreRepository genreRepository;
+
+    @Autowired
+    private MovieRepository movieRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Autowired
     private RatingRepository ratingRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+
     @Bean
-    public RatingServiceImpl repositoryRatingService(){return new RatingServiceImpl(ratingRepository);}
+    public ActorServiceImpl actorService() {
+        return new ActorServiceImpl(actorRepository);
+    }
+
     @Bean
-    public SearchServiceImpl searchServiceImpl(){return new SearchServiceImpl();}
+    public GenreServiceImpl genreService() {
+        return new GenreServiceImpl(genreRepository);
+    }
+
+    @Bean
+    public MovieServiceImpl movieService() {
+        return new MovieServiceImpl(movieRepository);
+    }
+
+    @Bean
+    public OrderServiceImpl orderService() {
+        return new OrderServiceImpl(orderRepository);
+    }
+
+    @Bean
+    public RatingServiceImpl ratingService(){return new RatingServiceImpl(ratingRepository);}
+
+    @Bean
+    public SearchServiceImpl searchService(){return new SearchServiceImpl();}
 
     @Override
     public void configure(WebSecurity web) throws Exception {

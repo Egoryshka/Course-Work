@@ -1,8 +1,10 @@
-package com.romanovich.user.service;
+package com.romanovich.user.service.Impl;
 
 import com.romanovich.user.dto.RegistrationForm;
 import com.romanovich.user.model.User;
 import com.romanovich.user.repository.UserRepository;
+import com.romanovich.user.service.DuplicateEmailException;
+import com.romanovich.user.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * @author Petri Kainulainen
- */
-
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-    private static final String START_PHOTO="http://res.cloudinary.com/bbproject/image/upload/v1455392650/ananimus_m7b9ji.png";
-
 
     private PasswordEncoder passwordEncoder;
 
@@ -52,8 +48,7 @@ public class UserServiceImpl implements UserService {
                 .email(userAccountData.getEmail())
                 .firstName(userAccountData.getFirstName())
                 .lastName(userAccountData.getLastName())
-                .password(encodedPassword)
-                .photo(START_PHOTO);
+                .password(encodedPassword);
 
         if (userAccountData.isSocialSignIn()) {
             user.signInProvider(userAccountData.getSignInProvider());
@@ -106,12 +101,6 @@ public class UserServiceImpl implements UserService {
         User oldUser=findOne(user.getId());
         oldUser.setLastName(user.getLastName());
         oldUser.setFirstName(user.getFirstName());
-        oldUser.setPhoto(user.getPhoto());
-        oldUser.setSkype(user.getSkype());
-        oldUser.setCity(user.getCity());
-        oldUser.setDateofBirth(user.getDateofBirth());
-        oldUser.setEducation(user.getEducation());
-        oldUser.setInterests(user.getInterests());
         return repository.save(oldUser);
     }
 

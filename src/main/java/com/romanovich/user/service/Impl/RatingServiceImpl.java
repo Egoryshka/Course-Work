@@ -1,9 +1,10 @@
-package com.romanovich.user.service;
+package com.romanovich.user.service.Impl;
 
 import com.romanovich.user.model.Movie;
 import com.romanovich.user.model.Rating;
 import com.romanovich.user.model.User;
 import com.romanovich.user.repository.RatingRepository;
+import com.romanovich.user.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Created by Alex on 17.02.2016.
  */
+
 @Service
 @Transactional
 public class RatingServiceImpl implements RatingService {
@@ -46,6 +48,11 @@ public class RatingServiceImpl implements RatingService {
             }
         }
         ratingRepository.save(rating);
-        post.addRating(rating);
+        movie.addRating(rating);
+    }
+
+    @Override
+    public Rating findByUserAndMovie(User user, Movie movie) {
+        return ratingRepository.findByUserAndMovie(user, movie);
     }
 }

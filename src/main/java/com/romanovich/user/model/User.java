@@ -34,6 +34,10 @@ public class User extends BaseEntity<Long> {
     @Column(name = "role", length = 20, nullable = false)
     private Role role;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "sign_in_provider", length = 20)
+    private SocialMediaService signInProvider;
+
     @OneToMany(mappedBy = "user", cascade=CascadeType.ALL,
             fetch = FetchType.EAGER, orphanRemoval = true)
     @Fetch(FetchMode.SELECT)
@@ -153,6 +157,14 @@ public class User extends BaseEntity<Long> {
                 .toString();
     }
 
+    public SocialMediaService getSignInProvider() {
+        return signInProvider;
+    }
+
+    public void setSignInProvider(SocialMediaService signInProvider) {
+        this.signInProvider = signInProvider;
+    }
+
     public static class Builder {
 
         private User user;
@@ -179,6 +191,11 @@ public class User extends BaseEntity<Long> {
 
         public Builder password(String password) {
             user.password = password;
+            return this;
+        }
+
+        public Builder signInProvider(SocialMediaService signInProvider) {
+            user.signInProvider = signInProvider;
             return this;
         }
 

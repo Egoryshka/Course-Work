@@ -10,5 +10,5 @@ import com.romanovich.user.model.User;
 public interface RatingService {
     Integer getScore(Movie movie);
     void saveOrDeleteRating(Rating rating, Movie movie, User user);
-    Rating findByUserAndPost(User user, Movie movie);
+    Rating findByUserAndMovie(User user, Movie movie);
 }

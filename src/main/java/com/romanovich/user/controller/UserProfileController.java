@@ -17,7 +17,7 @@ import java.util.Map;
 
 
 @RestController
-public class ProfileController {
+public class UserProfileController {
 
     private static String CLOUD_PROFILE="cloudinary://755363552657861:iq9Ne5O6BaM1Mxbd-ewBTFPjBRE@bbproject";
     @Autowired
