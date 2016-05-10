@@ -1,8 +1,7 @@
 package com.romanovich.user.controller;
 
-import com.romanovich.user.model.Tag;
-import com.romanovich.user.service.PostService;
-import com.romanovich.user.service.TagService;
+import com.romanovich.user.service.GenreService;
+import com.romanovich.user.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,39 +19,39 @@ import java.util.List;
 public class GenreController {
 
     @Autowired
-    PostService postService;
+    MovieService movieService;
 
     @Autowired
-    TagService tagService;
+    GenreService genreService;
 
-    @RequestMapping(value = "/get-tags-list",method = RequestMethod.GET)
-    public List<Tag> getAllTags(){
-        List<Tag> tags=tagService.getAllResults();
-        return tags;
-    }
-    @RequestMapping(value = "/get-tags",method = RequestMethod.GET)
-    public ArrayList<Long> getPostTagIds(@RequestParam Long postId){
-        List<Tag> allTags= postService.findOne(postId).getTags();
-        ArrayList<Long> tagIds = new ArrayList<Long>();
-        for(Tag tag : allTags ){
-            if(tag.getWeight()!=0)
-                tagIds.add(tag.getTagId());
-        }
-        return tagIds;
-    }
-    @RequestMapping(value = "/getCloudTags",method = RequestMethod.GET)
-    public List<Tag> getCloudTags(){
-        List<Tag> tags=tagService.getAllResults();
-        Collections.sort(tags);
-        try {
-            tags = tags.subList(0,15);
-            Collections.shuffle(tags);
-            return tags;
-        }catch (IndexOutOfBoundsException e){
-            Collections.shuffle(tags);
-            return tags;
-        }
-    }
+//    @RequestMapping(value = "/get-tags-list",method = RequestMethod.GET)
+//    public List<Tag> getAllTags(){
+//        List<Tag> tags=tagService.getAllResults();
+//        return tags;
+//    }
+//    @RequestMapping(value = "/get-tags",method = RequestMethod.GET)
+//    public ArrayList<Long> getPostTagIds(@RequestParam Long postId){
+//        List<Tag> allTags= postService.findOne(postId).getTags();
+//        ArrayList<Long> tagIds = new ArrayList<Long>();
+//        for(Tag tag : allTags ){
+//            if(tag.getWeight()!=0)
+//                tagIds.add(tag.getTagId());
+//        }
+//        return tagIds;
+//    }
+//    @RequestMapping(value = "/getCloudTags",method = RequestMethod.GET)
+//    public List<Tag> getCloudTags(){
+//        List<Tag> tags=tagService.getAllResults();
+//        Collections.sort(tags);
+//        try {
+//            tags = tags.subList(0,15);
+//            Collections.shuffle(tags);
+//            return tags;
+//        }catch (IndexOutOfBoundsException e){
+//            Collections.shuffle(tags);
+//            return tags;
+//        }
+//    }
 }
 
 

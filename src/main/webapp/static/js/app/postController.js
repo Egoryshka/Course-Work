@@ -64,6 +64,7 @@ angular.module('myApp')
         };
 
         $scope.getPosts();
+
         $scope.savePost = function () {
             $scope.isUploading = true;
             var post = $scope.posts[$scope.currentIndex];
@@ -86,7 +87,7 @@ angular.module('myApp')
                 post.title = $scope.title;
             if($scope.currentTemplate==0) {
                 $scope.saveImage()
-                    .then(function (response) {
+                    .then (function (response) {
                         post.image = response.data.data;
                     }).then(function () {
                 }, function () {
@@ -104,7 +105,7 @@ angular.module('myApp')
                     });
 
                 })
-            }else{
+            } else {
                 if (typeof $scope.video === 'undefined' || $scope.video === "") {
                     alert("Please insert video URL");
                     $scope.isUploading = false;

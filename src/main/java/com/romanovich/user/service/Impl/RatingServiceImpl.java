@@ -24,11 +24,11 @@ public class RatingServiceImpl implements RatingService {
         this.ratingRepository = ratingRepository;
     }
 
-
+    @Override
     public Integer getScore(Movie movie) {
         Integer result = 0;
-        for (Rating rait : movie.getRatings()) {
-            if (rait.getPositive()) {
+        for (Rating rating : movie.getRatings()) {
+            if (rating.getPositive()) {
                 result++;
             } else result--;
         }
@@ -37,12 +37,12 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     public void saveOrDeleteRating(Rating rating, Movie movie, User user) {
-        for (Rating rait : movie.getRatings()) {
-            if (rating.getUser().getId().equals(rait.getUser().getId())) {
-                if (rating.getPositive() == rait.getPositive())
+        for (Rating ratingItem : movie.getRatings()) {
+            if (rating.getUser().getId().equals(ratingItem.getUser().getId())) {
+                if (rating.getPositive() == ratingItem.getPositive())
                     return;
                 else {
-                    movie.removeRating(rait);
+                    movie.removeRating(ratingItem);
                     return;
                 }
             }

@@ -22,9 +22,9 @@ public class Rating {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "movie_id")
     @JsonBackReference
-    private Post post;
+    private Movie movie;
 
     public Long getId() {
         return id;
@@ -32,22 +32,6 @@ public class Rating {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
     }
 
     public Boolean getPositive() {
@@ -58,13 +42,29 @@ public class Rating {
         this.positive = positive;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
     @Override
     public String toString() {
         return "Rating{" +
                 "id=" + id +
                 ", positive=" + positive +
                 ", user=" + user +
-                ", post=" + post +
+                ", movie=" + movie +
                 '}';
     }
 }

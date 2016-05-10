@@ -2,7 +2,7 @@ package com.romanovich.user.controller;
 
 import com.romanovich.user.model.Movie;
 import com.romanovich.user.search.SearchService;
-import com.romanovich.user.service.PostService;
+import com.romanovich.user.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
     @Autowired
-    private PostService postService;
+    private MovieService movieService;
 
     @RequestMapping(value="/search",method = RequestMethod.POST)
     public List<Movie> search(@RequestBody String search) {

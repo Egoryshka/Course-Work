@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "movies")
-public class Movie {
+public class Movie implements Comparable<Movie>{
     @Id
     @GeneratedValue
     private Long id;
@@ -174,10 +174,30 @@ public class Movie {
 
     public void addRating(Rating rating){ratings.add(rating);}
 
-    public void removeRating(Rating rating){for (int i = 0; i < ratings.size(); i++) {
-        if (ratings.get(i).getId().equals(rating.getId())) {
-            ratings.remove(i);
-            break;
+    public void removeRating(Rating rating) {
+        for (int i = 0; i < ratings.size(); i++) {
+            if (ratings.get(i).getId().equals(rating.getId())) {
+                ratings.remove(i);
+                break;
+            }
         }
-    }}
+    }
+
+    @Override
+    public int compareTo(Movie o) {
+        if(this.getRatingInNumber() < o.getRatingInNumber())return 1;
+        if(this.getRatingInNumber() > o.getRatingInNumber())return -1;
+        return 0;
+    }
+
+    private Integer getRatingInNumber() {
+        Integer result = 0;
+        for (Rating rait : this.getRatings()) {
+            if (rait.getPositive()) {
+                result++;
+            } else
+                result--;
+        }
+        return result;
+    }
 }

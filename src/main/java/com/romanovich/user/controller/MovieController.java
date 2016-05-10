@@ -23,174 +23,140 @@ import java.util.Map;
 @RestController
 public class MovieController {
 
-    private static final String CLOUD_PROFILE = "cloudinary://755363552657861:iq9Ne5O6BaM1Mxbd-ewBTFPjBRE@bbproject";
+    private static final String CLOUD_PROFILE = "cloudinary://685379273612296:YPWoJVObyT5D9sZ1YSMf7kkHcg4@itracloud";
 
     @Autowired
-    private UserService userService;
+    private ActorService actorService;
     @Autowired
-    private TagService tagService;
+    private GenreService genreService;
     @Autowired
-    private PostService postService;
+    private MovieService movieService;
     @Autowired
     private RatingService ratingService;
     @Autowired
-    private AchievementService achievementService;
+    private UserService userService;
 
-
-    private Cloudinary cloud;
-
-    @RequestMapping(value = "/getposts", method = RequestMethod.GET)
-    public List<Post> getPosts(Principal principal) {
-        User user = userService.findUser(principal.getName());
-        List<Post> posts = user.getPosts();
-       // List<PostUser> result=postService.getAllPosts(posts);
-        Collections.reverse(posts);
-        return posts;
+    @RequestMapping(value = "/getPopularMovies", method = RequestMethod.GET)
+    public List<Movie> getPopularMovies() {
+        return movieService.getPopularTopTen();
     }
 
-    @RequestMapping(value = "/getPopularPosts", method = RequestMethod.GET)
-    public List<PostUser> getPopularPosts() {
-        List<Post> posts = postService.findAll();
-        List<PostUser> result = postService.getAllPosts(posts);
-        Collections.sort(result);
-        try {
-            return result.subList(0, 5);
-        } catch (IndexOutOfBoundsException e) {
-            return result;
+    @RequestMapping(value = "/saveMovie", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    Integer saveMovie(@RequestBody String data) throws IOException, ParseException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        Movie movie = mapper.readValue(data, Movie.class);
+        if (movie.getId() == null) {
+            List<Actor> actors = actorService.getAllActors();
+            movie = actorService.updateActorsInMovie(movie, actors);
+            List<Genre> genres = genreService.getAllGenres();
+            movie = genreService.updateGenresInMovie(movie, genres);
+        } else {
+            List<Actor> actors = actorService.getAllActorsInMovie(movie.getId());
+            for (Actor actor : actors) {
+                actorService.deleteActorFromMovie(actor.getId(), movie.getId());
+            }
+            actors = actorService.getAllActors();
+            movie = actorService.updateActorsInMovie(movie, actors);
+
+            List<Genre> genres = genreService.getAllGenresInMovie(movie.getId());
+            for (Genre genre : genres) {
+                genreService.deleteGenreFromMovie(genre.getId(), movie.getId());
+            }
+            genres = genreService.getAllGenres();
+            movie = genreService.updateGenresInMovie(movie, genres);
         }
-    }
-
-    @RequestMapping(value = "/savepost", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    Integer savePost(@RequestBody String data, Principal principal) throws IOException, ParseException {
-
-        if (principal != null) {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            Post post = mapper.readValue(data, Post.class);
-            if (post.getId() == null) {
-                List<Tag> tags = tagService.getAllResults();
-                post = tagService.updateTags(post, tags);
-            } else {
-                List<Tag> tags = tagService.getAllTags(post.getId());
-                for (Tag tag : tags) {
-                    tagService.deleteTagInPost(tag.getTagId(), post.getId());
-                }
-                List<Tag> allTags = tagService.getAllResults();
-                post = tagService.updateTags(post, allTags);
-            }
-            User user = userService.findUser(principal.getName());
-            post.setUser(user);
-            user.updatePost(post);
-            userService.save(user);
-            achievementService.addPostAchievement(user);
-            return 200;
-        } else return 404;
+        movieService.save(movie);
+        return 200;
     }
 
 
-    @RequestMapping(value = "/deletepost", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteMovie", method = RequestMethod.POST)
     public
     @ResponseBody
-    String deletePost(@RequestBody String posted, Principal principal) throws IOException {
-        if (principal != null) {
-            ObjectMapper mapper = new ObjectMapper();
-            Post post = mapper.readValue(posted, Post.class);
-            List<Tag> tags = tagService.getAllTags(post.getId());
-            for (Tag tag : tags) {
-                tagService.deleteTagInPost(tag.getTagId(), post.getId());
-            }
-            User user = userService.findUser(principal.getName());
-            post.setUser(user);
-            user.deletePost(post);
-            userService.save(user);
-            return "OK";
-        } else return "";
+    String deleteMovie(@RequestBody String data, Principal principal) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        Movie movie = mapper.readValue(data, Movie.class);
+
+        List<Actor> actors = actorService.getAllActorsInMovie(movie.getId());
+        for (Actor actor : actors) {
+            actorService.deleteActorFromMovie(actor.getId(), movie.getId());
+        }
+
+        List<Genre> genres = genreService.getAllGenresInMovie(movie.getId());
+        for (Genre genre : genres) {
+            genreService.deleteGenreFromMovie(genre.getId(), movie.getId());
+        }
+
+        movieService.delete(movie);
+        return "OK";
     }
 
-    @RequestMapping(value = "/saveimage", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/saveImage", method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody
-    String saveImage(@RequestBody String data, Principal principal) throws IOException {
-
-
+    String saveImage(@RequestBody String data) throws IOException {
         Cloudinary cloudinary = new Cloudinary(CLOUD_PROFILE);
         Map map = cloudinary.uploader().upload(data, ObjectUtils.emptyMap());
         String url = map.get("url").toString();
         JSONObject obj = new JSONObject();
         obj.put("data", url);
         return obj.toString();
+    }
+
+    @RequestMapping(value = "/getSingleMovie", method = RequestMethod.POST)
+    public Movie getSingleMovie(@RequestBody Long id) {
+        return movieService.findOne(id);
 
     }
 
-    @RequestMapping(value = "/getSinglePost", method = RequestMethod.POST)
-    public Post getSinglePost(@RequestBody Long id) {
-        return postService.findOne(id);
-
-    }
-
-    @RequestMapping(value = "/getUserName", method = RequestMethod.POST)
-    public String getUserName(@RequestBody Long id) {
-        JSONObject obj = new JSONObject();
-        Post post = postService.findOne(id);
-        obj.put("name", post.getUser().getFirstName() + " " + post.getUser().getLastName());
-        obj.put("userId", post.getUser().getId());
-        return obj.toString();
-
-    }
-
-    @RequestMapping(value = "/getAllPosts", method = RequestMethod.GET)
-    public List<PostUser> getAllPosts() {
-        List<Post> posts = postService.findAll();
-        List<PostUser> result = postService.getAllPosts(posts);
+    @RequestMapping(value = "/getAllMovies", method = RequestMethod.GET)
+    public List<Movie> getAllMovies() {
+        List<Movie> result = movieService.findAll();
         Collections.reverse(result);
         return result;
     }
 
-    @RequestMapping(value = "/getCategoryPosts", method = RequestMethod.POST)
-    public List<PostUser> getCategoryPosts(@RequestBody String category) {
-        List<Post> posts = postService.findByCategory(category);
-        List<PostUser> result = postService.getAllPosts(posts);
-        Collections.reverse(result);
-        return result;
+    @RequestMapping(value = "/getMoviesByGenre", method = RequestMethod.POST)
+    public List<Movie> getMoviesByGenre(@RequestBody String genreText) {
+        Genre genre = genreService.findByText(genreText);
+        List<Movie> movies = genre.getMovies();
+        Collections.reverse(movies);
+        return movies;
     }
 
-    @RequestMapping(value = "/getTagsPost", method = RequestMethod.POST)
-    public List<PostUser> getTagsPosts(@RequestBody String tags) {
-        Tag tag = tagService.findByText(tags);
-        List<Post> posts = tag.getPosts();
-        List<PostUser> result = postService.getAllPosts(posts);
-        Collections.reverse(result);
-        return result;
+    @RequestMapping(value = "/getMoviesByActor", method = RequestMethod.POST)
+    public List<Movie> getMoviesByActor(@RequestBody String actorName) {
+        Actor actor = actorService.findByText(actorName);
+        List<Movie> movies = actor.getMovies();
+        Collections.reverse(movies);
+        return movies;
     }
 
     @RequestMapping(value = "/changeRating", method = RequestMethod.POST)
     public Integer changeRating(@RequestBody String ratings, Principal principal) throws IOException {
         if (principal != null) {
             ObjectMapper mapper = new ObjectMapper();
-            PostRating postRating = mapper.readValue(ratings, PostRating.class);
-            Post post = postService.findOne(postRating.getPostId());
+            MovieRating movieRating = mapper.readValue(ratings, MovieRating.class);
+            Movie movie = movieService.findOne(movieRating.getPostId());
             User user = userService.findUser(principal.getName());
             Rating rating = new Rating();
             rating.setUser(user);
-            rating.setPost(post);
-            rating.setPositive(postRating.isPositive());
-            ratingService.saveOrDeleteRating(rating, post,user);
-            postService.save(post);
-            achievementService.addRatingAchievement(user);
-            int result = ratingService.getScore(post);
-            return result;
+            rating.setMovie(movie);
+            rating.setPositive(movieRating.isPositive());
+            ratingService.saveOrDeleteRating(rating, movie,user);
+            movieService.save(movie);
+            return ratingService.getScore(movie);
         }
         return null;
     }
 
     @RequestMapping(value = "/getRating", method = RequestMethod.POST)
     public Integer getRating(@RequestBody Long id) {
-        Post post = postService.findOne(id);
-        int result = ratingService.getScore(post);
-        return result;
-
+        Movie movie = movieService.findOne(id);
+        return ratingService.getScore(movie);
     }
 
     @RequestMapping(value = "/getPersonalRating", method = RequestMethod.POST)
@@ -198,30 +164,10 @@ public class MovieController {
     @ResponseBody
     Rating getPersonalRating(@RequestBody Long id, Principal principal) {
         if (principal != null) {
-            Movie post = postService.findOne(id);
+            Movie movie = movieService.findOne(id);
             User user = userService.findUser(principal.getName());
-            Rating rating = ratingService.findByUserAndMovie(user, post);
-            return rating;
+            return ratingService.findByUserAndMovie(user, movie);
         }
         return null;
     }
-
-    @RequestMapping(value = "/getUserHomePagePosts", method = RequestMethod.POST)
-    public List<PostUser> getUserHomePagePosts(@RequestBody Long id) {
-        User user = userService.findOne(id);
-        List<Post> posts = user.getPosts();
-        List<PostUser> result=postService.getAllPosts(posts);
-        Collections.reverse(result);
-        return result;
-    }
-
-
-    @RequestMapping(value = "/getUserInfo", method = RequestMethod.POST)
-    public User getUserInfo(@RequestBody Long id) {
-        User user = userService.findOne(id);
-        return user;
-
-    }
-
-
 }

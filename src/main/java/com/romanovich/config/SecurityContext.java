@@ -49,12 +49,12 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
 
     @Bean
     public ActorServiceImpl actorService() {
-        return new ActorServiceImpl(actorRepository);
+        return new ActorServiceImpl(actorRepository, movieRepository);
     }
 
     @Bean
     public GenreServiceImpl genreService() {
-        return new GenreServiceImpl(genreRepository);
+        return new GenreServiceImpl(genreRepository, movieRepository);
     }
 
     @Bean

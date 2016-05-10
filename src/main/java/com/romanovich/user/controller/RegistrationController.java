@@ -4,7 +4,6 @@ import com.romanovich.security.util.SecurityUtil;
 import com.romanovich.user.dto.RegistrationForm;
 import com.romanovich.user.model.SocialMediaService;
 import com.romanovich.user.model.User;
-import com.romanovich.user.service.AchievementService;
 import com.romanovich.user.service.DuplicateEmailException;
 import com.romanovich.user.service.UserService;
 import org.slf4j.Logger;
@@ -39,7 +38,6 @@ public class RegistrationController {
 
 
     @Autowired
-    private AchievementService achievementService;
     private UserService service;
 
     @Autowired
@@ -134,7 +132,6 @@ public class RegistrationController {
         User registered = null;
         try {
             registered = service.registerNewUserAccount(userAccountData);
-            achievementService.addRegisteredAchievement(registered);
         }
         catch (DuplicateEmailException ex) {
             LOGGER.debug("An email address: {} exists.", userAccountData.getEmail());
