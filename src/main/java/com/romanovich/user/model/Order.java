@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "posts")
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue
@@ -22,12 +22,12 @@ public class Order {
     @Column(name = "date", columnDefinition="DATE")
     private Date date;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @JsonBackReference
     private User user;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "orders_movies",
             joinColumns = { @JoinColumn(name = "ORDER_ID", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "MOVIE_ID",

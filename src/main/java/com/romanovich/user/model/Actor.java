@@ -10,6 +10,10 @@ import java.util.List;
 /**
  * Created by Егор on 09.05.2016.
  */
+
+@Entity
+@Indexed
+@Table(name = "actors")
 public class Actor {
     @Id
     @GeneratedValue
@@ -20,7 +24,7 @@ public class Actor {
     private String name;
 
     @JsonIgnore
-    @ManyToMany( mappedBy = "actors",fetch = FetchType.EAGER)
+    @ManyToMany( mappedBy = "actors",fetch = FetchType.LAZY)
     private List<Movie> movies;
 
     public Actor() {

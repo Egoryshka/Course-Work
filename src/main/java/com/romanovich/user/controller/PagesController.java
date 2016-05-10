@@ -57,6 +57,7 @@ public class PagesController {
 
         return VIEW_NAME_SINGLEPOST_PAGE;
     }
+
     @RequestMapping(value = "/user/userHomePage/{userId}", method = RequestMethod.GET)
     public String showUserHomePage(@PathVariable Long userId,WebRequest webRequest, Principal principal) {
         if(principal!=null) {
@@ -68,16 +69,19 @@ public class PagesController {
 
         return VIEW_NAME_USERHOMEPAGE_PAGE;
     }
+
     @RequestMapping(value = "/user/home/category={category}", method = RequestMethod.GET)
     public String showStartPageByCategory(@PathVariable String category, WebRequest webRequest) {
         LOGGER.debug("Rendering UserHomePage page.");
         return VIEW_NAME_STARTPAGE_PAGE;
     }
+
     @RequestMapping(value = "/user/home/tags={tags}", method = RequestMethod.GET)
     public String showStartPageByTags(@PathVariable String tags, WebRequest webRequest) {
         LOGGER.debug("Rendering UserHomePage page.");
         return VIEW_NAME_STARTPAGE_PAGE;
     }
+
     @RequestMapping(value = "/user/admin/**", method = RequestMethod.GET)
     public String showAdminPage(WebRequest webRequest) {
         LOGGER.debug("Rendering Admin page.");

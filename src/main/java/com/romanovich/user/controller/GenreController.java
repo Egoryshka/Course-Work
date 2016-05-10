@@ -1,5 +1,6 @@
 package com.romanovich.user.controller;
 
+import com.romanovich.user.model.Genre;
 import com.romanovich.user.service.GenreService;
 import com.romanovich.user.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,34 +24,20 @@ public class GenreController {
     @Autowired
     GenreService genreService;
 
-//    @RequestMapping(value = "/get-tags-list",method = RequestMethod.GET)
-//    public List<Tag> getAllTags(){
-//        List<Tag> tags=tagService.getAllResults();
-//        return tags;
-//    }
-//    @RequestMapping(value = "/get-tags",method = RequestMethod.GET)
-//    public ArrayList<Long> getPostTagIds(@RequestParam Long postId){
-//        List<Tag> allTags= postService.findOne(postId).getTags();
-//        ArrayList<Long> tagIds = new ArrayList<Long>();
-//        for(Tag tag : allTags ){
-//            if(tag.getWeight()!=0)
-//                tagIds.add(tag.getTagId());
-//        }
-//        return tagIds;
-//    }
-//    @RequestMapping(value = "/getCloudTags",method = RequestMethod.GET)
-//    public List<Tag> getCloudTags(){
-//        List<Tag> tags=tagService.getAllResults();
-//        Collections.sort(tags);
-//        try {
-//            tags = tags.subList(0,15);
-//            Collections.shuffle(tags);
-//            return tags;
-//        }catch (IndexOutOfBoundsException e){
-//            Collections.shuffle(tags);
-//            return tags;
-//        }
-//    }
+    @RequestMapping(value = "/autocompleteGenres",method = RequestMethod.GET)
+    public List<Genre> getAllGenres(){
+        return genreService.getAllGenres();
+    }
+
+    @RequestMapping(value = "/getGenresIds",method = RequestMethod.GET)
+    public ArrayList<Long> getMovieGenresIds(@RequestParam Long movieId){
+        List<Genre> allGenres = movieService.findOne(movieId).getGenres();
+        ArrayList<Long> genresIds = new ArrayList<Long>();
+        for(Genre genre : allGenres ){
+            genresIds.add(genre.getId());
+        }
+        return genresIds;
+    }
 }
 
 

@@ -55,8 +55,8 @@ public class SearchServiceImpl implements SearchService {
     private Query getQuery(String text, QueryBuilder queryBuilder) {
         return queryBuilder
                 .keyword()
-                .onFields("title", "text", "category", "user.firstName", "user.lastName",
-                        "comments.text", "tags.text")
+                .onFields("title", "year", "country", "notice",
+                        "genres.text", "actors.name")
                 .matching(text.toLowerCase())
                 .createQuery();
     }

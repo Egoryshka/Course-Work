@@ -24,7 +24,7 @@ public class Genre {
     private String text;
 
     @JsonIgnore
-    @ManyToMany( mappedBy = "genres", fetch = FetchType.EAGER)
+    @ManyToMany( mappedBy = "genres", fetch = FetchType.LAZY)
     private List<Movie> movies;
 
     public Genre() {

@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Created by Егор on 09.05.2016.
  */
 public interface ActorRepository extends JpaRepository<Actor, Long> {
-    Actor findByText(String actorName);
+    Actor findByName(String actorName);
 }

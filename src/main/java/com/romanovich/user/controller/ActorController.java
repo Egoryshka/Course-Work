@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,34 +24,21 @@ public class ActorController {
     @Autowired
     ActorService actorService;
 
-//    @RequestMapping(value = "/get-tags-list",method = RequestMethod.GET)
-//    public List<Actor> getAllActors(){
-//        List<Actor> tags=actorService.getAllActors();
-//        return tags;
-//    }
-//    @RequestMapping(value = "/get-tags",method = RequestMethod.GET)
-//    public ArrayList<Long> getPostActorIds(@RequestParam Long postId){
-//        List<Actor> allActors= movieService.findOne(postId).getActors();
-//        ArrayList<Long> tagIds = new ArrayList<Long>();
-//        for(Actor tag : allActors ){
-//            if(tag.getWeight()!=0)
-//                tagIds.add(tag.getActorId());
-//        }
-//        return tagIds;
-//    }
-//    @RequestMapping(value = "/getCloudActors",method = RequestMethod.GET)
-//    public List<Actor> getCloudActors(){
-//        List<Actor> tags=actorService.getAllActors();
-//        Collections.sort(tags);
-//        try {
-//            tags = tags.subList(0,15);
-//            Collections.shuffle(tags);
-//            return tags;
-//        }catch (IndexOutOfBoundsException e){
-//            Collections.shuffle(tags);
-//            return tags;
-//        }
-//    }
+    @RequestMapping(value = "/autocompleteActors",method = RequestMethod.GET)
+    public List<Actor> getAllActors(){
+        List<Actor> actors = actorService.getAllActors();
+        return actors;
+    }
+
+    @RequestMapping(value = "/getActorsIds",method = RequestMethod.GET)
+    public ArrayList<Long> getMovieActorIds(@RequestParam Long movieId){
+        List<Actor> allActors= movieService.findOne(movieId).getActors();
+        ArrayList<Long> actorsIds = new ArrayList<Long>();
+        for(Actor actor : allActors ){
+            actorsIds.add(actor.getId());
+        }
+        return actorsIds;
+    }
 }
 
 

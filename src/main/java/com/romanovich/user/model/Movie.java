@@ -41,16 +41,17 @@ public class Movie implements Comparable<Movie>{
     private String poster;
 
     @Column(name = "notice", columnDefinition="TEXT")
+    @Field(index=Index.YES, analyze= Analyze.YES, store= Store.NO)
     private String notice;
 
-    @OneToMany(mappedBy = "post",cascade=CascadeType.ALL,
-            fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(mappedBy = "movie",cascade=CascadeType.ALL,
+            fetch = FetchType.LAZY, orphanRemoval = true)
     @Fetch(FetchMode.SELECT)
     @JsonManagedReference
     private List<Rating> ratings;
 
     @IndexedEmbedded
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "movies_genres",
             joinColumns = { @JoinColumn(name = "MOVIE_ID", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "GENRE_ID",
@@ -58,7 +59,7 @@ public class Movie implements Comparable<Movie>{
     private List<Genre> genres;
 
     @IndexedEmbedded
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "movies_actors",
             joinColumns = { @JoinColumn(name = "MOVIE_ID", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "ACTOR_ID",
@@ -69,7 +70,7 @@ public class Movie implements Comparable<Movie>{
     private Long cost;
 
     @JsonIgnore
-    @ManyToMany( mappedBy = "movies",fetch = FetchType.EAGER)
+    @ManyToMany( mappedBy = "movies",fetch = FetchType.LAZY)
     private List<Order> orders;
 
     public Movie() {

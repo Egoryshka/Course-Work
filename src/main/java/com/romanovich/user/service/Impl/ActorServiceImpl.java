@@ -31,7 +31,7 @@ public class ActorServiceImpl implements ActorService {
 
     @Override
     public void addActor(String actorName, Long movieId){
-        Actor actor = actorRepository.findByText(actorName);
+        Actor actor = actorRepository.findByName(actorName);
         Movie movie = movieRepository.findOne(movieId);
         actor = nullActorCheck(actorName, actor);
         addActorToMovie(actor, movie);
@@ -85,7 +85,7 @@ public class ActorServiceImpl implements ActorService {
 
     @Override
     public void deleteActorFromMovieByName(String actorName, Long movieId){
-        Actor actor = actorRepository.findByText(actorName);
+        Actor actor = actorRepository.findByName(actorName);
         deleteActor(movieId, actor);
     }
 
@@ -96,7 +96,7 @@ public class ActorServiceImpl implements ActorService {
 
     @Override
     public List<Movie> gatAllMoviesByActor(String text) {
-        return actorRepository.findByText(text).getMovies();
+        return actorRepository.findByName(text).getMovies();
     }
 
     @Override
@@ -121,6 +121,6 @@ public class ActorServiceImpl implements ActorService {
 
     @Override
     public Actor findByText(String actorName) {
-        return actorRepository.findByText(actorName);
+        return actorRepository.findByName(actorName);
     }
 }

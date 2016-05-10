@@ -16,7 +16,7 @@ public class LoginController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String showLoginPage() {
-        LOGGER.debug("Rendering login page.");
+        LOGGER.debug("Rendering home page.");
         return VIEW_NAME_LOGIN_PAGE;
     }
 }

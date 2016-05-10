@@ -39,12 +39,12 @@ public class User extends BaseEntity<Long> {
     private SocialMediaService signInProvider;
 
     @OneToMany(mappedBy = "user", cascade=CascadeType.ALL,
-            fetch = FetchType.EAGER, orphanRemoval = true)
+            fetch = FetchType.LAZY, orphanRemoval = true)
     @Fetch(FetchMode.SELECT)
     @JsonManagedReference
     private List<Order> orders;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @Fetch(FetchMode.SELECT)
     private List<Rating> ratings;
 

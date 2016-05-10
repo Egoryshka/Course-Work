@@ -20,8 +20,6 @@ public class SearchController {
 
     @Autowired
     private SearchService searchService;
-    @Autowired
-    private MovieService movieService;
 
     @RequestMapping(value="/search",method = RequestMethod.POST)
     public List<Movie> search(@RequestBody String search) {
