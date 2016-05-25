@@ -7,8 +7,12 @@ import com.cloudinary.utils.ObjectUtils;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.cloudinary.json.JSONObject;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.proxy.HibernateProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -20,6 +24,8 @@ import java.util.Map;
 
 /**
  * Created by Alex on 10.02.2016.
+ *
+ * Modified by Егор on 25.05.2016
  */
 @RestController
 public class MovieController {
@@ -56,26 +62,17 @@ public class MovieController {
         return HttpStatus.OK;
     }
 
-
     @RequestMapping(value = "/deleteMovie", method = RequestMethod.POST)
     public
     @ResponseBody
-    String deleteMovie(@RequestBody String data, Principal principal) throws IOException {
+    HttpStatus deleteMovie(@RequestBody String data) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         Movie movie = mapper.readValue(data, Movie.class);
-
-        List<Actor> actors = actorService.getAllActorsInMovie(movie.getId());
-        for (Actor actor : actors) {
-            actorService.deleteActorFromMovie(actor.getId(), movie.getId());
-        }
-
-        List<Genre> genres = genreService.getAllGenresInMovie(movie.getId());
-        for (Genre genre : genres) {
-            genreService.deleteGenreFromMovie(genre.getId(), movie.getId());
-        }
-
+        actorService.deleteActorsFromMovie(movie.getId());
+        genreService.deleteGenresFromMovie(movie.getId());
         movieService.delete(movie);
-        return "OK";
+        return HttpStatus.OK;
     }
 
     @RequestMapping(value = "/saveImage", method = RequestMethod.POST, produces = "application/json")
@@ -96,11 +93,9 @@ public class MovieController {
 
     }
 
-    @RequestMapping(value = "/getAllMovies", method = RequestMethod.GET)
+    @RequestMapping(value = "/getAllMovies", method = RequestMethod.GET,produces = "application/json")
     public List<Movie> getAllMovies() {
-        List<Movie> result = movieService.findAll();
-        Collections.reverse(result);
-        return result;
+        return movieService.getAllMovies();
     }
 
     @RequestMapping(value = "/getMoviesByGenre", method = RequestMethod.POST)

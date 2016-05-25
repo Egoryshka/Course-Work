@@ -71,12 +71,21 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public void deleteGenreFromMovie(Long genreId, Long movieId){
-        Genre genre = genreRepository.findOne(genreId);
-        deleteGenre(movieId, genre);
+        deleteGenre(movieId, genreId);
     }
 
-    private void deleteGenre(Long movieId, Genre genre) {
+    @Override
+    public void deleteGenresFromMovie(Long movieId){
+        List<Genre> genres = movieRepository.findOne(movieId).getGenres();
+        int len = genres.size();
+        for (int i = 0; i < len; i++) {
+            deleteGenre(movieId, genres.get(0).getId());
+        }
+    }
+
+    private void deleteGenre(Long movieId, Long genreId) {
         Movie movie = movieRepository.findOne(movieId);
+        Genre genre = genreRepository.findOne(genreId);
         movie.getGenres().remove(genre);
         genre.getMovies().remove(movie);
         saveMovieAndGenre(genre, movie);
@@ -85,7 +94,7 @@ public class GenreServiceImpl implements GenreService {
     @Override
     public void deleteGenreFromMovieByName(String genreName, Long movieId){
         Genre genre = genreRepository.findByText(genreName);
-        deleteGenre(movieId, genre);
+        deleteGenre(movieId, genre.getId());
     }
 
     @Override

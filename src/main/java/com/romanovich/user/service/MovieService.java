@@ -11,6 +11,6 @@ public interface MovieService {
     List<Movie> getPopularTopTen();
     Movie save(Movie movie);
     Movie findOne(Long id);
-    List<Movie> findAll();
+    List<Movie> getAllMovies();
     void delete(Movie movie);
 }

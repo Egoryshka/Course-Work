@@ -74,12 +74,21 @@ public class ActorServiceImpl implements ActorService {
 
     @Override
     public void deleteActorFromMovie(Long actorId, Long movieId){
-        Actor actor = actorRepository.findOne(actorId);
-        deleteActor(movieId, actor);
+        deleteActor(movieId, actorId);
     }
 
-    private void deleteActor(Long movieId, Actor actor) {
+    @Override
+    public void deleteActorsFromMovie(Long movieId) {
+        List<Actor> actors = getAllActorsInMovie(movieId);
+        int len = actors.size();
+        for (int i = 0; i < len; i++) {
+            deleteActor(movieId, actors.get(0).getId());
+        }
+    }
+
+    private void deleteActor(Long movieId, Long actorId) {
         Movie movie = movieRepository.findOne(movieId);
+        Actor actor = actorRepository.findOne(actorId);
         movie.getActors().remove(actor);
         actor.getMovies().remove(movie);
         saveMovieAndActor(actor, movie);
@@ -88,7 +97,7 @@ public class ActorServiceImpl implements ActorService {
     @Override
     public void deleteActorFromMovieByName(String actorName, Long movieId){
         Actor actor = actorRepository.findByName(actorName);
-        deleteActor(movieId, actor);
+        deleteActor(movieId, actor.getId());
     }
 
     @Override

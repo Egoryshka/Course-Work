@@ -11,7 +11,8 @@ import java.util.List;
 public interface GenreService {
     void addGenre(String genreText, Long movieId);
     List<Genre> getAllGenresInMovie(Long movieId);
-    void deleteGenreFromMovie(Long actorId, Long movieId);
+    void deleteGenreFromMovie(Long genreId, Long movieId);
+    void deleteGenresFromMovie(Long movieId);
     void deleteGenreFromMovieByName(String genreText, Long movieId);
     List<Genre> getAllGenres();
     List<Movie> gatAllMoviesByGenre(String value);

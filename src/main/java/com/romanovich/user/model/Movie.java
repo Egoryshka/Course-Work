@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.search.annotations.*;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -46,6 +49,7 @@ public class Movie implements Comparable<Movie>{
 
     @IndexedEmbedded
     @ManyToMany(fetch = FetchType.LAZY)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name = "movies_genres",
             joinColumns = { @JoinColumn(name = "MOVIE_ID", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "GENRE_ID",
@@ -54,6 +58,7 @@ public class Movie implements Comparable<Movie>{
 
     @IndexedEmbedded
     @ManyToMany(fetch = FetchType.LAZY)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name = "movies_actors",
             joinColumns = { @JoinColumn(name = "MOVIE_ID", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "ACTOR_ID",
@@ -66,10 +71,12 @@ public class Movie implements Comparable<Movie>{
     @OneToMany(mappedBy = "movie",cascade=CascadeType.ALL,
             fetch = FetchType.LAZY, orphanRemoval = true)
     @Fetch(FetchMode.SELECT)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JsonManagedReference
     private List<Rating> ratings;
 
     @JsonIgnore
+    @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany( mappedBy = "movies",fetch = FetchType.LAZY)
     private List<Order> orders;
 
