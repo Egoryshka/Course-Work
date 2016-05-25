@@ -113,7 +113,9 @@ public class ActorServiceImpl implements ActorService {
                     movieActor.setId(actor.getId());
                 }
             }
-            movieActor.getMovies().add(movie);
+            List<Movie> movies = movieActor.getMovies();
+            movies.add(movie);
+            movieActor.setMovies(movies);
             save(movieActor);
         }
         return movie;

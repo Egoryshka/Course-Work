@@ -115,20 +115,14 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                                 "/banOrUnBanUser",
                                 "/getUserInfo",
                                 "/saveprofile",
-                                "/savepost",
-                                "/addpost",
-                                "/getposts",
-                                "/deletepost",
-                                "/get-tags-list/**",
-                                "/get-tags-/**",
-                                "/saveavatar",
-                                "/saveimage",
-                                "/getSinglePost",
-                                "/getUserName",
-                                "/saveComment",
-                                "/getComments",
-                                "/getAllPosts",
-                                "/getCategoryPosts",
+                                "/getActors",
+                                "/getGenres",
+                                "/saveMovie",
+                                "/deleteMovie",
+                                "/getSingleMovie",
+                                "/getAllMovies",
+                                "/getMoviesByGenre",
+                                "/getMoviesByActor",
                                 "/search",
                                 "/getRating",
                                 "/getLikes",
@@ -136,7 +130,6 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                                 "/getPopularPosts",
                                 "/getCloudTags",
                                 "/getPersonalRating",
-                                "/getTagsPost",
                                 "/getUserHomePagePosts",
                                 "/getAchievements",
                                 "/getUserAchievements",
@@ -147,8 +140,12 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                         //The rest of the our application is protected.
 
                         .antMatchers("/**").hasAnyRole("USER","ADMIN")
-                        .antMatchers("/user/admin/**").hasRole("ADMIN")
+                        .antMatchers("/admin/mainAdminPage/**").hasRole("ADMIN")
+                        .antMatchers("/admin/addMoviePage/**").hasRole("ADMIN")
                         .antMatchers("/getAllUsers").hasRole("ADMIN")
+                        .antMatchers("/autocompleteActors").hasRole("ADMIN")
+                        .antMatchers("/autocompleteGenres").hasRole("ADMIN")
+                        .antMatchers("/saveImage").hasRole("ADMIN")
 
 
 

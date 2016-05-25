@@ -102,7 +102,7 @@ public class MovieController {
         Map map = cloudinary.uploader().upload(data, ObjectUtils.emptyMap());
         String url = map.get("url").toString();
         JSONObject obj = new JSONObject();
-        obj.put("data", url);
+        obj.put("poster", url);
         return obj.toString();
     }
 

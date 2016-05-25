@@ -44,12 +44,6 @@ public class Movie implements Comparable<Movie>{
     @Field(index=Index.YES, analyze= Analyze.YES, store= Store.NO)
     private String notice;
 
-    @OneToMany(mappedBy = "movie",cascade=CascadeType.ALL,
-            fetch = FetchType.LAZY, orphanRemoval = true)
-    @Fetch(FetchMode.SELECT)
-    @JsonManagedReference
-    private List<Rating> ratings;
-
     @IndexedEmbedded
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "movies_genres",
@@ -68,6 +62,12 @@ public class Movie implements Comparable<Movie>{
 
     @Column(name = "cost")
     private Long cost;
+
+    @OneToMany(mappedBy = "movie",cascade=CascadeType.ALL,
+            fetch = FetchType.LAZY, orphanRemoval = true)
+    @Fetch(FetchMode.SELECT)
+    @JsonManagedReference
+    private List<Rating> ratings;
 
     @JsonIgnore
     @ManyToMany( mappedBy = "movies",fetch = FetchType.LAZY)

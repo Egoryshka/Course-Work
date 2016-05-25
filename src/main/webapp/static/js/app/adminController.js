@@ -48,6 +48,9 @@ angular.module('myApp')
             });
         };
 
+        $scope.isNotEmptyImage = function() {
+            return $scope.postImage !== "";
+        };
 
         $scope.banOrUnBanUser=function(){
             $http({

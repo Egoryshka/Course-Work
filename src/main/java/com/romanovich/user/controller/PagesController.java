@@ -29,7 +29,8 @@ public class PagesController {
     protected static final String VIEW_NAME_SINGLEPOST_PAGE = "user/singlePost";
     protected static final String VIEW_NAME_USERHOMEPAGE_PAGE = "user/userHomePage";
     protected static final String VIEW_NAME_STARTPAGE_PAGE = "user/home";
-    protected static final String VIEW_NAME_ADMIN_PAGE = "user/admin";
+    protected static final String VIEW_NAME_ADMIN_PAGE = "admin/mainAdminPage";
+    protected static final String VIEW_ADMIN_ADD_NEW_MOVIE = "admin/addMoviePage";
 
 
     @RequestMapping(value = "/user/signIn", method = RequestMethod.GET)
@@ -82,9 +83,15 @@ public class PagesController {
         return VIEW_NAME_STARTPAGE_PAGE;
     }
 
-    @RequestMapping(value = "/user/admin/**", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/mainAdminPage/**", method = RequestMethod.GET)
     public String showAdminPage(WebRequest webRequest) {
         LOGGER.debug("Rendering Admin page.");
         return VIEW_NAME_ADMIN_PAGE;
+    }
+
+    @RequestMapping(value = "/admin/addMoviePage/**", method = RequestMethod.GET)
+    public String showAddMoviePage(WebRequest webRequest) {
+        LOGGER.debug("Rendering Admin add movie page.");
+        return VIEW_ADMIN_ADD_NEW_MOVIE;
     }
 }

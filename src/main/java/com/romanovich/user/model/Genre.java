@@ -5,6 +5,7 @@ import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class Genre {
 
     @JsonIgnore
     @ManyToMany( mappedBy = "genres", fetch = FetchType.LAZY)
-    private List<Movie> movies;
+    private List<Movie> movies = new ArrayList<>();
 
     public Genre() {
     }

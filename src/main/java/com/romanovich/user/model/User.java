@@ -46,11 +46,11 @@ public class User extends BaseEntity<Long> {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @Fetch(FetchMode.SELECT)
-    private List<Rating> ratings;
+    private List<Rating> ratings = new ArrayList<>();
 
 
     public User() {
-        this.orders=new ArrayList<>();
+        this.orders = new ArrayList<>();
     }
 
 

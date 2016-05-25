@@ -5,6 +5,7 @@ import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class Order {
             joinColumns = { @JoinColumn(name = "ORDER_ID", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "MOVIE_ID",
                     nullable = false, updatable = false) })
-    private List<Movie> movies;
+    private List<Movie> movies = new ArrayList<>();
 
     private String address;
 

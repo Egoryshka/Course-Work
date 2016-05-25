@@ -42,7 +42,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <span ><a class="navbar-brand"  href="${pageContext.request.contextPath}/home">iLearning</a></span>
+            <span ><a class="navbar-brand"  href="${pageContext.request.contextPath}/home">Movie Shop</a></span>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
@@ -82,7 +82,7 @@
                             code="label.navigation.registration.link"/></a></li>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <li><a href="${pageContext.request.contextPath}/user/admin"><spring:message
+                    <li><a href="${pageContext.request.contextPath}/admin/mainAdminPage"><spring:message
                             code="label.navigation.admin"/></a></li>
                 </sec:authorize>
 

@@ -48,32 +48,6 @@
                     <a href="${pageContext.request.contextPath}/user/register"><spring:message code="label.navigation.registration.link"/></a>
                 </div>
             </div>
-
-            <div class="row">
-                <div style="width: 100%; padding: 0 5px 0 5px;">
-                    <div class="custom-col-md-4" style="text-align: center;">
-                        <a style="display: block; width: 100%;" href="${pageContext.request.contextPath}/auth/facebook">
-                            <button class="btn btn-facebook" style="width: 100%;">
-                                <i class="icon-facebook"></i> | <spring:message code="label.facebook.sign.in.button"/>
-                            </button>
-                        </a>
-                    </div>
-                    <div class="custom-col-md-4" style="text-align: center;">
-                        <a style="display: block; width: 100%;" href="${pageContext.request.contextPath}/auth/twitter">
-                            <button class="btn btn-twitter" style="width: 100%;">
-                                <i class="icon-twitter"></i> | <spring:message code="label.twitter.sign.in.button"/>
-                            </button>
-                        </a>
-                    </div>
-                    <div class="custom-col-md-4" style="text-align: center;">
-                        <a style="display: block; width: 100%;" href="${pageContext.request.contextPath}/auth/linkedin">
-                            <button class="btn btn-linkedin" style="width: 100%;">
-                                <i class="icon-linkedin"></i> | <spring:message code="label.vk.sign.in.button"/>
-                            </button>
-                        </a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     </div>

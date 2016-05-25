@@ -26,8 +26,7 @@ public class ActorController {
 
     @RequestMapping(value = "/autocompleteActors",method = RequestMethod.GET)
     public List<Actor> getAllActors(){
-        List<Actor> actors = actorService.getAllActors();
-        return actors;
+        return actorService.getAllActors();
     }
 
     @RequestMapping(value = "/getActorsIds",method = RequestMethod.GET)

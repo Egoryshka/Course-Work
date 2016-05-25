@@ -12,11 +12,11 @@ public class HomeController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
-    protected static final String VIEW_NAME_HOMEPAGE = "index";
+    protected static final String VIEW_NAME_HOMEPAGE = "redirect:/home";
 
     @RequestMapping(value="/", method = RequestMethod.GET)
     public String showHomePage() {
-        LOGGER.debug("Rendering homepage.");
+        LOGGER.debug("Rendering home page.");
         return VIEW_NAME_HOMEPAGE;
     }
 }

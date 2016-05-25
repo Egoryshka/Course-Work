@@ -8,18 +8,19 @@
 <head>
 
     <title></title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/social-buttons-3.css"/>
+    <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/social-buttons-3.css"/>--%>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <script type="text/javascript"
-            src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/cookie.js"></script>
+
+    <%--<script type="text/javascript"--%>
+            <%--src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>--%>
+    <%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/cookie.js"></script>--%>
 
 </head>
 <body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/postDirective.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/startPageController.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/tagCloudController.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/TrustController.js"></script>
+<%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/postDirective.js"></script>--%>
+<%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/startPageController.js"></script>--%>
+<%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/tagCloudController.js"></script>--%>
+<%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/TrustController.js"></script>--%>
 
 
 <!--removed by integration-->
@@ -27,178 +28,212 @@
     <div ng-controller="startPageController" class="page-container">
         <div class="container">
             <div class="row">
-                <%--<div class="col-md-9 col-md-push-3">--%>
-                    <%--<div infinite-scroll='extendList()' infinite-scroll-disabled='busy'>--%>
-                        <%--<div ng-repeat="post in articles" ng-hide="$index > postListLen+3">--%>
-                            <%--<div class="panel panel-default">--%>
+                <div class="col-md-9 col-md-push-3">
+                    <div>
+                        <div>
+                            <div class="panel panel-default col-md-12">
+                                <div class="col-md-3" style="padding: 15px 15px 15px 0; float: left;">
+                                    <img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt="">
+                                    <h5 style="text-align: center;">Рейтинг: 45</h5>
+                                </div>
+                                <div class="col-md-9" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <h4 style="margin-top: 15px;">Эдди Орел</h4>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0; margin-top: 15px;">
+                                        <button class="btn btn-primary pull-right">
+                                            <span class="icon-plus"></span>
+                                            Добавить в корзину
+                                        </button>
+                                    </div>
+                                </div>
+                                <p>Год: 2016</p>
+                                <p>Страна: Великобритания</p>
+                                <p>Жанр: Биография, Спортивный, Драма</p>
+                                <p>С раннего детства у Майкла Эдвардса, получившего впоследствии прозвище Эдди Орел, была только одна заветная мечта – попасть на Олимпийские игры, и не имеет значения в какой дисциплине. Герой очень старался где-либо показать себя, но абсолютно не был предрасположен к спорту. В итоге он понял, что у него есть шанс попасть на зимние Олимпийские игры, и для этого надо всего лишь научиться прыгать на лыжах с трамплина. Несмотря на скептицизм окружающих и первые неудачи, герой решил не сдаваться и любым способом добиться поставленной цели. Для этого ему пришлось найти себе профессионального тренера в лице чемпиона 1968 года по прыжкам с трамплина Бронсона Пири, которого когда-то со скандалом выгнали из команды из-за неуважительного отношения к спорту. </p>
+                            </div>
 
-                                <%--<div class="article-header" ng-show="post.template == 0">--%>
-                                    <%--<img ng-src="{{post.image}}" alt="">--%>
-                                <%--</div>--%>
+                            <div class="panel panel-default col-md-12">
+                                <div class="col-md-3" style="padding: 15px 15px 15px 0; float: left;">
+                                    <img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt="">
+                                    <h5 style="text-align: center;">Рейтинг: 45</h5>
+                                </div>
+                                <div class="col-md-9" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <h4 style="margin-top: 15px;">Эдди Орел</h4>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0; margin-top: 15px;">
+                                        <button class="btn btn-primary pull-right">
+                                            <span class="icon-plus"></span>
+                                            Добавить в корзину
+                                        </button>
+                                    </div>
+                                </div>
+                                <p>Год: 2016</p>
+                                <p>Страна: Великобритания</p>
+                                <p>Жанр: Биография, Спортивный, Драма</p>
+                                <p>С раннего детства у Майкла Эдвардса, получившего впоследствии прозвище Эдди Орел, была только одна заветная мечта – попасть на Олимпийские игры, и не имеет значения в какой дисциплине. Герой очень старался где-либо показать себя, но абсолютно не был предрасположен к спорту. В итоге он понял, что у него есть шанс попасть на зимние Олимпийские игры, и для этого надо всего лишь научиться прыгать на лыжах с трамплина. Несмотря на скептицизм окружающих и первые неудачи, герой решил не сдаваться и любым способом добиться поставленной цели. Для этого ему пришлось найти себе профессионального тренера в лице чемпиона 1968 года по прыжкам с трамплина Бронсона Пири, которого когда-то со скандалом выгнали из команды из-за неуважительного отношения к спорту. </p>
+                            </div>
 
-                                <%--<div class="embed-responsive embed-responsive-16by9" style="margin: 15px 0 15px 0"--%>
-                                     <%--ng-show="post.template == 1" ng-controller="TrustController">--%>
-                                    <%--<iframe class="embed-responsive-item"--%>
-                                            <%--ng-src="{{trustSrc(post.image)}}"--%>
-                                            <%--frameborder="0" allowfullscreen></iframe>--%>
-                                <%--</div>--%>
-
-                                <%--<div class="article">--%>
-                                    <%--<div class="article-body">--%>
-                                        <%--<div class="article-title article-title-1 article-title-font">--%>
-                                            <%--<a style="display: inline-block;" href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}">--%>
-                                                <%--{{post.title}}--%>
-                                            <%--</a>--%>
-                                            <%--<span style="float: right;"><spring:message code="label.post.rating"/> {{post.rating}}</span>--%>
-                                        <%--</div>--%>
-                                        <%--<div class="article-info">--%>
-                                            <%--<spring:message code="label.post.author"/>:--%>
-                                            <%--<a href="${pageContext.request.contextPath}/user/userHomePage/{{post.userId}}"--%>
-                                               <%--class="text-primary">{{post.lastName}}--%>
-                                                <%--{{post.firstName}}</a>,--%>
-                                            <%--<spring:message code="label.post.postCategory"/>:--%>
-                                            <%--<a href="#" ng-click="getCategoryPosts(post.category)" class="text-primary">{{post.category}}</a>,--%>
-                                            <%--<spring:message code="label.post.PostDate"/>: {{convertDate(post.date)}}--%>
-                                            <%--<div style="float: right;">--%>
-                                                <%--<a href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}"--%>
-                                                   <%--class="text-primary">--%>
-                                                    <%--<i class="icon-comment"></i> {{post.comments.length}}--%>
-                                                    <%--<spring:message--%>
-                                                            <%--code="label.post.comments"/></a></div>--%>
-                                        <%--</div>--%>
-
-                                        <%--<div>--%>
-                                            <%--<a ng-repeat="tag in post.tags" href="#" class="tag label label-primary"--%>
-                                               <%--style="margin-right: 4px;">--%>
-                                                <%--{{post.tags[$index].text}}--%>
-                                            <%--</a>--%>
-                                        <%--</div>--%>
-                                        <%--<hr>--%>
-
-                                        <%--<div style="max-height: 400px; text-overflow:ellipsis; overflow:hidden;">--%>
-                                            <%--<posttext-directive></posttext-directive>--%>
-                                        <%--</div>--%>
-                                        <%--<div class="article-info">--%>
-                                            <%--<a href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}"--%>
-                                               <%--class="text-primary"><spring:message--%>
-                                                    <%--code="label.post.readMore"/>--%>
-                                            <%--</a>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
+                            <div class="panel panel-default col-md-12">
+                                <div class="col-md-3" style="padding: 15px 15px 15px 0; float: left;">
+                                    <img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt="">
+                                    <h5 style="text-align: center;">Рейтинг: 45</h5>
+                                </div>
+                                <div class="col-md-9" style="padding: 0;">
+                                    <div class="col-md-6" style="padding: 0;">
+                                        <h4 style="margin-top: 15px;">Эдди Орел</h4>
+                                    </div>
+                                    <div class="col-md-6" style="padding: 0; margin-top: 15px;">
+                                        <button class="btn btn-primary pull-right">
+                                            <span class="icon-plus"></span>
+                                            Добавить в корзину
+                                        </button>
+                                    </div>
+                                </div>
+                                <p>Год: 2016</p>
+                                <p>Страна: Великобритания</p>
+                                <p>Жанр: Биография, Спортивный, Драма</p>
+                                <p>С раннего детства у Майкла Эдвардса, получившего впоследствии прозвище Эдди Орел, была только одна заветная мечта – попасть на Олимпийские игры, и не имеет значения в какой дисциплине. Герой очень старался где-либо показать себя, но абсолютно не был предрасположен к спорту. В итоге он понял, что у него есть шанс попасть на зимние Олимпийские игры, и для этого надо всего лишь научиться прыгать на лыжах с трамплина. Несмотря на скептицизм окружающих и первые неудачи, герой решил не сдаваться и любым способом добиться поставленной цели. Для этого ему пришлось найти себе профессионального тренера в лице чемпиона 1968 года по прыжкам с трамплина Бронсона Пири, которого когда-то со скандалом выгнали из команды из-за неуважительного отношения к спорту. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 
-                <%--<div class="col-md-3 col-md-pull-9">--%>
-                    <%--<div class="row sidebar">--%>
+                <div class="col-md-3 col-md-pull-9">
+                    <div class="row sidebar">
+                        <form class="navbar-form navbar-left" role="search">
                         <%--<form ng-submit="getSearchResults()" class="navbar-form navbar-left" role="search">--%>
-                            <%--<div class="form-group">--%>
-                                <%--<input ng-model="search" type="text" class="form-control" placeholder="Search">--%>
-                            <%--</div>--%>
-                            <%--<button type="submit" class="btn btn-primary">--%>
-                                <%--<i class="icon-search" style="font-size: 1.5em;"> </i>--%>
-                            <%--</button>--%>
-                        <%--</form>--%>
-                        <%--<div class="col-md-12">--%>
-                            <%--<div>--%>
-                                <%--<h4 class="sidebar-block-header nav-tabs">--%>
-                                    <%--<spring:message code="label.blog"/></h4>--%>
+                            <div class="form-group">
+                                <input ng-model="search" type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="icon-search" style="font-size: 1.5em;"> </i>
+                            </button>
+                        </form>
+                        <div class="col-md-12">
+                            <div>
+                                <h4 class="sidebar-block-header nav-tabs">
+                                    Genres
+                                </h4>
 
-                                <%--<ul class="nav" style="margin-top: -10px">--%>
-                                    <%--<li>--%>
-                                        <%--<a ng-click="getAllPosts()" href="#"--%>
-                                           <%--style="padding: 10px 15px;" class="nav-tabs">--%>
-                                            <%--<spring:message code="label.all.categories"/></a>--%>
-                                    <%--</li>--%>
-                                    <%--<li>--%>
-                                        <%--<a ng-click="getCategoryPosts('Art')" href="#"--%>
-                                           <%--style="padding: 10px 15px;" class="nav-tabs">--%>
-                                            <%--<spring:message code="label.art"/></a>--%>
-                                    <%--</li>--%>
-                                    <%--<li>--%>
-                                        <%--<a ng-click="getCategoryPosts('Medicine')" href="#"--%>
-                                           <%--style="padding: 10px 15px;" class="nav-tabs">--%>
-                                            <%--<spring:message code="label.medicine"/></a>--%>
-                                    <%--</li>--%>
-                                    <%--<li>--%>
-                                        <%--<a ng-click="getCategoryPosts('Transport')" href="#"--%>
-                                           <%--style="padding: 10px 15px;" class="nav-tabs">--%>
-                                            <%--<spring:message code="label.transport"/></a>--%>
-                                    <%--</li>--%>
-                                    <%--<li>--%>
-                                        <%--<a ng-click="getCategoryPosts('Finance')" href="#"--%>
-                                           <%--style="padding: 10px 15px;" class="nav-tabs">--%>
-                                            <%--<spring:message code="label.finance"/></a>--%>
-                                    <%--</li>--%>
-                                    <%--<li>--%>
-                                        <%--<a ng-click="getCategoryPosts('Sport')" href="#"--%>
-                                           <%--style="padding: 10px 15px;" class="nav-tabs">--%>
-                                            <%--<spring:message code="label.sport"/></a>--%>
-                                    <%--</li>--%>
-                                    <%--<li>--%>
-                                        <%--<a ng-click="getCategoryPosts('Music')" href="#"--%>
-                                           <%--style="padding: 10px 15px;" class="nav-tabs">--%>
-                                            <%--<spring:message code="label.music"/></a>--%>
-                                    <%--</li>--%>
-                                    <%--<li>--%>
-                                        <%--<a ng-click="getCategoryPosts('Business')" href="#"--%>
-                                           <%--style="padding: 10px 15px;" class="nav-tabs">--%>
-                                            <%--<spring:message code="label.business"/></a>--%>
-                                    <%--</li>--%>
-                                    <%--<li>--%>
-                                        <%--<a ng-click="getCategoryPosts('Building')" href="#"--%>
-                                           <%--style="padding: 10px 15px;" class="nav-tabs">--%>
-                                            <%--<spring:message code="label.building"/></a>--%>
-                                    <%--</li>--%>
-                                <%--</ul>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div class="col-md-12">--%>
-                            <%--<h4 class="sidebar-block-header nav-tabs">--%>
-                                <%--<spring:message code="label.popular.postes"/>--%>
-                            <%--</h4>--%>
-                            <%--<div class="popular-container row">--%>
-                                <%--<div ng-repeat="pop in popArticles" class="populars nav-tabs col-md-12  col-xs-12">--%>
-                                    <%--<div class="col-md-3" style="padding: 0 0 0 0;">--%>
-                                        <%--<a ng-show="pop.template == 0" href="${pageContext.request.contextPath}/user/singlePost/{{pop.id}}">--%>
-                                            <%--<img width="100%" ng-src="{{pop.image}}" alt=""/>--%>
-                                        <%--</a>--%>
+                                <ul class="nav" style="margin-top: -10px">
+                                    <li>
+                                        <a ng-click="" href="#"
+                                           style="padding: 10px 15px;" class="nav-tabs">
+                                            Lorem
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click="" href="#"
+                                           style="padding: 10px 15px;" class="nav-tabs">
+                                            Ipsum
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click="" href="#"
+                                           style="padding: 10px 15px;" class="nav-tabs">
+                                            Dolor
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click="" href="#"
+                                           style="padding: 10px 15px;" class="nav-tabs">
+                                            Lorem
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click="" href="#"
+                                           style="padding: 10px 15px;" class="nav-tabs">
+                                            Ipsum
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click="" href="#"
+                                           style="padding: 10px 15px;" class="nav-tabs">
+                                            Dolor
+                                        </a>
+                                    </li>
 
-                                        <%--<a href="${pageContext.request.contextPath}/user/singlePost/{{pop.id}}" ng-show="pop.template == 1">--%>
-                                            <%--<img width="100%" src="${pageContext.request.contextPath}/static/images/youtube.png" alt=""/>--%>
-                                        <%--</a>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="col-md-9">--%>
-                                        <%--<div style="font-size: 0.92308em; line-height: 2;">--%>
-                                            <%--<a href="${pageContext.request.contextPath}/user/singlePost/{{pop.id}}">{{pop.title}}</a>--%>
-                                        <%--</div>--%>
-                                        <%--<div style="font-size: 0.84615em; line-height: 1.63636; font-style: italic; font-weight: lighter;">--%>
-                                            <%--{{convertDate(pop.date)}}--%>
-                                        <%--</div>--%>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4 class="sidebar-block-header nav-tabs">
+                                Popular Movies
+                            </h4>
+                            <div class="popular-container row">
+                                <%--<div ng-repeat="pop in popArticles" class="populars nav-tabs col-md-12 col-xs-12">--%>
+                                <div class="populars nav-tabs col-md-12 col-xs-12">
+                                    <div class="col-md-3" style="padding: 0 0 0 0;">
+                                        <a href="#">
+                                            <img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt=""/>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div style="font-size: 0.92308em; line-height: 2;">
+                                            <a href="#">Eddi Eagle</a>
+                                        </div>
+                                        <div style="font-size: 0.84615em; line-height: 1.63636; font-style: italic; font-weight: lighter;">
+                                            2016
+                                        </div>
 
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div class="col-md-12">--%>
-                            <%--<h4 class="sidebar-block-header nav-tabs">--%>
-                                <%--<spring:message code="label.tags.cloud"/>--%>
-                            <%--</h4>--%>
-                            <%--<div ng-controller="tagsController">--%>
-                                <%--<div ng-repeat="tag in tagsCloud">--%>
-                                    <%--<a class="tag label label-primary" style="float: left;"--%>
-                                       <%--ng-click="getTagsPosts(tag.text)" href=""--%>
-                                       <%--ng-style="tagSize={'font-size': '{{tag.weight}}em'}">{{tag.text}}</a>--%>
-                                <%--</div>--%>
+                                    </div>
+                                </div>
+                                <div class="populars nav-tabs col-md-12 col-xs-12">
+                                    <div class="col-md-3" style="padding: 0 0 0 0;">
+                                        <a href="#">
+                                            <img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt=""/>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div style="font-size: 0.92308em; line-height: 2;">
+                                            <a href="#">Eddi Eagle</a>
+                                        </div>
+                                        <div style="font-size: 0.84615em; line-height: 1.63636; font-style: italic; font-weight: lighter;">
+                                            2016
+                                        </div>
 
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
+                                    </div>
+                                </div>
+                                <div class="populars nav-tabs col-md-12 col-xs-12">
+                                    <div class="col-md-3" style="padding: 0 0 0 0;">
+                                        <a href="#">
+                                            <img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt=""/>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div style="font-size: 0.92308em; line-height: 2;">
+                                            <a href="#">Eddi Eagle</a>
+                                        </div>
+                                        <div style="font-size: 0.84615em; line-height: 1.63636; font-style: italic; font-weight: lighter;">
+                                            2016
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="populars nav-tabs col-md-12 col-xs-12">
+                                    <div class="col-md-3" style="padding: 0 0 0 0;">
+                                        <a href="#">
+                                            <img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt=""/>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div style="font-size: 0.92308em; line-height: 2;">
+                                            <a href="#">Eddi Eagle</a>
+                                        </div>
+                                        <div style="font-size: 0.84615em; line-height: 1.63636; font-style: italic; font-weight: lighter;">
+                                            2016
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
