@@ -16,6 +16,6 @@ public interface GenreService {
     List<Genre> getAllGenres();
     List<Movie> gatAllMoviesByGenre(String value);
     Genre save(Genre actor);
-    Movie updateGenresInMovie(Movie movie, List<Genre> genres);
+    Movie updateGenresInMovie(Movie movie);
     Genre findByText(String text);
 }

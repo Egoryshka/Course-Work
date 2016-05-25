@@ -16,6 +16,6 @@ public interface ActorService {
     List<Actor> getAllActors();
     List<Movie> gatAllMoviesByActor(String value);
     Actor save(Actor actor);
-    Movie updateActorsInMovie(Movie movie,List<Actor> actors);
+    Movie updateActorsInMovie(Movie movie);
     Actor findByText(String text);
 }

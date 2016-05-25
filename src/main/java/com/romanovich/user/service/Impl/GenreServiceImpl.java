@@ -19,18 +19,18 @@ import java.util.List;
 @Transactional
 public class GenreServiceImpl implements GenreService {
 
-    GenreRepository genreepository;
+    GenreRepository genreRepository;
     MovieRepository movieRepository;
 
     @Autowired
     public GenreServiceImpl(GenreRepository genreepository, MovieRepository movieRepository) {
-        this.genreepository = genreepository;
+        this.genreRepository = genreepository;
         this.movieRepository = movieRepository;
     }
 
     @Override
     public void addGenre(String genreText, Long movieId){
-        Genre genre = genreepository.findByText(genreText);
+        Genre genre = genreRepository.findByText(genreText);
         Movie movie = movieRepository.findOne(movieId);
         genre = nullGenreCheck(genreText, genre);
         addGenreToMovie(genre, movie);
@@ -46,7 +46,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     private void saveMovieAndGenre(Genre genre, Movie movie) {
-        genreepository.save(genre);
+        genreRepository.save(genre);
         movieRepository.save(movie);
     }
 
@@ -71,7 +71,7 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public void deleteGenreFromMovie(Long genreId, Long movieId){
-        Genre genre = genreepository.findOne(genreId);
+        Genre genre = genreRepository.findOne(genreId);
         deleteGenre(movieId, genre);
     }
 
@@ -84,27 +84,28 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public void deleteGenreFromMovieByName(String genreName, Long movieId){
-        Genre genre = genreepository.findByText(genreName);
+        Genre genre = genreRepository.findByText(genreName);
         deleteGenre(movieId, genre);
     }
 
     @Override
     public List<Genre> getAllGenres() {
-        return genreepository.findAll();
+        return genreRepository.findAll();
     }
 
     @Override
     public List<Movie> gatAllMoviesByGenre(String text) {
-        return genreepository.findByText(text).getMovies();
+        return genreRepository.findByText(text).getMovies();
     }
 
     @Override
     public Genre save(Genre genre) {
-        return genreepository.save(genre);
+        return genreRepository.save(genre);
     }
 
     @Override
-    public Movie updateGenresInMovie(Movie movie, List<Genre> genres){
+    public Movie updateGenresInMovie(Movie movie){
+        List<Genre> genres = getAllGenres();
         for (Genre movieGenre : movie.getGenres()) {
             for (Genre genre : genres) {
                 if (genre.getText().equals(movieGenre.getText())) {
@@ -120,6 +121,6 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public Genre findByText(String genreName) {
-        return genreepository.findByText(genreName);
+        return genreRepository.findByText(genreName);
     }
 }

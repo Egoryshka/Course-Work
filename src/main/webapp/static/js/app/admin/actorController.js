@@ -8,7 +8,7 @@ angular.module('myApp')
             return $http.get('/autocompleteActors', {cache: true}).then(function (response) {
                 var actors = response.data;
                 return actors.filter(function (actor) {
-                    return actor.text.toLowerCase().indexOf($query.toLowerCase()) != -1;
+                    return actor.name.toLowerCase().indexOf($query.toLowerCase()) != -1;
                 });
             });
         };

@@ -5,6 +5,8 @@ import com.romanovich.user.model.Movie;
 import com.romanovich.user.repository.ActorRepository;
 import com.romanovich.user.repository.MovieRepository;
 import com.romanovich.user.service.ActorService;
+import org.hibernate.Hibernate;
+import org.hibernate.proxy.HibernateProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -105,17 +107,17 @@ public class ActorServiceImpl implements ActorService {
     }
 
     @Override
-    public Movie updateActorsInMovie(Movie movie, List<Actor> actors){
+    public Movie updateActorsInMovie(Movie movie){
+        List<Actor> actors = getAllActors();
         for (Actor movieActor : movie.getActors()) {
             for (Actor actor : actors) {
                 if (actor.getName().equals(movieActor.getName())) {
                     movieActor.setMovies(actor.getMovies());
                     movieActor.setId(actor.getId());
+                    break;
                 }
             }
-            List<Movie> movies = movieActor.getMovies();
-            movies.add(movie);
-            movieActor.setMovies(movies);
+            movieActor.getMovies().add(movie);
             save(movieActor);
         }
         return movie;

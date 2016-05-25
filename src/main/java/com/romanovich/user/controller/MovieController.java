@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.cloudinary.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -44,32 +45,15 @@ public class MovieController {
     @RequestMapping(value = "/saveMovie", method = RequestMethod.POST)
     public
     @ResponseBody
-    Integer saveMovie(@RequestBody String data) throws IOException, ParseException {
+    HttpStatus saveMovie(@RequestBody String data) throws IOException, ParseException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         Movie movie = mapper.readValue(data, Movie.class);
-        if (movie.getId() == null) {
-            List<Actor> actors = actorService.getAllActors();
-            movie = actorService.updateActorsInMovie(movie, actors);
-            List<Genre> genres = genreService.getAllGenres();
-            movie = genreService.updateGenresInMovie(movie, genres);
-        } else {
-            List<Actor> actors = actorService.getAllActorsInMovie(movie.getId());
-            for (Actor actor : actors) {
-                actorService.deleteActorFromMovie(actor.getId(), movie.getId());
-            }
-            actors = actorService.getAllActors();
-            movie = actorService.updateActorsInMovie(movie, actors);
-
-            List<Genre> genres = genreService.getAllGenresInMovie(movie.getId());
-            for (Genre genre : genres) {
-                genreService.deleteGenreFromMovie(genre.getId(), movie.getId());
-            }
-            genres = genreService.getAllGenres();
-            movie = genreService.updateGenresInMovie(movie, genres);
-        }
+        movie = actorService.updateActorsInMovie(movie);
+        movie = genreService.updateGenresInMovie(movie);
         movieService.save(movie);
-        return 200;
+
+        return HttpStatus.OK;
     }
 
 
