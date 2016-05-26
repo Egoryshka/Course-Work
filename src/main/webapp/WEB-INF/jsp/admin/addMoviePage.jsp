@@ -21,44 +21,46 @@
         <div class="col-md-9" style="margin-left: 12.5%">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 class="panel-title" style="display: inline-block">Add new Movie</h4>
+                    <h4 class="panel-title" style="display: inline-block"><spring:message code="label.movie.add"/></h4>
                 </div>
                 <form class="panel-body" style="padding: 15px 0 15px 0;" name="editingArticle">
                     <fieldset>
                         <div class="col-md-3 pull-left" style="padding: 0 0 0 15px;">
-                            <div class="dropzone" style="height: 328px; display: table-cell; vertical-align: middle;"
+                            <div class="dropzone" style="height: 328px;"
                                  file-dropzone="[image/png, image/jpeg, image/gif]"
                                  file="poster" file-name="fileName" data-max-file-size="3">
                                 <img ng-show="poster" ng-src="{{poster}}" width="100%"/>
-                                <h4 ng-hide="poster"><spring:message code="label.post.dropzone"/></h4>
+                                <h4 ng-hide="poster" style="margin-top: 50px;">
+                                    <spring:message code="label.movie.poster"/>
+                                </h4>
                             </div>
                         </div>
 
                         <div class="pull-left col-md-9">
-                            <h4 style="margin: 0 0 2px 0;">Movie Title</h4>
+                            <h4 style="margin: 0 0 2px 0;"><spring:message code="label.movie.title"/></h4>
                             <input maxlength="150" class="form-control" id="title" ng-model="title"
                                    required>
                         </div>
 
                         <div class="pull-left col-md-4" style="padding-right: 0;">
-                            <h4 style="margin: 10px 0 2px 0;">Year</h4>
+                            <h4 style="margin: 10px 0 2px 0;"><spring:message code="label.movie.year"/></h4>
                             <input maxlength="4" class="form-control" id="year" ng-model="year"
                                    required>
                         </div>
 
                         <div class="pull-left col-md-5">
-                            <h4 style="margin: 10px 0 2px 0;">Cost</h4>
+                            <h4 style="margin: 10px 0 2px 0;"><spring:message code="label.movie.cost"/></h4>
                             <input maxlength="10" class="form-control" id="cost" ng-model="cost"
                                    required>
                         </div>
 
                         <div class="pull-left col-md-9">
-                            <h4 style="margin: 10px 0 2px 0;">Country</h4>
+                            <h4 style="margin: 10px 0 2px 0;"><spring:message code="label.movie.country"/></h4>
                             <input maxlength="150" class="form-control" id="country" ng-model="country">
                         </div>
 
                         <div class="pull-left col-md-9">
-                            <h4>Genres</h4>
+                            <h4><spring:message code="label.movie.genres"/></h4>
                             <div ng-controller="genreController">
                                 <tags-input ng-model="genres"
                                             display-property="text"
@@ -84,7 +86,7 @@
                         </div>
 
                         <div class="pull-left col-md-12">
-                            <h4>Actors</h4>
+                            <h4><spring:message code="label.movie.actors"/></h4>
                             <div ng-controller="actorController">
                                 <tags-input ng-model="actors"
                                             display-property="name"
@@ -110,14 +112,14 @@
                         </div>
 
                         <div class="pull-left col-md-12">
-                            <h4 style="margin: 10px 0 2px 0;">Description</h4>
+                            <h4 style="margin: 10px 0 2px 0;"><spring:message code="label.movie.about"/></h4>
                             <textarea ng-model="notice" id="notice" rows="5" class="form-control"
                                       style="width: 100%;">
                             </textarea>
                         </div>
 
                         <div class="pull-left col-md-12">
-                            <h4 style="margin: 15px 0 2px 0;">Trailer URL</h4>
+                            <h4 style="margin: 15px 0 2px 0;"><spring:message code="label.movie.trailer"/></h4>
                             <input maxlength="150" type="url" class="form-control" ng-model="trailer">
                             <div ng-show="trailer" ng-controller="TrustController">
                                 <div class="embed-responsive embed-responsive-16by9"
@@ -134,13 +136,13 @@
                                 <button ng-click="newMovie();"
                                         class="btn btn-primary btn-block" type="submit"
                                         ng-disabled="editingArticle.$invalid">
-                                    Save
+                                    <spring:message code="button.movie.add"/>
                                 </button>
                             </div>
                             <div class="col-md-6  pull-left" style="padding: 20px 0 0 7.5px">
                                 <a href="${pageContext.request.contextPath}/admin/mainAdminPage"
                                    class="btn btn-default btn-block">
-                                    Cancel
+                                    <spring:message code="button.movie.cancel"/>
                                 </a>
                             </div>
                             <div ng-show="isUploading" class="progress progress-striped active pull-left">

@@ -19,7 +19,6 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/angular-sanitize.js"></script>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/vendor/bootstrap.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/ckeditor/ckeditor.js"></script>
     <script type="text/javascript"
             src="${pageContext.request.contextPath}/static/js/app/ng-infinite-scroll_min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/ng-tags-input.js"></script>

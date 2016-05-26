@@ -84,7 +84,7 @@
 }).call(this);
 
 
-angular.module('myApp')
+angular.module('myApp');
 
 
 

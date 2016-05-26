@@ -8,14 +8,8 @@
 <head>
 
     <title></title>
-    <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/social-buttons-3.css"/>--%>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-    <%--<script type="text/javascript"--%>
-            <%--src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>--%>
-    <%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/cookie.js"></script>--%>
-
-</head>
+    </head>
 <body>
 <%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/postDirective.js"></script>--%>
 <%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/startPageController.js"></script>--%>
@@ -25,77 +19,32 @@
 
 <!--removed by integration-->
 <div ng-app="myApp">
-    <div ng-controller="startPageController" class="page-container">
+    <div ng-controller="homePageController" class="page-container">
         <div class="container">
             <div class="row">
                 <div class="col-md-9 col-md-push-3">
                     <div>
-                        <div>
-                            <div class="panel panel-default col-md-12">
-                                <div class="col-md-3" style="padding: 15px 15px 15px 0; float: left;">
-                                    <img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt="">
-                                    <h5 style="text-align: center;">Рейтинг: 45</h5>
-                                </div>
-                                <div class="col-md-9" style="padding: 0;">
-                                    <div class="col-md-6" style="padding: 0;">
-                                        <h4 style="margin-top: 15px;">Эдди Орел</h4>
-                                    </div>
-                                    <div class="col-md-6" style="padding: 0; margin-top: 15px;">
-                                        <button class="btn btn-primary pull-right">
-                                            <span class="icon-plus"></span>
-                                            Добавить в корзину
-                                        </button>
-                                    </div>
-                                </div>
-                                <p>Год: 2016</p>
-                                <p>Страна: Великобритания</p>
-                                <p>Жанр: Биография, Спортивный, Драма</p>
-                                <p>С раннего детства у Майкла Эдвардса, получившего впоследствии прозвище Эдди Орел, была только одна заветная мечта – попасть на Олимпийские игры, и не имеет значения в какой дисциплине. Герой очень старался где-либо показать себя, но абсолютно не был предрасположен к спорту. В итоге он понял, что у него есть шанс попасть на зимние Олимпийские игры, и для этого надо всего лишь научиться прыгать на лыжах с трамплина. Несмотря на скептицизм окружающих и первые неудачи, герой решил не сдаваться и любым способом добиться поставленной цели. Для этого ему пришлось найти себе профессионального тренера в лице чемпиона 1968 года по прыжкам с трамплина Бронсона Пири, которого когда-то со скандалом выгнали из команды из-за неуважительного отношения к спорту. </p>
+                        <div ng-repeat="movie in movies" class="panel panel-default col-md-12">
+                            <div class="col-md-3" style="padding: 15px 15px 0 0; float: left;">
+                                <img width="100%" ng-src="{{movie.poster}}" alt="">
+                                <%--<h5 style="text-align: center;">Рейтинг: XX</h5>--%>
                             </div>
-
-                            <div class="panel panel-default col-md-12">
-                                <div class="col-md-3" style="padding: 15px 15px 15px 0; float: left;">
-                                    <img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt="">
-                                    <h5 style="text-align: center;">Рейтинг: 45</h5>
+                            <div class="col-md-9" style="padding: 0;">
+                                <div class="col-md-6" style="padding: 0;">
+                                    <h4 style="margin-top: 15px;">{{movie.title}}</h4>
                                 </div>
-                                <div class="col-md-9" style="padding: 0;">
-                                    <div class="col-md-6" style="padding: 0;">
-                                        <h4 style="margin-top: 15px;">Эдди Орел</h4>
-                                    </div>
-                                    <div class="col-md-6" style="padding: 0; margin-top: 15px;">
-                                        <button class="btn btn-primary pull-right">
-                                            <span class="icon-plus"></span>
-                                            Добавить в корзину
-                                        </button>
-                                    </div>
+                                <div class="col-md-6" style="padding: 0; margin-top: 15px;">
+                                    <button class="btn btn-primary pull-right">
+                                        <span class="icon-plus"></span>
+                                        Добавить в корзину
+                                    </button>
                                 </div>
-                                <p>Год: 2016</p>
-                                <p>Страна: Великобритания</p>
-                                <p>Жанр: Биография, Спортивный, Драма</p>
-                                <p>С раннего детства у Майкла Эдвардса, получившего впоследствии прозвище Эдди Орел, была только одна заветная мечта – попасть на Олимпийские игры, и не имеет значения в какой дисциплине. Герой очень старался где-либо показать себя, но абсолютно не был предрасположен к спорту. В итоге он понял, что у него есть шанс попасть на зимние Олимпийские игры, и для этого надо всего лишь научиться прыгать на лыжах с трамплина. Несмотря на скептицизм окружающих и первые неудачи, герой решил не сдаваться и любым способом добиться поставленной цели. Для этого ему пришлось найти себе профессионального тренера в лице чемпиона 1968 года по прыжкам с трамплина Бронсона Пири, которого когда-то со скандалом выгнали из команды из-за неуважительного отношения к спорту. </p>
                             </div>
-
-                            <div class="panel panel-default col-md-12">
-                                <div class="col-md-3" style="padding: 15px 15px 15px 0; float: left;">
-                                    <img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt="">
-                                    <h5 style="text-align: center;">Рейтинг: 45</h5>
-                                </div>
-                                <div class="col-md-9" style="padding: 0;">
-                                    <div class="col-md-6" style="padding: 0;">
-                                        <h4 style="margin-top: 15px;">Эдди Орел</h4>
-                                    </div>
-                                    <div class="col-md-6" style="padding: 0; margin-top: 15px;">
-                                        <button class="btn btn-primary pull-right">
-                                            <span class="icon-plus"></span>
-                                            Добавить в корзину
-                                        </button>
-                                    </div>
-                                </div>
-                                <p>Год: 2016</p>
-                                <p>Страна: Великобритания</p>
-                                <p>Жанр: Биография, Спортивный, Драма</p>
-                                <p>С раннего детства у Майкла Эдвардса, получившего впоследствии прозвище Эдди Орел, была только одна заветная мечта – попасть на Олимпийские игры, и не имеет значения в какой дисциплине. Герой очень старался где-либо показать себя, но абсолютно не был предрасположен к спорту. В итоге он понял, что у него есть шанс попасть на зимние Олимпийские игры, и для этого надо всего лишь научиться прыгать на лыжах с трамплина. Несмотря на скептицизм окружающих и первые неудачи, герой решил не сдаваться и любым способом добиться поставленной цели. Для этого ему пришлось найти себе профессионального тренера в лице чемпиона 1968 года по прыжкам с трамплина Бронсона Пири, которого когда-то со скандалом выгнали из команды из-за неуважительного отношения к спорту. </p>
-                            </div>
+                            <p>Год: {{movie.year}}</p>
+                            <p>Страна: {{movie.country}}</p>
+                            <p>Жанр: {{getMovieGenres($index)}}</p>
+                            <p>В ролях: {{getMovieActors($index)}}</p>
+                            <p>{{movie.notice}}</p>
                         </div>
                     </div>
                 </div>
@@ -114,129 +63,65 @@
                             </button>
                         </form>
                         <div class="col-md-12">
-                            <div>
-                                <h4 class="sidebar-block-header nav-tabs">
-                                    Genres
-                                </h4>
-
-                                <ul class="nav" style="margin-top: -10px">
-                                    <li>
-                                        <a ng-click="" href="#"
-                                           style="padding: 10px 15px;" class="nav-tabs">
-                                            Lorem
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="" href="#"
-                                           style="padding: 10px 15px;" class="nav-tabs">
-                                            Ipsum
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="" href="#"
-                                           style="padding: 10px 15px;" class="nav-tabs">
-                                            Dolor
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="" href="#"
-                                           style="padding: 10px 15px;" class="nav-tabs">
-                                            Lorem
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="" href="#"
-                                           style="padding: 10px 15px;" class="nav-tabs">
-                                            Ipsum
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-click="" href="#"
-                                           style="padding: 10px 15px;" class="nav-tabs">
-                                            Dolor
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
                             <h4 class="sidebar-block-header nav-tabs">
-                                Popular Movies
+                                Genres
                             </h4>
-                            <div class="popular-container row">
-                                <%--<div ng-repeat="pop in popArticles" class="populars nav-tabs col-md-12 col-xs-12">--%>
-                                <div class="populars nav-tabs col-md-12 col-xs-12">
-                                    <div class="col-md-3" style="padding: 0 0 0 0;">
-                                        <a href="#">
-                                            <img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div style="font-size: 0.92308em; line-height: 2;">
-                                            <a href="#">Eddi Eagle</a>
-                                        </div>
-                                        <div style="font-size: 0.84615em; line-height: 1.63636; font-style: italic; font-weight: lighter;">
-                                            2016
-                                        </div>
 
-                                    </div>
-                                </div>
-                                <div class="populars nav-tabs col-md-12 col-xs-12">
-                                    <div class="col-md-3" style="padding: 0 0 0 0;">
-                                        <a href="#">
-                                            <img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div style="font-size: 0.92308em; line-height: 2;">
-                                            <a href="#">Eddi Eagle</a>
-                                        </div>
-                                        <div style="font-size: 0.84615em; line-height: 1.63636; font-style: italic; font-weight: lighter;">
-                                            2016
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="populars nav-tabs col-md-12 col-xs-12">
-                                    <div class="col-md-3" style="padding: 0 0 0 0;">
-                                        <a href="#">
-                                            <img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div style="font-size: 0.92308em; line-height: 2;">
-                                            <a href="#">Eddi Eagle</a>
-                                        </div>
-                                        <div style="font-size: 0.84615em; line-height: 1.63636; font-style: italic; font-weight: lighter;">
-                                            2016
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="populars nav-tabs col-md-12 col-xs-12">
-                                    <div class="col-md-3" style="padding: 0 0 0 0;">
-                                        <a href="#">
-                                            <img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div style="font-size: 0.92308em; line-height: 2;">
-                                            <a href="#">Eddi Eagle</a>
-                                        </div>
-                                        <div style="font-size: 0.84615em; line-height: 1.63636; font-style: italic; font-weight: lighter;">
-                                            2016
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                            <ul class="nav" style="margin-top: -10px">
+                                <li ng-repeat="genre in genresList">
+                                    <a ng-click="" href="javascript:void(0)"
+                                       style="padding: 10px 15px;" class="nav-tabs">
+                                        {{genre.text}}
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
+                        <%--<div class="col-md-12">--%>
+                            <%--<h4 class="sidebar-block-header nav-tabs">--%>
+                                <%--Popular Movies--%>
+                            <%--</h4>--%>
+                            <%--<div class="popular-container row">--%>
+                                <%--&lt;%&ndash;<div ng-repeat="pop in popArticles" class="populars nav-tabs col-md-12 col-xs-12">&ndash;%&gt;--%>
+                                <%--<div class="populars nav-tabs col-md-12 col-xs-12">--%>
+                                    <%--<div class="col-md-3" style="padding: 0 0 0 0;">--%>
+                                        <%--<a href="#">--%>
+                                            <%--<img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt=""/>--%>
+                                        <%--</a>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="col-md-9">--%>
+                                        <%--<div style="font-size: 0.92308em; line-height: 2;">--%>
+                                            <%--<a href="#">Eddi Eagle</a>--%>
+                                        <%--</div>--%>
+                                        <%--<div style="font-size: 0.84615em; line-height: 1.63636; font-style: italic; font-weight: lighter;">--%>
+                                            <%--2016--%>
+                                        <%--</div>--%>
+
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                                <%--<div class="populars nav-tabs col-md-12 col-xs-12">--%>
+                                    <%--<div class="col-md-3" style="padding: 0 0 0 0;">--%>
+                                        <%--<a href="#">--%>
+                                            <%--<img width="100%" src="${pageContext.request.contextPath}/static/images/orel.jpg" alt=""/>--%>
+                                        <%--</a>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="col-md-9">--%>
+                                        <%--<div style="font-size: 0.92308em; line-height: 2;">--%>
+                                            <%--<a href="#">Eddi Eagle</a>--%>
+                                        <%--</div>--%>
+                                        <%--<div style="font-size: 0.84615em; line-height: 1.63636; font-style: italic; font-weight: lighter;">--%>
+                                            <%--2016--%>
+                                        <%--</div>--%>
+
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/home/homePageController.js"></script>
 </body>
 </html>

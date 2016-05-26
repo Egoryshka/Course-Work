@@ -29,6 +29,11 @@ public class GenreController {
         return genreService.getAllGenres();
     }
 
+    @RequestMapping(value = "/getGenres",method = RequestMethod.GET)
+    public List<Genre> getGenresList(){
+        return genreService.getAllGenres();
+    }
+
     @RequestMapping(value = "/getGenresIds",method = RequestMethod.GET)
     public ArrayList<Long> getMovieGenresIds(@RequestParam Long movieId){
         List<Genre> allGenres = movieService.findOne(movieId).getGenres();

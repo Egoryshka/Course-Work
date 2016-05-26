@@ -15,7 +15,7 @@
     <div style="width: 100%; height: 100%; text-align: center;">
         <div class="panel panel-default" style="width: 40%; margin: 0 30% 0 30%">
         <div class="panel-body">
-            <h2><spring:message code="label.login.form.title"/></h2>
+            <h2><spring:message code="label.user.login.page.title"/></h2>
             <c:if test="${param.error eq 'bad_credentials'}">
                 <div class="alert alert-danger alert-dismissable">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
