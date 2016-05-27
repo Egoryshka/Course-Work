@@ -41,6 +41,6 @@ public class LoginControllerTest {
         mockMvc.perform(get("/login"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("user/login"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/user/home.jsp"));
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/home.jsp"));
     }
 }

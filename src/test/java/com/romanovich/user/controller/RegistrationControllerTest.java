@@ -86,10 +86,10 @@ public class RegistrationControllerTest {
 
     @Test
     public void showRegistrationForm_NormalRegistration_ShouldRenderRegistrationPageWithEmptyForm() throws Exception {
-        mockMvc.perform(get("/user/register"))
+        mockMvc.perform(get("/home/register"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("user/registrationForm"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/user/registrationForm.jsp"))
+                .andExpect(view().name("home/registrationForm"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/registrationForm.jsp"))
                 .andExpect(model().attribute(WebTestConstants.MODEL_ATTRIBUTE_USER_FORM, allOf(
                         hasProperty(WebTestConstants.FORM_FIELD_EMAIL, isEmptyOrNullString()),
                         hasProperty(WebTestConstants.FORM_FIELD_FIRST_NAME, isEmptyOrNullString()),
@@ -113,12 +113,12 @@ public class RegistrationControllerTest {
                     .lastName(LAST_NAME)
                 .build();
 
-        mockMvc.perform(get("/user/register")
+        mockMvc.perform(get("/home/register")
             .sessionAttr(ProviderSignInAttempt.SESSION_ATTRIBUTE, socialSignIn)
         )
                 .andExpect(status().isOk())
-                .andExpect(view().name("user/registrationForm"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/user/registrationForm.jsp"))
+                .andExpect(view().name("home/registrationForm"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/registrationForm.jsp"))
                 .andExpect(model().attribute(WebTestConstants.MODEL_ATTRIBUTE_USER_FORM, allOf(
                         hasProperty(WebTestConstants.FORM_FIELD_EMAIL, is(EMAIL)),
                         hasProperty(WebTestConstants.FORM_FIELD_FIRST_NAME, is(FIRST_NAME)),
@@ -139,12 +139,12 @@ public class RegistrationControllerTest {
                 .userProfile()
                 .build();
 
-        mockMvc.perform(get("/user/register")
+        mockMvc.perform(get("/home/register")
                 .sessionAttr(ProviderSignInAttempt.SESSION_ATTRIBUTE, socialSignIn)
         )
                 .andExpect(status().isOk())
-                .andExpect(view().name("user/registrationForm"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/user/registrationForm.jsp"))
+                .andExpect(view().name("home/registrationForm"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/registrationForm.jsp"))
                 .andExpect(model().attribute(WebTestConstants.MODEL_ATTRIBUTE_USER_FORM, allOf(
                         hasProperty(WebTestConstants.FORM_FIELD_EMAIL, isEmptyOrNullString()),
                         hasProperty(WebTestConstants.FORM_FIELD_FIRST_NAME, isEmptyOrNullString()),
@@ -159,13 +159,13 @@ public class RegistrationControllerTest {
 
     @Test
     public void registerUserAccount_NormalRegistrationAndEmptyForm_ShouldRenderRegistrationFormWithValidationErrors() throws Exception {
-        mockMvc.perform(post("/user/register")
+        mockMvc.perform(post("/home/register")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .sessionAttr(WebTestConstants.SESSION_ATTRIBUTE_USER_FORM, new RegistrationForm())
         )
                 .andExpect(status().isOk())
-                .andExpect(view().name("user/registrationForm"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/user/registrationForm.jsp"))
+                .andExpect(view().name("home/registrationForm"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/registrationForm.jsp"))
                 .andExpect(model().attribute(WebTestConstants.MODEL_ATTRIBUTE_USER_FORM, allOf(
                         hasProperty(WebTestConstants.FORM_FIELD_EMAIL, isEmptyOrNullString()),
                         hasProperty(WebTestConstants.FORM_FIELD_FIRST_NAME, isEmptyOrNullString()),
@@ -193,7 +193,7 @@ public class RegistrationControllerTest {
         String firstName = TestUtil.createStringWithLength(101);
         String lastName = TestUtil.createStringWithLength(101);
 
-        mockMvc.perform(post("/user/register")
+        mockMvc.perform(post("/home/register")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param(WebTestConstants.FORM_FIELD_EMAIL, email)
                 .param(WebTestConstants.FORM_FIELD_FIRST_NAME, firstName)
@@ -203,8 +203,8 @@ public class RegistrationControllerTest {
                 .sessionAttr(WebTestConstants.SESSION_ATTRIBUTE_USER_FORM, new RegistrationForm())
         )
                 .andExpect(status().isOk())
-                .andExpect(view().name("user/registrationForm"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/user/registrationForm.jsp"))
+                .andExpect(view().name("home/registrationForm"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/registrationForm.jsp"))
                 .andExpect(model().attribute(WebTestConstants.MODEL_ATTRIBUTE_USER_FORM, allOf(
                         hasProperty(WebTestConstants.FORM_FIELD_EMAIL, is(email)),
                         hasProperty(WebTestConstants.FORM_FIELD_FIRST_NAME, is(firstName)),
@@ -225,7 +225,7 @@ public class RegistrationControllerTest {
 
     @Test
     public void registerUserAccount_NormalRegistrationAndPasswordMismatch_ShouldRenderRegistrationFormWithValidationErrors() throws Exception {
-        mockMvc.perform(post("/user/register")
+        mockMvc.perform(post("/home/register")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param(WebTestConstants.FORM_FIELD_EMAIL, EMAIL)
                 .param(WebTestConstants.FORM_FIELD_FIRST_NAME, FIRST_NAME)
@@ -235,8 +235,8 @@ public class RegistrationControllerTest {
                 .sessionAttr(WebTestConstants.SESSION_ATTRIBUTE_USER_FORM, new RegistrationForm())
         )
                 .andExpect(status().isOk())
-                .andExpect(view().name("user/registrationForm"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/user/registrationForm.jsp"))
+                .andExpect(view().name("home/registrationForm"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/registrationForm.jsp"))
                 .andExpect(model().attribute(WebTestConstants.MODEL_ATTRIBUTE_USER_FORM, allOf(
                         hasProperty(WebTestConstants.FORM_FIELD_EMAIL, is(EMAIL)),
                         hasProperty(WebTestConstants.FORM_FIELD_FIRST_NAME, is(FIRST_NAME)),
@@ -258,7 +258,7 @@ public class RegistrationControllerTest {
     public void registerUserAccount_NormalRegistrationAndEmailExists_ShouldRenderRegistrationFormWithFieldError() throws Exception {
         when(userServiceMock.registerNewUserAccount(isA(RegistrationForm.class))).thenThrow(new DuplicateEmailException(""));
 
-        mockMvc.perform(post("/user/register")
+        mockMvc.perform(post("/home/register")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param(WebTestConstants.FORM_FIELD_EMAIL, EMAIL)
                 .param(WebTestConstants.FORM_FIELD_FIRST_NAME, FIRST_NAME)
@@ -268,8 +268,8 @@ public class RegistrationControllerTest {
                 .sessionAttr(WebTestConstants.SESSION_ATTRIBUTE_USER_FORM, new RegistrationForm())
         )
                 .andExpect(status().isOk())
-                .andExpect(view().name("user/registrationForm"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/user/registrationForm.jsp"))
+                .andExpect(view().name("home/registrationForm"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/registrationForm.jsp"))
                 .andExpect(model().attribute(WebTestConstants.MODEL_ATTRIBUTE_USER_FORM, allOf(
                         hasProperty(WebTestConstants.FORM_FIELD_EMAIL, is(EMAIL)),
                         hasProperty(WebTestConstants.FORM_FIELD_FIRST_NAME, is(FIRST_NAME)),
@@ -298,7 +298,7 @@ public class RegistrationControllerTest {
 
     @Test
     public void registerUserAccount_NormalRegistrationAndMalformedEmail_ShouldRenderRegistrationFormWithValidationError() throws Exception {
-        mockMvc.perform(post("/user/register")
+        mockMvc.perform(post("/home/register")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param(WebTestConstants.FORM_FIELD_EMAIL, MALFORMED_EMAIL)
                 .param(WebTestConstants.FORM_FIELD_FIRST_NAME, FIRST_NAME)
@@ -308,8 +308,8 @@ public class RegistrationControllerTest {
                 .sessionAttr(WebTestConstants.SESSION_ATTRIBUTE_USER_FORM, new RegistrationForm())
         )
                 .andExpect(status().isOk())
-                .andExpect(view().name("user/registrationForm"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/user/registrationForm.jsp"))
+                .andExpect(view().name("home/registrationForm"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/registrationForm.jsp"))
                 .andExpect(model().attribute(WebTestConstants.MODEL_ATTRIBUTE_USER_FORM, allOf(
                         hasProperty(WebTestConstants.FORM_FIELD_EMAIL, is(MALFORMED_EMAIL)),
                         hasProperty(WebTestConstants.FORM_FIELD_FIRST_NAME, is(FIRST_NAME)),
@@ -337,7 +337,7 @@ public class RegistrationControllerTest {
 
         when(userServiceMock.registerNewUserAccount(isA(RegistrationForm.class))).thenReturn(registered);
 
-        mockMvc.perform(post("/user/register")
+        mockMvc.perform(post("/home/register")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param(WebTestConstants.FORM_FIELD_EMAIL, EMAIL)
                 .param(WebTestConstants.FORM_FIELD_FIRST_NAME, FIRST_NAME)
@@ -379,15 +379,15 @@ public class RegistrationControllerTest {
                     .lastName(LAST_NAME)
                 .build();
 
-        mockMvc.perform(post("/user/register")
+        mockMvc.perform(post("/home/register")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param(WebTestConstants.FORM_FIELD_SIGN_IN_PROVIDER, SIGN_IN_PROVIDER.name())
                 .sessionAttr(ProviderSignInAttempt.SESSION_ATTRIBUTE, socialSignIn)
                 .sessionAttr(WebTestConstants.SESSION_ATTRIBUTE_USER_FORM, new RegistrationForm())
         )
                 .andExpect(status().isOk())
-                .andExpect(view().name("user/registrationForm"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/user/registrationForm.jsp"))
+                .andExpect(view().name("home/registrationForm"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/registrationForm.jsp"))
                 .andExpect(model().attribute(WebTestConstants.MODEL_ATTRIBUTE_USER_FORM, allOf(
                         hasProperty(WebTestConstants.FORM_FIELD_EMAIL, isEmptyOrNullString()),
                         hasProperty(WebTestConstants.FORM_FIELD_FIRST_NAME, isEmptyOrNullString()),
@@ -422,7 +422,7 @@ public class RegistrationControllerTest {
         String firstName = TestUtil.createStringWithLength(101);
         String lastName = TestUtil.createStringWithLength(101);
 
-        mockMvc.perform(post("/user/register")
+        mockMvc.perform(post("/home/register")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param(WebTestConstants.FORM_FIELD_EMAIL, email)
                 .param(WebTestConstants.FORM_FIELD_FIRST_NAME, firstName)
@@ -432,8 +432,8 @@ public class RegistrationControllerTest {
                 .sessionAttr(WebTestConstants.SESSION_ATTRIBUTE_USER_FORM, new RegistrationForm())
         )
                 .andExpect(status().isOk())
-                .andExpect(view().name("user/registrationForm"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/user/registrationForm.jsp"))
+                .andExpect(view().name("home/registrationForm"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/registrationForm.jsp"))
                 .andExpect(model().attribute(WebTestConstants.MODEL_ATTRIBUTE_USER_FORM, allOf(
                         hasProperty(WebTestConstants.FORM_FIELD_EMAIL, is(email)),
                         hasProperty(WebTestConstants.FORM_FIELD_FIRST_NAME, is(firstName)),
@@ -464,7 +464,7 @@ public class RegistrationControllerTest {
                     .lastName(LAST_NAME)
                 .build();
 
-        mockMvc.perform(post("/user/register")
+        mockMvc.perform(post("/home/register")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param(WebTestConstants.FORM_FIELD_EMAIL, MALFORMED_EMAIL)
                 .param(WebTestConstants.FORM_FIELD_FIRST_NAME, FIRST_NAME)
@@ -474,8 +474,8 @@ public class RegistrationControllerTest {
                 .sessionAttr(WebTestConstants.SESSION_ATTRIBUTE_USER_FORM, new RegistrationForm())
         )
                 .andExpect(status().isOk())
-                .andExpect(view().name("user/registrationForm"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/user/registrationForm.jsp"))
+                .andExpect(view().name("home/registrationForm"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/registrationForm.jsp"))
                 .andExpect(model().attribute(WebTestConstants.MODEL_ATTRIBUTE_USER_FORM, allOf(
                         hasProperty(WebTestConstants.FORM_FIELD_EMAIL, is(MALFORMED_EMAIL)),
                         hasProperty(WebTestConstants.FORM_FIELD_FIRST_NAME, is(FIRST_NAME)),
@@ -504,7 +504,7 @@ public class RegistrationControllerTest {
 
         when(userServiceMock.registerNewUserAccount(isA(RegistrationForm.class))).thenThrow(new DuplicateEmailException(""));
 
-        mockMvc.perform(post("/user/register")
+        mockMvc.perform(post("/home/register")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param(WebTestConstants.FORM_FIELD_EMAIL, EMAIL)
                 .param(WebTestConstants.FORM_FIELD_FIRST_NAME, FIRST_NAME)
@@ -514,8 +514,8 @@ public class RegistrationControllerTest {
                 .sessionAttr(WebTestConstants.SESSION_ATTRIBUTE_USER_FORM, new RegistrationForm())
         )
                 .andExpect(status().isOk())
-                .andExpect(view().name("user/registrationForm"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/user/registrationForm.jsp"))
+                .andExpect(view().name("home/registrationForm"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/registrationForm.jsp"))
                 .andExpect(model().attribute(WebTestConstants.MODEL_ATTRIBUTE_USER_FORM, allOf(
                         hasProperty(WebTestConstants.FORM_FIELD_EMAIL, is(EMAIL)),
                         hasProperty(WebTestConstants.FORM_FIELD_FIRST_NAME, is(FIRST_NAME)),
@@ -564,7 +564,7 @@ public class RegistrationControllerTest {
 
         when(userServiceMock.registerNewUserAccount(isA(RegistrationForm.class))).thenReturn(registered);
 
-        mockMvc.perform(post("/user/register")
+        mockMvc.perform(post("/home/register")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param(WebTestConstants.FORM_FIELD_EMAIL, EMAIL)
                 .param(WebTestConstants.FORM_FIELD_FIRST_NAME, FIRST_NAME)

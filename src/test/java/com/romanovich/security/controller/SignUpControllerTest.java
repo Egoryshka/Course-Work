@@ -39,6 +39,6 @@ public class SignUpControllerTest {
     public void redirectRequestToRegistrationPage_ShouldRedirectToRegistrationPage() throws Exception {
         mockMvc.perform(get("/signup"))
                 .andExpect(status().isMovedTemporarily())
-                .andExpect(redirectedUrl("/user/register"));
+                .andExpect(redirectedUrl("/home/register"));
     }
 }

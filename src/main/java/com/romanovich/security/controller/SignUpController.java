@@ -17,7 +17,7 @@ public class SignUpController {
     public String redirectRequestToRegistrationPage() {
         LOGGER.debug("Redirecting request to registration page.");
 
-        return "redirect:/user/register";
+        return "redirect:/home/register";
     }
 
 }

@@ -17,6 +17,6 @@ public class SignInController {
     public String showStartPage() {
         LOGGER.debug("Rendering SignIn page");
 
-        return "redirect:user/signIn";
+        return "redirect:home/signIn";
     }
 }

@@ -23,61 +23,61 @@ public class PagesController {
     private static final Logger LOGGER = LoggerFactory.getLogger(PagesController.class);
 
 
-    protected static final String VIEW_NAME_SIGNIN_PAGE = "user/signIn";
-    protected static final String VIEW_NAME_PROFILEPAGE_PAGE = "user/profilePage";
-    protected static final String VIEW_NAME_TEMPLATES_PAGE = "user/templates";
-    protected static final String VIEW_NAME_SINGLEPOST_PAGE = "user/singlePost";
-    protected static final String VIEW_NAME_USERHOMEPAGE_PAGE = "user/userHomePage";
-    protected static final String VIEW_NAME_STARTPAGE_PAGE = "user/home";
+    protected static final String VIEW_NAME_SIGNIN_PAGE = "home/signIn";
+//    protected static final String VIEW_NAME_PROFILEPAGE_PAGE = "user/profilePage";
+//    protected static final String VIEW_NAME_TEMPLATES_PAGE = "user/templates";
+    protected static final String VIEW_NAME_MOVIE_PAGE = "home/moviePage";
+//    protected static final String VIEW_NAME_USERHOMEPAGE_PAGE = "user/userHomePage";
+    protected static final String VIEW_NAME_STARTPAGE_PAGE = "home/home";
     protected static final String VIEW_NAME_ADMIN_PAGE = "admin/mainAdminPage";
     protected static final String VIEW_ADMIN_ADD_NEW_MOVIE = "admin/addMoviePage";
 
 
-    @RequestMapping(value = "/user/signIn", method = RequestMethod.GET)
+    @RequestMapping(value = "/home/signIn", method = RequestMethod.GET)
     public String showSignIn(WebRequest request) {
         LOGGER.debug("Rendering SignIn page.");
         return VIEW_NAME_SIGNIN_PAGE;
     }
-    @RequestMapping(value = "/user/profilePage", method = RequestMethod.GET)
-    public String showProfilePage(WebRequest request) {
-        LOGGER.debug("Rendering profilePage page.");
 
-        return VIEW_NAME_PROFILEPAGE_PAGE;
-    }
+//    @RequestMapping(value = "/user/profilePage", method = RequestMethod.GET)
+//    public String showProfilePage(WebRequest request) {
+//        LOGGER.debug("Rendering profilePage page.");
+//
+//        return VIEW_NAME_PROFILEPAGE_PAGE;
+//    }
 
-    @RequestMapping(value = "/user/templates", method = RequestMethod.GET)
-    public String showTemplatesPage(WebRequest request) {
-        LOGGER.debug("Rendering Templates page.");
+//    @RequestMapping(value = "/user/templates", method = RequestMethod.GET)
+//    public String showTemplatesPage(WebRequest request) {
+//        LOGGER.debug("Rendering Templates page.");
+//
+//        return VIEW_NAME_TEMPLATES_PAGE;
+//    }
 
-        return VIEW_NAME_TEMPLATES_PAGE;
-    }
-
-    @RequestMapping(value = "/user/singlePost/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/home/moviePage/{id}", method = RequestMethod.GET)
     public String showSinglePost(@PathVariable Long id,WebRequest webRequest) {
-        LOGGER.debug("Rendering SinglePost page.");
-
-        return VIEW_NAME_SINGLEPOST_PAGE;
+        LOGGER.debug("Rendering movie page.");
+        return VIEW_NAME_MOVIE_PAGE;
     }
 
-    @RequestMapping(value = "/user/userHomePage/{userId}", method = RequestMethod.GET)
-    public String showUserHomePage(@PathVariable Long userId,WebRequest webRequest, Principal principal) {
-        if(principal!=null) {
-            User user=userService.findUser(principal.getName());
-            if (user.getId().equals(userId))
-                return "index";
-        }
-        LOGGER.debug("Rendering UserHomePage page.");
+//    @RequestMapping(value = "/user/userHomePage/{userId}", method = RequestMethod.GET)
+//    public String showUserHomePage(@PathVariable Long userId,WebRequest webRequest, Principal principal) {
+//        if(principal!=null) {
+//            User user=userService.findUser(principal.getName());
+//            if (user.getId().equals(userId))
+//                return "index";
+//        }
+//        LOGGER.debug("Rendering UserHomePage page.");
+//
+//        return VIEW_NAME_USERHOMEPAGE_PAGE;
+//    }
 
-        return VIEW_NAME_USERHOMEPAGE_PAGE;
-    }
-
-    @RequestMapping(value = "/user/home/category={category}", method = RequestMethod.GET)
+    @RequestMapping(value = "/home/home/category={category}", method = RequestMethod.GET)
     public String showStartPageByCategory(@PathVariable String category, WebRequest webRequest) {
         LOGGER.debug("Rendering UserHomePage page.");
         return VIEW_NAME_STARTPAGE_PAGE;
     }
 
-    @RequestMapping(value = "/user/home/tags={tags}", method = RequestMethod.GET)
+    @RequestMapping(value = "/home/home/tags={tags}", method = RequestMethod.GET)
     public String showStartPageByTags(@PathVariable String tags, WebRequest webRequest) {
         LOGGER.debug("Rendering UserHomePage page.");
         return VIEW_NAME_STARTPAGE_PAGE;

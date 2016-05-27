@@ -42,12 +42,21 @@ angular.module('myApp')
         };
 
 
+        function genresComparator(a, b){
+            if(a.text < b.text)
+                return -1;
+            if(a.text >b.text)
+            return 1;
+            return 0
+        }
+
         $scope.getGenresList = function () {
             $http({
                 method: 'GET',
                 url: '/getGenres'
             }).then(function successCallback(response) {
                 $scope.genresList = response.data;
+                $scope.genresList.sort(genresComparator);
                 console.log($scope.genresList);
             }, function errorCallback(response) {
                 alert("Something went wrong while loading genres!!!")

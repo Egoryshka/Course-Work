@@ -34,7 +34,7 @@ public class RegistrationController {
 
     protected static final String ERROR_CODE_EMAIL_EXIST = "NotExist.user.email";
     protected static final String MODEL_NAME_REGISTRATION_DTO = "user";
-    protected static final String VIEW_NAME_REGISTRATION_PAGE = "user/registrationForm";
+    protected static final String VIEW_NAME_REGISTRATION_PAGE = "home/registrationForm";
 
 
     @Autowired
@@ -49,7 +49,7 @@ public class RegistrationController {
     /**
      * Renders the registration page.
      */
-    @RequestMapping(value = "/user/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/home/register", method = RequestMethod.GET)
     public String showRegistrationForm(WebRequest request, Model model) {
         LOGGER.debug("Rendering registration page.");
 
@@ -90,7 +90,7 @@ public class RegistrationController {
     /**
      * Processes the form submissions of the registration form.
      */
-    @RequestMapping(value ="/user/register", method = RequestMethod.POST)
+    @RequestMapping(value ="/home/register", method = RequestMethod.POST)
     public String registerUserAccount(@Valid @ModelAttribute("user") RegistrationForm userAccountData,
                                       BindingResult result,
                                       WebRequest request) throws DuplicateEmailException {

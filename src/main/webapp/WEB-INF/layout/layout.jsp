@@ -75,9 +75,9 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <sec:authorize access="isAnonymous()">
-                    <li><a href="${pageContext.request.contextPath}/user/signIn"><spring:message
+                    <li><a href="${pageContext.request.contextPath}/home/signIn"><spring:message
                             code="label.navigation.signIn.link"/></a></li>
-                    <li><a href="${pageContext.request.contextPath}/user/register"><spring:message
+                    <li><a href="${pageContext.request.contextPath}/home/register"><spring:message
                             code="label.navigation.registration.link"/></a></li>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -108,12 +108,13 @@
 
                 <sec:authorize access="isAuthenticated()">
                     <li>
-                        <form action="${pageContext.request.contextPath}/logout" method="POST">
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                            <button type="submit" class="btn btn-primary navbar-btn">
-                                <spring:message code="label.navigation.logout.link"/>
-                            </button>
-                        </form>
+                        <a href="${pageContext.request.contextPath}/logout"><spring:message code="label.navigation.logout.link"/></a>
+                        <%--<form action="${pageContext.request.contextPath}/logout" method="POST">--%>
+                            <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
+                            <%--<button type="submit" class="btn btn-primary navbar-btn">--%>
+                                <%--<spring:message code="label.navigation.logout.link"/>--%>
+                            <%--</button>--%>
+                        <%--</form>--%>
                     </li>
                 </sec:authorize>
             </ul>
