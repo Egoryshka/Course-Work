@@ -153,34 +153,21 @@ public class MovieController {
     HttpStatus addMovieToBasket(@RequestBody Long movieId, Principal principal, HttpSession session) {
         if (principal != null) {
             @SuppressWarnings("unchecked")
-            List<Long> list = (List<Long>)session.getAttribute("basket");
-            if (list == null) {
-                list = new ArrayList<>();
+            Map<Long, Integer> basket = (Map<Long, Integer>)session.getAttribute("basket");
+            if (basket == null) {
+                basket = new HashMap<>();
             }
-            if (!list.contains(movieId)) {
-                list.add(movieId);
-                session.setAttribute("basket", list);
+            if (!basket.containsKey(movieId)) {
+                basket.put(movieId, 1);
+                session.setAttribute("basket", basket);
+            }
+            else {
+                Integer count = basket.remove(movieId);
+                basket.put(movieId, ++count);
+                session.setAttribute("basket", basket);
             }
             return HttpStatus.OK;
         }
         return HttpStatus.BAD_REQUEST;
     }
-
-//    @RequestMapping(value = "/addToBasket", method = RequestMethod.POST)
-//    public @ResponseBody
-//    HttpStatus addToBasket(@RequestBody Long movieId, Principal principal) {
-//        if (principal != null) {
-//            @SuppressWarnings("unchecked")
-//            List<Long> list = (List<Long>)session.getAttribute("basket");
-//            if (list == null) {
-//                list = new ArrayList<>();
-//            }
-//            if (!list.contains(movieId)) {
-//                list.add(movieId);
-//                session.setAttribute("basket", list);
-//            }
-//            return HttpStatus.OK;
-//        }
-//        return HttpStatus.LOCKED;
-//    }
 }

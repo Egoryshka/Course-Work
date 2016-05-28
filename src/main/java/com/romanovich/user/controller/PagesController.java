@@ -31,6 +31,7 @@ public class PagesController {
     protected static final String VIEW_NAME_STARTPAGE_PAGE = "home/home";
     protected static final String VIEW_NAME_ADMIN_PAGE = "admin/mainAdminPage";
     protected static final String VIEW_ADMIN_ADD_NEW_MOVIE = "admin/addMoviePage";
+    protected static final String VIEW_BASKET = "home/basket";
 
 
     @RequestMapping(value = "/home/signIn", method = RequestMethod.GET)
@@ -57,6 +58,12 @@ public class PagesController {
     public String showSinglePost(@PathVariable Long id,WebRequest webRequest) {
         LOGGER.debug("Rendering movie page.");
         return VIEW_NAME_MOVIE_PAGE;
+    }
+
+    @RequestMapping(value = "/home/basket", method = RequestMethod.GET)
+    public String showBasket(WebRequest request) {
+        LOGGER.debug("Rendering basket page.");
+        return VIEW_BASKET;
     }
 
 //    @RequestMapping(value = "/user/userHomePage/{userId}", method = RequestMethod.GET)

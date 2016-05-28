@@ -13,7 +13,7 @@
           href="${pageContext.request.contextPath}/static/css/ng-tags-input.bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/ng-tags-input.css"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/vendor/jquery-2.0.3.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/angular.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/angular-route.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/angular-resource.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/angular-sanitize.js"></script>
@@ -73,32 +73,40 @@
 
 
             <ul class="nav navbar-nav navbar-right">
+                <sec:authorize access="hasRole('ROLE_USER')">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/home/basket">
+                            <spring:message code="label.navigation.basket"/>
+                        </a>
+                    </li>
+                </sec:authorize>
+
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/admin/mainAdminPage">
+                            <spring:message code="label.navigation.admin"/>
+                        </a>
+                    </li>
+                </sec:authorize>
 
                 <sec:authorize access="isAnonymous()">
-                    <li><a href="${pageContext.request.contextPath}/home/signIn"><spring:message
-                            code="label.navigation.signIn.link"/></a></li>
-                    <li><a href="${pageContext.request.contextPath}/home/register"><spring:message
-                            code="label.navigation.registration.link"/></a></li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/home/signIn">
+                            <spring:message code="label.navigation.signIn.link"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/home/register">
+                            <spring:message code="label.navigation.registration.link"/>
+                        </a>
+                    </li>
                 </sec:authorize>
-                <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <li><a href="${pageContext.request.contextPath}/admin/mainAdminPage"><spring:message
-                            code="label.navigation.admin"/></a></li>
-                </sec:authorize>
+
 
                 <sec:authorize access="isAuthenticated()">
                     <li>
                         <a href="${pageContext.request.contextPath}/">
                             <sec:authentication property="principal.socialSignInProvider" var="signInProvider"/>
-                            <c:if test="${signInProvider == 'FACEBOOK'}">
-                                <i class="icon-facebook-sign"></i>
-                            </c:if>
-                            <c:if test="${signInProvider == 'TWITTER'}">
-                                <i class="icon-twitter-sign"></i>
-                            </c:if>
-
-                            <c:if test="${signInProvider == 'LINKEDIN'}">
-                                <i class="icon-linkedin-sign"></i>
-                            </c:if>
                             <c:if test="${empty signInProvider}">
                                 <spring:message code="label.navigation.signed.in.as.text"/>
                             </c:if>
@@ -108,24 +116,19 @@
 
                 <sec:authorize access="isAuthenticated()">
                     <li>
-                        <a href="${pageContext.request.contextPath}/logout"><spring:message code="label.navigation.logout.link"/></a>
-                        <%--<form action="${pageContext.request.contextPath}/logout" method="POST">--%>
-                            <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
-                            <%--<button type="submit" class="btn btn-primary navbar-btn">--%>
-                                <%--<spring:message code="label.navigation.logout.link"/>--%>
-                            <%--</button>--%>
-                        <%--</form>--%>
+                        <a href="${pageContext.request.contextPath}/logout">
+                            <spring:message code="label.navigation.logout.link"/>
+                        </a>
                     </li>
                 </sec:authorize>
             </ul>
-        </div><!-- /.navbar-collapse -->
+        </div>
     </div>
     <div class="content">
         <div id="view-holder">
             <sitemesh:write property="body"/>
         </div>
     </div>
-
 </div>
 </body>
 </html>

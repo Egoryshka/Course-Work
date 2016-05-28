@@ -1,6 +1,8 @@
 package com.romanovich.user.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
@@ -26,6 +28,7 @@ public class Genre {
 
     @JsonIgnore
     @ManyToMany( mappedBy = "genres", fetch = FetchType.LAZY)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Movie> movies = new ArrayList<>();
 
     public Genre() {

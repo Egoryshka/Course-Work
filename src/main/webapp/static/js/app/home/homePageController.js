@@ -97,5 +97,21 @@ angular.module('myApp')
             }, function errorCallback(response) {
                 alert("Something went wrong!!!");
             });
+        };
+
+        $scope.getMoviesByGenre = function(index) {
+            var genre  = $scope.genresList[index].text;
+            $http({
+                method: 'POST',
+                url: '/getMoviesByGenre',
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                data: genre
+            }).then(function successCallback(response) {
+                $scope.movies = response.data;
+            }, function errorCallback(response) {
+                alert("Something went wrong!!!");
+            });
         }
     });
