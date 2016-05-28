@@ -133,9 +133,7 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                                 "/getUserHomePagePosts",
                                 "/getAchievements",
                                 "/getUserAchievements",
-                                "/deletePostByAdmin",
-                                "/savePostByAdmin"
-
+                                "/addMovieToBasket"
                         ).permitAll()
                         //The rest of the our application is protected.
 

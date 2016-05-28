@@ -41,10 +41,10 @@ angular.module('myApp')
             if (typeof video !== 'undefined') {
                 var readyYouTube = video.replace('https://www.youtube.com/watch?v=','');
                 readyYouTube = readyYouTube.replace('https://www.youtube.com/embed/','');
-                readyYouTube.replace('&index=18&', '?');
-                readyYouTube.replace('&', '?');
-                readyYouTube = "https://www.youtube.com/embed/" + readyYouTube;
-                return readyYouTube;
+                $scope.readyYouTube.replace('&index=18&', '?');
+                $scope.readyYouTube.replace('&', '?');
+                $scope.readyYouTube = "https://www.youtube.com/embed/" + $scope.readyYouTube;
+                return $scope.readyYouTube;
             }
             return "";
         }
@@ -63,6 +63,7 @@ angular.module('myApp')
                 $scope.genres = getMovieGenres($scope.movie.genres);
                 $scope.actors = getMovieActors($scope.movie.actors);
                 $scope.trailer = handleYouTube($scope.movie.trailer);
+                console.log($scope.trailer);
             }, function errorCallback(response) {
             });
         };

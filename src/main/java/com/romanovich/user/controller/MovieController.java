@@ -7,14 +7,11 @@ import com.cloudinary.utils.ObjectUtils;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.cloudinary.json.JSONObject;
-import org.hibernate.Hibernate;
-import org.hibernate.Session;
-import org.hibernate.proxy.HibernateProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.security.Principal;
 import java.text.ParseException;
@@ -93,7 +90,7 @@ public class MovieController {
 
     }
 
-    @RequestMapping(value = "/getAllMovies", method = RequestMethod.GET,produces = "application/json")
+    @RequestMapping(value = "/getAllMovies", method = RequestMethod.GET, produces = "application/json")
     public List<Movie> getAllMovies() {
         return movieService.getAllMovies();
     }
@@ -119,7 +116,7 @@ public class MovieController {
         if (principal != null) {
             ObjectMapper mapper = new ObjectMapper();
             MovieRating movieRating = mapper.readValue(ratings, MovieRating.class);
-            Movie movie = movieService.findOne(movieRating.getPostId());
+            Movie movie = movieService.findOne(movieRating.getMovieId());
             User user = userService.findUser(principal.getName());
             Rating rating = new Rating();
             rating.setUser(user);
@@ -149,4 +146,41 @@ public class MovieController {
         }
         return null;
     }
+
+    @RequestMapping(value = "/addMovieToBasket", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    HttpStatus addMovieToBasket(@RequestBody Long movieId, Principal principal, HttpSession session) {
+        if (principal != null) {
+            @SuppressWarnings("unchecked")
+            List<Long> list = (List<Long>)session.getAttribute("basket");
+            if (list == null) {
+                list = new ArrayList<>();
+            }
+            if (!list.contains(movieId)) {
+                list.add(movieId);
+                session.setAttribute("basket", list);
+            }
+            return HttpStatus.OK;
+        }
+        return HttpStatus.BAD_REQUEST;
+    }
+
+//    @RequestMapping(value = "/addToBasket", method = RequestMethod.POST)
+//    public @ResponseBody
+//    HttpStatus addToBasket(@RequestBody Long movieId, Principal principal) {
+//        if (principal != null) {
+//            @SuppressWarnings("unchecked")
+//            List<Long> list = (List<Long>)session.getAttribute("basket");
+//            if (list == null) {
+//                list = new ArrayList<>();
+//            }
+//            if (!list.contains(movieId)) {
+//                list.add(movieId);
+//                session.setAttribute("basket", list);
+//            }
+//            return HttpStatus.OK;
+//        }
+//        return HttpStatus.LOCKED;
+//    }
 }

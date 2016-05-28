@@ -36,7 +36,7 @@
                                     </a>
                                 </div>
                                 <div class="col-md-6" style="padding: 0; margin-top: 15px;">
-                                    <button class="btn btn-primary pull-right">
+                                    <button class="btn btn-primary pull-right" ng-click="addMovieToBasket($index)">
                                         <span class="icon-plus"></span>
                                         Добавить в корзину
                                     </button>

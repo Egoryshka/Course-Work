@@ -5,7 +5,7 @@ package com.romanovich.user.model;
  */
 public class MovieRating {
 
-    private Long postId;
+    private Long movieId;
     private boolean positive;
 
     public boolean isPositive() {
@@ -16,11 +16,11 @@ public class MovieRating {
         this.positive = positive;
     }
 
-    public Long getPostId() {
-        return postId;
+    public Long getMovieId() {
+        return movieId;
     }
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
     }
 }
