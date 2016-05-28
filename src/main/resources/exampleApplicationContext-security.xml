@@ -32,7 +32,7 @@
         <security:intercept-url pattern="/signup/**" access="permitAll"/>
         <security:intercept-url pattern="/home/signIn/**" access="permitAll"/>
         <security:intercept-url pattern="/user/profilePage/**" access="permitAll"/>
-        <security:intercept-url pattern="/home/moviePage/**" access="permitAll"/>
+        <security:intercept-url pattern="/home/movie/**" access="permitAll"/>
         <security:intercept-url pattern="/user/userHomePage/**" access="permitAll"/>
         <security:intercept-url pattern="/user/templates/**" access="permitAll"/>
         <security:intercept-url pattern="/home/register/**" access="permitAll"/>

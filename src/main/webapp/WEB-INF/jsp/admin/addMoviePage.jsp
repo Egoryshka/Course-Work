@@ -10,11 +10,6 @@
     <title>Title</title>
 </head>
 <body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/admin/adminMovieController.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/admin/genreController.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/admin/actorController.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/TrustController.js"></script>
-
 <div ng-app="myApp" ng-controller="adminMovieController" style="height: 100%">
 
     <div class="col-md-12" style="height: 100%">
@@ -155,5 +150,10 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/admin/adminMovieController.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/admin/genreController.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/admin/actorController.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/TrustController.js"></script>
 </body>
 </html>

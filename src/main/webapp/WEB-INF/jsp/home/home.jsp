@@ -31,7 +31,9 @@
                             </div>
                             <div class="col-md-9" style="padding: 0;">
                                 <div class="col-md-6" style="padding: 0;">
-                                    <h4 style="margin-top: 15px;">{{movie.title}}</h4>
+                                    <a href="${pageContext.request.contextPath}/home/movie/{{movie.id}}" style="text-decoration: none;">
+                                        <h4 style="margin-top: 15px;">{{movie.title}}</h4>
+                                    </a>
                                 </div>
                                 <div class="col-md-6" style="padding: 0; margin-top: 15px;">
                                     <button class="btn btn-primary pull-right">
