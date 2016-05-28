@@ -51,12 +51,9 @@
                     </div>
                 </div>
 
-
-
                 <div class="col-md-3 col-md-pull-9">
                     <div class="row sidebar">
-                        <form class="navbar-form navbar-left" role="search">
-                        <%--<form ng-submit="getSearchResults()" class="navbar-form navbar-left" role="search">--%>
+                        <form ng-submit="searchMovies()" class="navbar-form navbar-left" role="search">
                             <div class="form-group">
                                 <input ng-model="search" type="text" class="form-control" placeholder="Search">
                             </div>

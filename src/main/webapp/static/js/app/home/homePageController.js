@@ -57,10 +57,24 @@ angular.module('myApp')
             }).then(function successCallback(response) {
                 $scope.genresList = response.data;
                 $scope.genresList.sort(genresComparator);
-                console.log($scope.genresList);
             }, function errorCallback(response) {
                 alert("Something went wrong while loading genres!!!")
             });
         };
         $scope.getGenresList();
+
+        $scope.searchMovies = function () {
+            $http({
+                method: 'POST',
+                url: '/search',
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                data: $scope.search
+            }).then(function successCallback(response) {
+                $scope.movies = response.data;
+                console.log($scope.movies)
+            }, function errorCallback(response) {
+            });
+        };
     });

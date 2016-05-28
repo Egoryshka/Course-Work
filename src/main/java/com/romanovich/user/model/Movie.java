@@ -19,6 +19,7 @@ import java.util.List;
  * Created by Егор on 09.05.2016.
  */
 @Entity
+@Indexed
 @Table(name = "movies")
 public class Movie implements Comparable<Movie>{
     @Id

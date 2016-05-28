@@ -51,6 +51,7 @@ angular.module('myApp')
                         data: movie
                 })
             }).then(function () {
+                alert("Success");
                 $scope.isUploading = false;
             });
         };
