@@ -1,6 +1,5 @@
 package com.romanovich.security.service;
 
-import com.romanovich.user.model.SocialMediaService;
 import com.romanovich.user.model.User;
 import com.romanovich.user.repository.UserRepository;
 import com.romanovich.security.dto.ExampleUserDetails;
@@ -16,36 +15,32 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import static com.googlecode.catchexception.CatchException.catchException;
 import static com.googlecode.catchexception.CatchException.caughtException;
-import static com.romanovich.security.dto.ExampleUserDetailsAssert.assertThat;
+import static com.romanovich.security.dto.UserDetailsDTOAssert.assertThat;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-/**
- * @author Petri Kainulainen
- */
 @RunWith(MockitoJUnitRunner.class)
-public class RepositoryUserDetailsServiceTest {
-
-    private static final String EMAIL = "foo@bar.com";
-    private static final String FIRST_NAME = "Foo";
+public class UserDetailsServiceImplTest {
     private static final Long ID = 1L;
-    private static final String LAST_NAME = "Bar";
+    private static final String EMAIL = "test@movieshop.by";
+    private static final String FIRST_NAME = "Admin";
+    private static final String LAST_NAME = "Admin";
     private static final String PASSWORD = "password";
 
-    private RepositoryUserDetailsService service;
+    private UserDetailsServiceImpl service;
 
     @Mock
     private UserRepository repositoryMock;
 
     @Before
     public void setUp() {
-        service = new RepositoryUserDetailsService(repositoryMock);
+        service = new UserDetailsServiceImpl(repositoryMock);
     }
 
     @Test
-    public void loadByUsername_UserNotFound_ShouldThrowException() {
+    public void loadByUsernameUserNotFoundTest() {
         when(repositoryMock.findByEmail(EMAIL)).thenReturn(null);
 
         catchException(service).loadUserByUsername(EMAIL);
@@ -59,7 +54,7 @@ public class RepositoryUserDetailsServiceTest {
     }
 
     @Test
-    public void loadByUsername_UserRegisteredByUsingFormRegistration_ShouldReturnCorrectUserDetails() {
+    public void loadByUsernameTest() {
         User found = new UserBuilder()
                 .email(EMAIL)
                 .firstName(FIRST_NAME)
@@ -82,34 +77,6 @@ public class RepositoryUserDetailsServiceTest {
                 .isActive()
                 .isRegisteredUser()
                 .isRegisteredByUsingFormRegistration();
-
-        verify(repositoryMock, times(1)).findByEmail(EMAIL);
-        verifyNoMoreInteractions(repositoryMock);
-    }
-
-    @Test
-    public void loadByUsername_UserSignedInByUsingSocialSignInProvider_ShouldReturnCorrectUserDetails() {
-        User found = new UserBuilder()
-                .email(EMAIL)
-                .firstName(FIRST_NAME)
-                .id(ID)
-                .lastName(LAST_NAME)
-                .signInProvider(SocialMediaService.TWITTER)
-                .build();
-
-        when(repositoryMock.findByEmail(EMAIL)).thenReturn(found);
-
-        UserDetails user = service.loadUserByUsername(EMAIL);
-        ExampleUserDetails actual = (ExampleUserDetails) user;
-
-        assertThat(actual)
-                .hasFirstName(FIRST_NAME)
-                .hasId(ID)
-                .hasLastName(LAST_NAME)
-                .hasUsername(EMAIL)
-                .isActive()
-                .isRegisteredUser()
-                .isSignedInByUsingSocialSignInProvider(SocialMediaService.TWITTER);
 
         verify(repositoryMock, times(1)).findByEmail(EMAIL);
         verifyNoMoreInteractions(repositoryMock);

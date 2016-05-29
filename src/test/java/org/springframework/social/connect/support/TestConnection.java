@@ -3,9 +3,7 @@ package org.springframework.social.connect.support;
 import org.springframework.social.connect.ConnectionData;
 import org.springframework.social.connect.UserProfile;
 
-/**
- * @author Petri Kainulainen
- */
+
 public class TestConnection extends AbstractConnection {
 
     private ConnectionData connectionData;

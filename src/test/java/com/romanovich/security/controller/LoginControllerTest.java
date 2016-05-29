@@ -16,12 +16,9 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-/**
- * @author Petri Kainulainen
- */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {WebAppContext.class, UnitTestContext.class})
-//@ContextConfiguration(locations = {"classpath:unitTestContext.xml", "classpath:exampleApplicationContext-web.xml"})
 @WebAppConfiguration
 public class LoginControllerTest {
 
@@ -37,10 +34,10 @@ public class LoginControllerTest {
     }
 
     @Test
-    public void showLoginPage_ShouldRenderLoginView() throws Exception {
-        mockMvc.perform(get("/login"))
+    public void showLoginPageTest() throws Exception {
+        mockMvc.perform(get("/signIn"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("user/login"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/home/home.jsp"));
+                .andExpect(view().name("home/signIn"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/signIn.jsp"));
     }
 }

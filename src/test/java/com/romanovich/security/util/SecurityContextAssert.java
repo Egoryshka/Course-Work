@@ -3,15 +3,12 @@ package com.romanovich.security.util;
 import com.romanovich.user.model.SocialMediaService;
 import com.romanovich.user.model.User;
 import com.romanovich.security.dto.ExampleUserDetails;
-import com.romanovich.security.dto.ExampleUserDetailsAssert;
+import com.romanovich.security.dto.UserDetailsDTOAssert;
 import org.assertj.core.api.AbstractAssert;
 import org.assertj.core.api.Assertions;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 
-/**
- * @author Petri Kainulainen
- */
 public class SecurityContextAssert extends AbstractAssert<SecurityContextAssert, SecurityContext> {
 
     private SecurityContextAssert(SecurityContext actual) {
@@ -47,7 +44,7 @@ public class SecurityContextAssert extends AbstractAssert<SecurityContextAssert,
                 )
                 .isNotNull();
 
-        ExampleUserDetailsAssert.assertThat(loggedIn)
+        UserDetailsDTOAssert.assertThat(loggedIn)
                 .hasFirstName(user.getFirstName())
                 .hasId(user.getId())
                 .hasLastName(user.getLastName())
@@ -67,7 +64,7 @@ public class SecurityContextAssert extends AbstractAssert<SecurityContextAssert,
                 .overridingErrorMessage("Expected logged in user to be <not null> but was <null>")
                 .isNotNull();
 
-        ExampleUserDetailsAssert.assertThat(loggedIn)
+        UserDetailsDTOAssert.assertThat(loggedIn)
                 .hasPassword(password);
 
         return this;
@@ -82,7 +79,7 @@ public class SecurityContextAssert extends AbstractAssert<SecurityContextAssert,
                 .overridingErrorMessage("Expected logged in user to be <not null> but was <null>")
                 .isNotNull();
 
-        ExampleUserDetailsAssert.assertThat(loggedIn)
+        UserDetailsDTOAssert.assertThat(loggedIn)
                 .isRegisteredByUsingFormRegistration();
 
         return this;
@@ -97,7 +94,7 @@ public class SecurityContextAssert extends AbstractAssert<SecurityContextAssert,
                 .overridingErrorMessage("Expected logged in user to be <not null> but was <null>")
                 .isNotNull();
 
-        ExampleUserDetailsAssert.assertThat(loggedIn)
+        UserDetailsDTOAssert.assertThat(loggedIn)
                 .hasPassword("SocialUser")
                 .isSignedInByUsingSocialSignInProvider(signInProvider);
 

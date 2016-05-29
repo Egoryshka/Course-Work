@@ -16,12 +16,9 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-/**
- * @author Petri Kainulainen
- */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {WebAppContext.class, UnitTestContext.class})
-//@ContextConfiguration(locations = {"classpath:unitTestContext.xml", "classpath:exampleApplicationContext-web.xml"})
 @WebAppConfiguration
 public class HomeControllerTest {
 
@@ -37,10 +34,18 @@ public class HomeControllerTest {
     }
 
     @Test
-    public void showHomePage_ShouldRenderHomeView() throws Exception {
+    public void showStartPageTest() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("index"))
-                .andExpect(forwardedUrl("/WEB-INF/jsp/index.jsp"));
+                .andExpect(view().name("home/home"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/home.jsp"));
+    }
+
+    @Test
+    public void showHomePageTest() throws Exception {
+        mockMvc.perform(get("/home"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("home/home"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/home.jsp"));
     }
 }

@@ -3,9 +3,6 @@ package org.springframework.social.connect.support;
 import org.springframework.social.connect.*;
 import org.springframework.social.connect.web.TestProviderSignInAttempt;
 
-/**
- * @author Petri Kainulainen
- */
 public class TestProviderSignInAttemptBuilder {
 
     private String accessToken;

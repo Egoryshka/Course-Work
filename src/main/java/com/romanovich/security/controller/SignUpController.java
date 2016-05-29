@@ -12,12 +12,11 @@ public class SignUpController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SignUpController.class);
 
+    protected static final String VIEW_NAME_SIGNUP_PAGE = "home/register";
 
-    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    @RequestMapping(value = "/signUp", method = RequestMethod.GET)
     public String redirectRequestToRegistrationPage() {
-        LOGGER.debug("Redirecting request to registration page.");
-
-        return "redirect:/home/register";
+        LOGGER.debug("Rendering registration page.");
+        return VIEW_NAME_SIGNUP_PAGE;
     }
-
 }

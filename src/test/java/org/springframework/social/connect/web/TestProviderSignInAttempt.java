@@ -6,9 +6,6 @@ import org.springframework.social.connect.UsersConnectionRepository;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * @author Petri Kainulainen
- */
 public class TestProviderSignInAttempt extends ProviderSignInAttempt {
 
     private Connection<?> connection;

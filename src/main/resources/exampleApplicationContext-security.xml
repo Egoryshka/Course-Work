@@ -28,8 +28,8 @@
         <!-- Anyone can access these urls -->
         <security:intercept-url pattern="/auth/**" access="permitAll"/>
         <security:intercept-url pattern="/home/**" access="permitAll"/>
-        <security:intercept-url pattern="/signin/**" access="permitAll"/>
-        <security:intercept-url pattern="/signup/**" access="permitAll"/>
+        <security:intercept-url pattern="/signIn/**" access="permitAll"/>
+        <security:intercept-url pattern="/signUp/**" access="permitAll"/>
         <security:intercept-url pattern="/home/signIn/**" access="permitAll"/>
         <security:intercept-url pattern="/user/profilePage/**" access="permitAll"/>
         <security:intercept-url pattern="/home/movie/**" access="permitAll"/>
@@ -136,7 +136,7 @@
     <bean id="textEncryptor" class="org.springframework.security.crypto.encrypt.Encryptors" factory-method="noOpText" />
 
     <!-- This bean is load the user specific data when form login is used. -->
-    <bean id="userDetailsService" class="com.romanovich.security.service.RepositoryUserDetailsService" autowire="constructor"/>
+    <bean id="userDetailsService" class="com.romanovich.security.service.UserDetailsServiceImpl" autowire="constructor"/>
     <!--<context:component-scan base-package="com.romanovichice"/>-->
 
     <!--

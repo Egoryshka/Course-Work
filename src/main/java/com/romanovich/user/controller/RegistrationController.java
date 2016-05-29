@@ -45,9 +45,6 @@ public class RegistrationController {
         this.service = service;
     }
 
-    /**
-     * Renders the registration page.
-     */
     @RequestMapping(value = "/home/register", method = RequestMethod.GET)
     public String showRegistrationForm(WebRequest request, Model model) {
         LOGGER.debug("Rendering registration page.");

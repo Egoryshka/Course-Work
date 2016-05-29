@@ -36,9 +36,10 @@ public class SignUpControllerTest {
     }
 
     @Test
-    public void redirectRequestToRegistrationPage_ShouldRedirectToRegistrationPage() throws Exception {
-        mockMvc.perform(get("/signup"))
-                .andExpect(status().isMovedTemporarily())
-                .andExpect(redirectedUrl("/home/register"));
+    public void showRegistrationPageTest() throws Exception {
+        mockMvc.perform(get("/signUp"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("home/register"))
+                .andExpect(forwardedUrl("/WEB-INF/jsp/home/register.jsp"));
     }
 }

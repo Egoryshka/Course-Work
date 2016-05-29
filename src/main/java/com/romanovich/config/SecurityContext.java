@@ -1,6 +1,6 @@
 package com.romanovich.config;
 
-import com.romanovich.security.service.RepositoryUserDetailsService;
+import com.romanovich.security.service.UserDetailsServiceImpl;
 import com.romanovich.security.service.SimpleSocialUserDetailsService;
 import com.romanovich.user.repository.*;
 import com.romanovich.user.search.SearchServiceImpl;
@@ -104,7 +104,7 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                         .antMatchers(
                                 "/auth/**",
                                 "/home/**",
-                                "/signup/**",
+                                "/signUp/**",
                                 "/home/register/**",
                                 "/home/signIn/**",
                                 "/user/profilePage/**",
@@ -190,7 +190,7 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public UserDetailsService userDetailsService() {
-        return new RepositoryUserDetailsService(userRepository);
+        return new UserDetailsServiceImpl(userRepository);
     }
 
 

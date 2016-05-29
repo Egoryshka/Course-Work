@@ -8,20 +8,17 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
-/**
- * @author Petri Kainulainen
- */
-public class ExampleUserDetailsAssert extends AbstractAssert<ExampleUserDetailsAssert, ExampleUserDetails> {
+public class UserDetailsDTOAssert extends AbstractAssert<UserDetailsDTOAssert, ExampleUserDetails> {
 
-    private ExampleUserDetailsAssert(ExampleUserDetails actual) {
-        super(actual, ExampleUserDetailsAssert.class);
+    private UserDetailsDTOAssert(ExampleUserDetails actual) {
+        super(actual, UserDetailsDTOAssert.class);
     }
 
-    public static ExampleUserDetailsAssert assertThat(ExampleUserDetails actual) {
-        return new ExampleUserDetailsAssert(actual);
+    public static UserDetailsDTOAssert assertThat(ExampleUserDetails actual) {
+        return new UserDetailsDTOAssert(actual);
     }
 
-    public ExampleUserDetailsAssert hasFirstName(String firstName) {
+    public UserDetailsDTOAssert hasFirstName(String firstName) {
         isNotNull();
 
         Assertions.assertThat(actual.getFirstName())
@@ -34,7 +31,7 @@ public class ExampleUserDetailsAssert extends AbstractAssert<ExampleUserDetailsA
         return this;
     }
 
-    public ExampleUserDetailsAssert hasId(Long id) {
+    public UserDetailsDTOAssert hasId(Long id) {
         isNotNull();
 
         Assertions.assertThat(actual.getId())
@@ -47,7 +44,7 @@ public class ExampleUserDetailsAssert extends AbstractAssert<ExampleUserDetailsA
         return this;
     }
 
-    public ExampleUserDetailsAssert hasLastName(String lastName) {
+    public UserDetailsDTOAssert hasLastName(String lastName) {
         isNotNull();
 
         Assertions.assertThat(actual.getLastName())
@@ -60,7 +57,7 @@ public class ExampleUserDetailsAssert extends AbstractAssert<ExampleUserDetailsA
         return this;
     }
 
-    public ExampleUserDetailsAssert hasPassword(String password) {
+    public UserDetailsDTOAssert hasPassword(String password) {
         isNotNull();
 
         Assertions.assertThat(actual.getPassword())
@@ -73,7 +70,7 @@ public class ExampleUserDetailsAssert extends AbstractAssert<ExampleUserDetailsA
         return this;
     }
 
-    public ExampleUserDetailsAssert hasUsername(String username) {
+    public UserDetailsDTOAssert hasUsername(String username) {
         isNotNull();
 
         Assertions.assertThat(actual.getUsername())
@@ -86,7 +83,7 @@ public class ExampleUserDetailsAssert extends AbstractAssert<ExampleUserDetailsA
         return this;
     }
 
-    public ExampleUserDetailsAssert isActive() {
+    public UserDetailsDTOAssert isActive() {
         isNotNull();
 
         Assertions.assertThat(actual.isAccountNonExpired())
@@ -108,7 +105,7 @@ public class ExampleUserDetailsAssert extends AbstractAssert<ExampleUserDetailsA
         return this;
     }
 
-    public ExampleUserDetailsAssert isRegisteredUser() {
+    public UserDetailsDTOAssert isRegisteredUser() {
         isNotNull();
 
         Assertions.assertThat(actual.getRole())
@@ -136,7 +133,7 @@ public class ExampleUserDetailsAssert extends AbstractAssert<ExampleUserDetailsA
         return this;
     }
 
-    public ExampleUserDetailsAssert isRegisteredByUsingFormRegistration() {
+    public UserDetailsDTOAssert isRegisteredByUsingFormRegistration() {
         isNotNull();
 
         Assertions.assertThat(actual.getSocialSignInProvider())
@@ -148,7 +145,7 @@ public class ExampleUserDetailsAssert extends AbstractAssert<ExampleUserDetailsA
         return this;
     }
 
-    public ExampleUserDetailsAssert isSignedInByUsingSocialSignInProvider(SocialMediaService socialSignInProvider) {
+    public UserDetailsDTOAssert isSignedInByUsingSocialSignInProvider(SocialMediaService socialSignInProvider) {
         isNotNull();
 
         Assertions.assertThat(actual.getSocialSignInProvider())

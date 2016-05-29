@@ -12,11 +12,11 @@ public class LoginController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
-    protected static final String VIEW_NAME_LOGIN_PAGE = "home/home";
+    protected static final String VIEW_NAME_LOGIN_PAGE = "home/signIn";
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String showLoginPage() {
-        LOGGER.debug("Rendering home page.");
+    @RequestMapping(value = "/signIn", method = RequestMethod.GET)
+    public String showStartPage() {
+        LOGGER.debug("Rendering SignIn page");
         return VIEW_NAME_LOGIN_PAGE;
     }
 }
