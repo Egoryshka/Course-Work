@@ -14,6 +14,10 @@
 
     <div class="col-md-12" style="height: 100%">
         <div class="col-md-9" style="margin-left: 12.5%">
+            <a href="${pageContext.request.contextPath}/admin/mainAdminPage"
+               class="btn btn-default pull-right">
+                Return to ADMIN page
+            </a>
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 class="panel-title" style="display: inline-block"><spring:message code="label.movie.add"/></h4>
@@ -140,18 +144,31 @@
                                     <spring:message code="button.movie.cancel"/>
                                 </a>
                             </div>
-                            <div ng-show="isUploading" class="progress progress-striped active pull-left">
-                                <div class="progress-bar" style="width: 100%"></div>
-                            </div>
                         </div>
                     </fieldset>
                 </form>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="uploading" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Movie uploading</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="progress progress-striped active" style="height: 15px;">
+                        <div class="progress-bar" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/admin/adminMovieController.js"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/static/js/app/admin/adminMovieController.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/admin/genreController.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/admin/actorController.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/TrustController.js"></script>

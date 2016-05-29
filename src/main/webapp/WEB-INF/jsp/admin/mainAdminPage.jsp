@@ -50,7 +50,7 @@
                     <td style="text-align: center">
                         <h5>{{movie.cost}}</h5>
                     </td>
-                    <td style="text-align: center">
+                    <td style="text-align: center; vertical-align: middle;">
                         <img ng-click="removeMovie($index)" src="${pageContext.request.contextPath}/static/images/remove.png" alt="Remove">
                     </td>
                 </tr>

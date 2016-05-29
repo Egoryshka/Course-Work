@@ -22,7 +22,7 @@ angular.module('myApp')
         };
 
         $scope.newMovie = function () {
-            $scope.isUploading = true;
+            $('#uploading').modal('show');
             var movie = {};
             movie.title = $scope.title;
             movie.year = $scope.year;
@@ -42,7 +42,7 @@ angular.module('myApp')
                     movie.poster = response.data.poster;
                 }, function () {
                     console.log("empty image");
-                    $scope.isUpdating = false;
+                    $('#uploading').modal('hide');
                 }).then(function () {
                     return $http({
                         method: 'POST',
@@ -52,7 +52,8 @@ angular.module('myApp')
                 })
             }).then(function () {
                 alert("Success");
-                $scope.isUploading = false;
+                $('#uploading').modal('hide');
+                window.location.reload();
             });
         };
 
