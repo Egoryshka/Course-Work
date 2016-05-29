@@ -58,6 +58,8 @@
         <security:intercept-url pattern="/getAchievements" access="permitAll"/>
         <security:intercept-url pattern="/getUserAchievements" access="permitAll"/>
         <security:intercept-url pattern="/addMovieToBasket" access="permitAll"/>
+        <security:intercept-url pattern="/prepareOrder" access="permitAll"/>
+        <security:intercept-url pattern="/makeOrder" access="permitAll"/>
 
         <security:intercept-url pattern="/saveImage" access="permitAll"/>
         <security:intercept-url pattern="/autocompleteActors" access="hasRole('USER_ADMIN')"/>

@@ -64,7 +64,7 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
 
     @Bean
     public OrderServiceImpl orderService() {
-        return new OrderServiceImpl(orderRepository);
+        return new OrderServiceImpl(orderRepository, movieRepository, userRepository);
     }
 
     @Bean
@@ -133,7 +133,9 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                                 "/getUserHomePagePosts",
                                 "/getAchievements",
                                 "/getUserAchievements",
-                                "/addMovieToBasket"
+                                "/addMovieToBasket",
+                                "/prepareOrder",
+                                "/makeOrder"
                         ).permitAll()
                         //The rest of the our application is protected.
 

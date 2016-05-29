@@ -1,6 +1,7 @@
 package com.romanovich.user.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.romanovich.user.dto.OrderDTO;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
 
@@ -34,6 +35,8 @@ public class Order {
             inverseJoinColumns = { @JoinColumn(name = "MOVIE_ID",
                     nullable = false, updatable = false) })
     private List<Movie> movies = new ArrayList<>();
+
+    private String name;
 
     private String address;
 
@@ -98,5 +101,33 @@ public class Order {
 
     public void setSummaryCost(Long summaryCost) {
         this.summaryCost = summaryCost;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public OrderDTO getOrderDTO() {
+        OrderDTO dto = new OrderDTO();
+        dto.setOrderId(this.id);
+        dto.setDate(this.date);
+        dto.setName(this.name);
+        dto.setMoviesList(this.movies);
+        dto.setAddress(this.address);
+        dto.setPhone(this.phone);
+        Long cost = 0L;
+        for (Movie movie : this.movies) {
+            cost += movie.getCost();
+        }
+        dto.setSummaryCost(cost);
+        return dto;
+    }
+
+    public void getOrderFromDTO(OrderDTO dto, User user) {
+
     }
 }
