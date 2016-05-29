@@ -68,4 +68,24 @@ angular.module('myApp')
             });
         };
         $scope.getMovie();
+
+        $scope.addMovieToBasket = function() {
+            $http({
+                method: 'POST',
+                url: '/addMovieToBasket',
+                headers: {
+                    'Content-Type': "application/json"
+                },
+                data: $scope.movie.id
+            }).then(function successCallback(response) {
+                if (response.data == "OK") {
+                    alert("Movie added to Basket");
+                }
+                else{
+                    alert("Error while adding movie to basket! Try log in!");
+                }
+            }, function errorCallback(response) {
+                alert("Something went wrong!!!");
+            });
+        };
     });

@@ -18,10 +18,12 @@
 
             <div class="col-md-4 pull-left">
                 <img style="width: 100%; margin-bottom: 10px;" ng-src="{{movie.poster}}">
-                <button class="btn btn-primary btn-block">
-                    <span class="icon-plus"></span>
-                    Добавить в корзину <strong>({{movie.cost}}BLR)</strong>
-                </button>
+                <sec:authorize access="hasRole('ROLE_USER')">
+                    <button class="btn btn-primary btn-block" ng-click="addMovieToBasket()">
+                        <span class="icon-plus"></span>
+                        Добавить в корзину <strong>({{movie.cost}}BLR)</strong>
+                    </button>
+                </sec:authorize>
             </div>
 
             <div class="pull-left col-md-8" style="padding-left: 0; margin-top: 0;">

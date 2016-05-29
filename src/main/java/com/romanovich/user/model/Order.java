@@ -2,8 +2,13 @@ package com.romanovich.user.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.romanovich.user.dto.OrderDTO;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -25,11 +30,13 @@ public class Order {
     private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @LazyToOne(LazyToOneOption.FALSE)
     @JoinColumn(name = "user_id")
     @JsonBackReference
     private User user;
 
     @ManyToMany(fetch = FetchType.LAZY)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name = "orders_movies",
             joinColumns = { @JoinColumn(name = "ORDER_ID", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "MOVIE_ID",
@@ -43,6 +50,8 @@ public class Order {
     private String phone;
 
     private Long summaryCost = 0L;
+
+    private boolean complete = false;
 
     public Order() {
     }
@@ -111,23 +120,23 @@ public class Order {
         this.name = name;
     }
 
-    public OrderDTO getOrderDTO() {
-        OrderDTO dto = new OrderDTO();
-        dto.setOrderId(this.id);
-        dto.setDate(this.date);
-        dto.setName(this.name);
-        dto.setMoviesList(this.movies);
-        dto.setAddress(this.address);
-        dto.setPhone(this.phone);
-        Long cost = 0L;
-        for (Movie movie : this.movies) {
-            cost += movie.getCost();
-        }
-        dto.setSummaryCost(cost);
-        return dto;
+    public boolean isComplete() {
+        return complete;
     }
 
-    public void getOrderFromDTO(OrderDTO dto, User user) {
+    public void setComplete(boolean complete) {
+        this.complete = complete;
+    }
 
+    public static Order getOrderFromDTO(OrderDTO dto, User user) {
+        Order order = new Order();
+        order.setUser(user);
+        order.setDate(new Date());
+        order.setMovies(dto.getMoviesList());
+        order.setName(dto.getName());
+        order.setSummaryCost(dto.getSummaryCost());
+        order.setAddress(dto.getAddress());
+        order.setPhone(dto.getPhone());
+        return order;
     }
 }

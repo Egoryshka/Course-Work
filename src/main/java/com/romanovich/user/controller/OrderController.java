@@ -48,9 +48,8 @@ public class OrderController {
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             OrderDTO dto = mapper.readValue(data, OrderDTO.class);
             User user = userService.findUser(principal.getName());
-            Order order = new Order();
-            order.getOrderFromDTO(dto, user);
-
+            Order order = Order.getOrderFromDTO(dto, user);
+            orderService.makeOrder(order);
             return HttpStatus.OK;
         }
         return null;

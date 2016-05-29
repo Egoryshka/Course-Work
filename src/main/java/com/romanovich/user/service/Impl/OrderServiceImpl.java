@@ -2,6 +2,7 @@ package com.romanovich.user.service.Impl;
 
 import com.romanovich.user.dto.OrderDTO;
 import com.romanovich.user.model.Movie;
+import com.romanovich.user.model.Order;
 import com.romanovich.user.repository.MovieRepository;
 import com.romanovich.user.repository.OrderRepository;
 import com.romanovich.user.repository.UserRepository;
@@ -47,5 +48,25 @@ public class OrderServiceImpl implements OrderService {
         }
         dto.setMoviesList(list);
         return dto;
+    }
+
+    @Override
+    public void makeOrder(Order order) {
+        orderRepository.save(order);
+    }
+
+    @Override
+    public List<Order> getOrders() {
+        return orderRepository.findAll();
+    }
+
+    @Override
+    public List<Order> getUnCompleteOrders() {
+        return orderRepository.findByComplete(false);
+    }
+
+    @Override
+    public List<Order> getCompleteOrders() {
+        return orderRepository.findByComplete(true);
     }
 }

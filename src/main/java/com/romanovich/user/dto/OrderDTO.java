@@ -1,5 +1,6 @@
 package com.romanovich.user.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.romanovich.user.model.Movie;
 import com.romanovich.user.model.User;
 
@@ -10,35 +11,17 @@ import java.util.*;
  */
 public class OrderDTO {
 
-    private Long orderId;
-    private Date date;
     private List<Movie> movies = new ArrayList<>();
     private List<Integer> count = new ArrayList<>();
-    private String name;
-    private String address;
-    private String phone;
+    private String name = "";
+    private String address = "";
+    private String phone = "";
     private Long summaryCost = 0L;
 
     public OrderDTO() {
     }
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-
+    @JsonIgnore
     public List<Movie> getMoviesList() {
         List<Movie> result = new ArrayList<>();
         for (int i = 0; i < movies.size(); i++) {
