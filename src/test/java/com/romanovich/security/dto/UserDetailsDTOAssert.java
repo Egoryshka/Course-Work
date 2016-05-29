@@ -144,17 +144,4 @@ public class UserDetailsDTOAssert extends AbstractAssert<UserDetailsDTOAssert, E
 
         return this;
     }
-
-    public UserDetailsDTOAssert isSignedInByUsingSocialSignInProvider(SocialMediaService socialSignInProvider) {
-        isNotNull();
-
-        Assertions.assertThat(actual.getSocialSignInProvider())
-                .overridingErrorMessage( "Expected socialSignInProvider to be <%s> but was <%s>",
-                        socialSignInProvider,
-                        actual.getSocialSignInProvider()
-                )
-                .isEqualTo(socialSignInProvider);
-
-        return this;
-    }
 }

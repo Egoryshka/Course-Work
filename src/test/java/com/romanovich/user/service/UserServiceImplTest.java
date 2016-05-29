@@ -26,18 +26,14 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 
-/**
- * @author Petri Kainulainen
- */
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceImplTest {
 
-    private static final String EMAIL = "john.smith@gmail.com";
-    private static final String ENCODED_PASSWORD = "encodedPassword";
-    private static final String FIRST_NAME = "John";
-    private static final String LAST_NAME = "Smith";
+    private static final String EMAIL = "test@movieshop.by";
+    private static final String FIRST_NAME = "Admin";
+    private static final String LAST_NAME = "Admin";
     private static final String PASSWORD = "password";
-    private static final SocialMediaService SIGN_IN_PROVIDER = SocialMediaService.TWITTER;
+    private static final String ENCODED_PASSWORD = "encodedPassword";
 
     private UserServiceImpl service;
 
@@ -53,62 +49,7 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void registerNewUserAccount_ViaSocialSignIn_ShouldCreateNewUserAccountAndSetSocialProvider() throws DuplicateEmailException {
-        RegistrationForm registration = new RegistrationFormBuilder()
-                .email(EMAIL)
-                .firstName(FIRST_NAME)
-                .lastName(LAST_NAME)
-                .isSocialSignInViaSignInProvider(SIGN_IN_PROVIDER)
-                .build();
-
-        when(repositoryMock.findByEmail(EMAIL)).thenReturn(null);
-        when(repositoryMock.save(isA(User.class))).thenAnswer(new Answer<User>() {
-            @Override
-            public User answer(InvocationOnMock invocation) throws Throwable {
-                Object[] arguments = invocation.getArguments();
-                return (User) arguments[0];
-            }
-        });
-
-        User registered = service.registerNewUserAccount(registration);
-
-        UserAssert.assertThat(registered)
-                .hasEmail(EMAIL)
-                .hasFirstName(FIRST_NAME)
-                .hasLastName(LAST_NAME)
-                .isRegisteredUser()
-                .isRegisteredByUsingSignInProvider(SIGN_IN_PROVIDER);
-
-        verify(repositoryMock, times(1)).findByEmail(EMAIL);
-        verify(repositoryMock, times(1)).save(registered);
-        verifyNoMoreInteractions(repositoryMock);
-        verifyZeroInteractions(passwordEncoderMock);
-    }
-
-    @Test
-    public void registerNewUserAccount_ViaSocialSignInAndDuplicateEmailIsFound_ShouldThrowException() throws DuplicateEmailException {
-        RegistrationForm registration = new RegistrationFormBuilder()
-                .email(EMAIL)
-                .firstName(FIRST_NAME)
-                .lastName(LAST_NAME)
-                .isSocialSignInViaSignInProvider(SIGN_IN_PROVIDER)
-                .build();
-        when(repositoryMock.findByEmail(EMAIL)).thenReturn(new User());
-
-        catchException(service).registerNewUserAccount(registration);
-
-        Assertions.assertThat(caughtException())
-                .isExactlyInstanceOf(DuplicateEmailException.class)
-                .hasMessage("The email address: " + EMAIL + " is already in use.")
-                .hasNoCause();
-
-        verify(repositoryMock, times(1)).findByEmail(EMAIL);
-        verifyNoMoreInteractions(repositoryMock);
-        verifyZeroInteractions(passwordEncoderMock);
-    }
-
-    @Test
-    public void registerNewUserAccount_ViaNormalSignIn_ShouldCreateNewUserAccountWithoutSocialProvider() throws DuplicateEmailException {
+    public void registerNewUserAccountTest() throws DuplicateEmailException {
         RegistrationForm registration = new RegistrationFormBuilder()
                 .email(EMAIL)
                 .firstName(FIRST_NAME)
@@ -148,7 +89,7 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void registerNewUserAccount_ViaNormalSignInAndDuplicateEmailIsFound_ShouldThrowException() throws DuplicateEmailException {
+    public void registerNewUserAccounWithDuplicateEmailTest() throws DuplicateEmailException {
         RegistrationForm registration = new RegistrationFormBuilder()
                 .email(EMAIL)
                 .firstName(FIRST_NAME)

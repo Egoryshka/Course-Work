@@ -3,9 +3,6 @@ package com.romanovich.user.validation;
 import javax.validation.ConstraintViolation;
 import java.util.Set;
 
-/**
- * @author Petri Kainulainen
- */
 public class PasswordsNotEmptyAssert extends ConstraintViolationAssert<PasswordsNotEmptyDTO> {
 
     private static final String VALIDATION_ERROR_MESSAGE = "PasswordsNotEmpty";

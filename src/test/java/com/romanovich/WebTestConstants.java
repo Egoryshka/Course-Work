@@ -1,8 +1,5 @@
 package com.romanovich;
 
-/**
- * @author Petri Kainulainen
- */
 public class WebTestConstants {
 
     public static final String FORM_FIELD_EMAIL = "email";

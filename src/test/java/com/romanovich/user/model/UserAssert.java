@@ -3,9 +3,7 @@ package com.romanovich.user.model;
 import org.assertj.core.api.AbstractAssert;
 import org.assertj.core.api.Assertions;
 
-/**
- * @author Petri Kainulainen
- */
+
 public class UserAssert extends AbstractAssert<UserAssert, User> {
 
     private UserAssert(User actual) {

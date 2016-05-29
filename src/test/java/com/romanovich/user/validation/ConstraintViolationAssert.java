@@ -6,9 +6,6 @@ import org.assertj.core.api.Assertions;
 import javax.validation.ConstraintViolation;
 import java.util.Set;
 
-/**
- * @author Petri Kainulainen
- */
 public abstract class ConstraintViolationAssert<T> extends AbstractAssert<ConstraintViolationAssert<T>, Set<ConstraintViolation<T>>> {
 
     protected ConstraintViolationAssert(Class selfType, Set<ConstraintViolation<T>> actual) {

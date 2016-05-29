@@ -1,8 +1,5 @@
 package com.romanovich.user.validation;
 
-/**
- * @author Petri Kainulainen
- */
 @PasswordsNotEmpty(
         triggerFieldName = "trigger",
         passwordFieldName = "password",

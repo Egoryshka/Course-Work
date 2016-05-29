@@ -10,9 +10,6 @@ import javax.validation.ValidatorFactory;
 
 import static com.romanovich.user.validation.PasswordsNotEqualAssert.assertThat;
 
-/**
- * @author Petri Kainulainen
- */
 public class PasswordsNotEqualValidatorTest {
 
     private static final String PASSWORD = "password";
@@ -27,14 +24,14 @@ public class PasswordsNotEqualValidatorTest {
     }
 
     @Test
-    public void passwordsNotEqual_BothPasswordsAreNull_ShouldPassValidation() {
+    public void bothPasswordsAreNullTest() {
         PasswordsNotEqualDTO passesValidation = PasswordsNotEqualDTO.getBuilder().build();
 
         assertThat(validator.validate(passesValidation)).hasNoValidationErrors();
     }
 
     @Test
-    public void passwordsNotEqual_PasswordIsNull_ShouldReturnValidationErrorsForBothFields() {
+    public void passwordIsNullTest() {
         PasswordsNotEqualDTO failsValidation = PasswordsNotEqualDTO.getBuilder()
                 .passwordVerification(PASSWORD_VERIFICATION)
                 .build();
@@ -46,7 +43,7 @@ public class PasswordsNotEqualValidatorTest {
     }
 
     @Test
-    public void passwordsNotEqual_PasswordVerificationIsNull_ShouldReturnValidationErrorsForBothFields() {
+    public void passwordVerificationIsNullTest() {
         PasswordsNotEqualDTO failsValidation = PasswordsNotEqualDTO.getBuilder()
                 .password(PASSWORD)
                 .build();
@@ -58,7 +55,7 @@ public class PasswordsNotEqualValidatorTest {
     }
 
     @Test
-    public void passwordsNotEqual_BothPasswordsAreEmpty_ShouldPassValidation() {
+    public void bothPasswordsAreEmptyTest() {
         PasswordsNotEqualDTO passesValidation = PasswordsNotEqualDTO.getBuilder()
                 .password("")
                 .passwordVerification("")
@@ -68,7 +65,7 @@ public class PasswordsNotEqualValidatorTest {
     }
 
     @Test
-    public void passwordsNotEqual_PasswordIsEmpty_ShouldReturnValidationErrorsForBothFields() {
+    public void passwordIsEmptyTest() {
         PasswordsNotEqualDTO failsValidation = PasswordsNotEqualDTO.getBuilder()
                 .password("")
                 .passwordVerification(PASSWORD_VERIFICATION)
@@ -81,7 +78,7 @@ public class PasswordsNotEqualValidatorTest {
     }
 
     @Test
-    public void passwordsNotEqual_PasswordVerificationIsEmpty_ShouldReturnValidationErrorsForBothFields() {
+    public void passwordVerificationIsEmptyTest() {
         PasswordsNotEqualDTO failsValidation = PasswordsNotEqualDTO.getBuilder()
                 .password(PASSWORD)
                 .passwordVerification("")
@@ -91,43 +88,6 @@ public class PasswordsNotEqualValidatorTest {
                 .numberOfValidationErrorsIs(2)
                 .hasValidationErrorForField("password")
                 .hasValidationErrorForField("passwordVerification");
-    }
-
-    @Test
-    public void passwordsNotEqual_PasswordMismatch_ShouldReturnValidationErrorsForBothFields() {
-        PasswordsNotEqualDTO failsValidation = PasswordsNotEqualDTO.getBuilder()
-                .password(PASSWORD)
-                .passwordVerification(PASSWORD_VERIFICATION)
-                .build();
-
-        assertThat(validator.validate(failsValidation))
-                .numberOfValidationErrorsIs(2)
-                .hasValidationErrorForField("password")
-                .hasValidationErrorForField("passwordVerification");
-    }
-
-    @Test
-    public void passwordsNotEqual_PasswordsMatch_ShouldPassValidation() {
-        PasswordsNotEqualDTO passesValidation = PasswordsNotEqualDTO.getBuilder()
-                .password(PASSWORD)
-                .passwordVerification(PASSWORD)
-                .build();
-
-        assertThat(validator.validate(passesValidation)).hasNoValidationErrors();
-    }
-
-    @Test(expected = ValidationException.class)
-    public void passwordsNotEqual_InvalidPasswordField_ShouldThrowException() {
-        InvalidPasswordFieldDTO invalid = new InvalidPasswordFieldDTO();
-
-        validator.validate(invalid);
-    }
-
-    @Test(expected = ValidationException.class)
-    public void passwordsNotEqual_InvalidPasswordVerificationField_ShouldThrowException() {
-        InvalidPasswordVerificationFieldDTO invalid = new InvalidPasswordVerificationFieldDTO();
-
-        validator.validate(invalid);
     }
 
     @PasswordsNotEqual(

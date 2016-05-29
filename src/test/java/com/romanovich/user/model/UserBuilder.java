@@ -2,9 +2,7 @@ package com.romanovich.user.model;
 
 import org.springframework.test.util.ReflectionTestUtils;
 
-/**
- * @author Petri Kainulainen
- */
+
 public class UserBuilder {
 
     private Long id;
@@ -16,8 +14,6 @@ public class UserBuilder {
     private String lastName;
 
     private String password;
-
-    private SocialMediaService signInProvider;
 
     public UserBuilder() {
 
@@ -48,18 +44,12 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder signInProvider(SocialMediaService signInProvider) {
-        this.signInProvider = signInProvider;
-        return this;
-    }
-
     public User build() {
         User user = User.getBuilder()
                 .email(email)
                 .firstName(firstName)
                 .lastName(lastName)
                 .password(password)
-                .signInProvider(signInProvider)
                 .build();
 
         ReflectionTestUtils.setField(user, "id", id);

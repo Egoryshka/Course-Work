@@ -1,13 +1,10 @@
 package com.romanovich.user.dto;
 
-import com.romanovich.user.model.SocialMediaService;
 import org.assertj.core.api.AbstractAssert;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * @author Petri Kainulainen
- */
+
 public class RegistrationFormAssert extends AbstractAssert<RegistrationFormAssert, RegistrationForm> {
 
     private RegistrationFormAssert(RegistrationForm actual) {
@@ -56,30 +53,6 @@ public class RegistrationFormAssert extends AbstractAssert<RegistrationFormAsser
         return this;
     }
 
-    public RegistrationFormAssert hasNoPassword() {
-        isNotNull();
-
-        assertThat(actual.getPassword())
-                .overridingErrorMessage("Expected password to be <null> but was <%s>",
-                        actual.getPassword()
-                )
-                .isNull();
-
-        return this;
-    }
-
-    public RegistrationFormAssert hasNoPasswordVerification() {
-        isNotNull();
-
-        assertThat(actual.getPasswordVerification())
-                .overridingErrorMessage("Expected password verification to be <null> but was <%s>",
-                        actual.getPasswordVerification()
-                )
-                .isNull();
-
-        return this;
-    }
-
     public RegistrationFormAssert hasPassword(String password) {
         isNotNull();
 
@@ -114,19 +87,6 @@ public class RegistrationFormAssert extends AbstractAssert<RegistrationFormAsser
                         actual.getSignInProvider()
                 )
                 .isNull();
-
-        return this;
-    }
-
-    public RegistrationFormAssert isSocialSignInWithSignInProvider(SocialMediaService signInProvider) {
-        isNotNull();
-
-        assertThat(actual.getSignInProvider())
-                .overridingErrorMessage("Expected sign in provider to be <%s> but was <%s>",
-                        signInProvider,
-                        actual.getSignInProvider()
-                )
-                .isEqualTo(signInProvider);
 
         return this;
     }

@@ -84,20 +84,4 @@ public class SecurityContextAssert extends AbstractAssert<SecurityContextAssert,
 
         return this;
     }
-
-    public SecurityContextAssert loggedInUserIsSignedInByUsingSocialProvider(SocialMediaService signInProvider) {
-        isNotNull();
-
-        ExampleUserDetails loggedIn = (ExampleUserDetails) actual.getAuthentication().getPrincipal();
-
-        Assertions.assertThat(loggedIn)
-                .overridingErrorMessage("Expected logged in user to be <not null> but was <null>")
-                .isNotNull();
-
-        UserDetailsDTOAssert.assertThat(loggedIn)
-                .hasPassword("SocialUser")
-                .isSignedInByUsingSocialSignInProvider(signInProvider);
-
-        return this;
-    }
 }

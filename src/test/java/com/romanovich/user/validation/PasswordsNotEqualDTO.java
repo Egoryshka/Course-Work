@@ -1,8 +1,5 @@
 package com.romanovich.user.validation;
 
-/**
- * @author Petri Kainulainen
- */
 @PasswordsNotEqual(
         passwordFieldName = "password",
         passwordVerificationFieldName = "passwordVerification"

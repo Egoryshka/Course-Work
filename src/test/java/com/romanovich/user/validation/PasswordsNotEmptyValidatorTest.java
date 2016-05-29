@@ -10,9 +10,7 @@ import javax.validation.ValidatorFactory;
 
 import static com.romanovich.user.validation.PasswordsNotEmptyAssert.assertThat;
 
-/**
- * @author Petri Kainulainen
- */
+
 public class PasswordsNotEmptyValidatorTest {
 
     private static final String PASSWORD = "password";
@@ -28,7 +26,7 @@ public class PasswordsNotEmptyValidatorTest {
     }
 
     @Test
-    public void passwordsNotEmpty_TriggerFieldIsNotNull_ShouldValidateNothing() {
+    public void passwordsHaveNotValidationTest() {
         PasswordsNotEmptyDTO notValidated = PasswordsNotEmptyDTO.getBuilder()
                 .trigger(TRIGGER)
                 .build();
@@ -37,18 +35,7 @@ public class PasswordsNotEmptyValidatorTest {
     }
 
     @Test
-    public void passwordsNotEmpty_TriggerFieldNullAndPasswordFieldsHaveValues_ShouldPassValidation() {
-        PasswordsNotEmptyDTO passesValidation = PasswordsNotEmptyDTO.getBuilder()
-                .password(PASSWORD)
-                .passwordVerification(PASSWORD_VERIFICATION)
-                .trigger(TRIGGER)
-                .build();
-
-        assertThat(validator.validate(passesValidation)).hasNoValidationErrors();
-    }
-
-    @Test
-    public void passwordsNotEmpty_TriggerFieldAndPasswordFieldsAreNull_ShouldReturnValidationErrorForPasswordField() {
+    public void emptyBothPasswordsFieldsTest() {
         PasswordsNotEmptyDTO failsValidation = PasswordsNotEmptyDTO.getBuilder()
                 .passwordVerification(PASSWORD_VERIFICATION)
                 .build();
@@ -59,7 +46,7 @@ public class PasswordsNotEmptyValidatorTest {
     }
 
     @Test
-    public void passwordsNotEmpty_TriggerFieldIsNullAndPasswordFieldIsEmpty_ShouldReturnValidationErrorForPasswordField() {
+    public void emptyPasswordFieldTest() {
         PasswordsNotEmptyDTO failsValidation = PasswordsNotEmptyDTO.getBuilder()
                 .password("")
                 .passwordVerification(PASSWORD_VERIFICATION)
@@ -70,20 +57,8 @@ public class PasswordsNotEmptyValidatorTest {
                 .hasValidationErrorForField("password");
     }
 
-
     @Test
-    public void passwordsNotEmpty_TriggerFieldAndPasswordVerificationFieldsAreNull_ShouldReturnValidationErrorForPasswordVerificationField() {
-        PasswordsNotEmptyDTO failsValidation = PasswordsNotEmptyDTO.getBuilder()
-                .password(PASSWORD)
-                .build();
-
-        assertThat(validator.validate(failsValidation))
-                .numberOfValidationErrorsIs(1)
-                .hasValidationErrorForField("passwordVerification");
-    }
-
-    @Test
-    public void passwordsNotEmpty_TriggerFieldIsNullAndPasswordVerificationFieldIsEmpty_ShouldReturnValidationErrorForPasswordVerificationField() {
+    public void emptyPasswordVerificationFieldTest() {
         PasswordsNotEmptyDTO failsValidation = PasswordsNotEmptyDTO.getBuilder()
                 .password(PASSWORD)
                 .passwordVerification("")
@@ -95,7 +70,7 @@ public class PasswordsNotEmptyValidatorTest {
     }
 
     @Test
-    public void passwordsNotEmpty_TriggerFieldIsNullAndBothPasswordFieldsAreNull_ShouldReturnValidationErrorsForBothFields() {
+    public void everythingEmptyTest() {
         PasswordsNotEmptyDTO failsValidation = PasswordsNotEmptyDTO.getBuilder().build();
 
         assertThat(validator.validate(failsValidation))
@@ -104,39 +79,13 @@ public class PasswordsNotEmptyValidatorTest {
                 .hasValidationErrorForField("passwordVerification");
     }
 
-    @Test
-    public void passwordsNotEmpty_TriggerFieldIsNullAndBothPasswordFieldsAreEmpty_ShouldReturnValidationErrorsForBothFields() {
-        PasswordsNotEmptyDTO failsValidation = PasswordsNotEmptyDTO.getBuilder()
-                .password("")
-                .passwordVerification("")
-                .build();
-
-        assertThat(validator.validate(failsValidation))
-                .numberOfValidationErrorsIs(2)
-                .hasValidationErrorForField("password")
-                .hasValidationErrorForField("passwordVerification");
-    }
-
     @Test(expected = ValidationException.class)
-    public void passwordsNotEmpty_InvalidTriggerField_ShouldThrowException() {
+    public void invalidTriggerTest() {
         InvalidTriggerFieldDTO invalid = new InvalidTriggerFieldDTO();
 
         validator.validate(invalid);
     }
 
-    @Test(expected = ValidationException.class)
-    public void passwordsNotEmpty_InvalidPasswordField_ShouldThrowException() {
-        InvalidPasswordFieldDTO invalid = new InvalidPasswordFieldDTO();
-
-        validator.validate(invalid);
-    }
-
-    @Test(expected = ValidationException.class)
-    public void passwordsNotEmpty_InvalidPasswordVerificationField_ShouldThrowException() {
-        InvalidPasswordVerificationFieldDTO invalid = new InvalidPasswordVerificationFieldDTO();
-
-        validator.validate(invalid);
-    }
 
     @PasswordsNotEmpty(
             triggerFieldName = "trigger",
@@ -144,7 +93,6 @@ public class PasswordsNotEmptyValidatorTest {
             passwordVerificationFieldName = "passwordVerification"
     )
     private class InvalidTriggerFieldDTO {
-
         private String password;
         private String passwordVerification;
     }
@@ -170,5 +118,4 @@ public class PasswordsNotEmptyValidatorTest {
         private String trigger;
         private String password;
     }
-
 }

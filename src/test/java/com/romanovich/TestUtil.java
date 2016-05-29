@@ -1,8 +1,5 @@
 package com.romanovich;
 
-/**
- * @author Petri Kainulainen
- */
 public class TestUtil {
 
     private static final String CHARACTER = "a";

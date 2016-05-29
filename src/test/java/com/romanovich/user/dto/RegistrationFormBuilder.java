@@ -2,9 +2,6 @@ package com.romanovich.user.dto;
 
 import com.romanovich.user.model.SocialMediaService;
 
-/**
- * @author Petri Kainulainen
- */
 public class RegistrationFormBuilder {
 
     private RegistrationForm dto;
