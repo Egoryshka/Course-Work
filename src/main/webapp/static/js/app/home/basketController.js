@@ -4,37 +4,78 @@
 
 angular.module('myApp')
     .controller('basketController', function ($scope, $http) {
-        $scope.basket = [];
+        $scope.basket = {};
+        var isOrderable = false;
 
-        $scope.getBasketContent = function() {
-                $http({
-                        method: 'GET',
-                        url: '/prepareOrder'
-                }).then(function successCallback(response) {
-                        $scope.basket = response.data;
-                        console.log($scope.basket);
-                }, function errorCallback(response) {
-                        alert("Something went wrong!!!")
-                });
+        $scope.getBasketContent = function () {
+            $http({
+                method: 'GET',
+                url: '/prepareOrder'
+            }).then(function successCallback(response) {
+                $scope.basket = response.data;
+                if ($scope.basket.movies.length != 0) {
+                    isOrderable = true;
+                }
+                console.log($scope.basket);
+            }, function errorCallback(response) {
+                alert("Something went wrong!!!")
+            });
         };
         $scope.getBasketContent();
 
-        $scope.total = function() {
+        $scope.removeFromBasket = function (index) {
+            $scope.basket.movies.splice(index, 1);
+            $scope.basket.count.splice(index, 1);
+            $scope.total();
+        };
+
+        $scope.total = function () {
+            var total = 0;
+            for (var i = 0; i < $scope.basket.movies.length; i++) {
+                var cost = $scope.basket.movies[i].cost;
+                var count = $scope.basket.count[i];
+                total += cost * count;
+            }
+            $scope.basket.summaryCost = total;
+        };
+
+        $scope.order = function () {
+            if (isOrderable) {
+                $http({
+                    method: 'POST',
+                    url: '/makeOrder',
+                    headers: {
+                        'Content-Type': "application/json"
+                    },
+                    data: $scope.basket
+                }).then(function successCallback(response) {
+                    eraseBasket();
+                    closeModal();
+                    alert("Order successfully issued.");
+                }, function errorCallback(response) {
+                    alert("Your basket is empty!!!")
+                });
+            }
+            else {
+                closeModal();
+                alert("Your basket is empty!!!");
+            }
 
         };
 
-        $scope.order = function() {
-                $http({
-                        method: 'POST',
-                        url: '/makeOrder',
-                        headers: {
-                                'Content-Type': "application/json"
-                        },
-                        data: $scope.basket
-                }).then(function successCallback(response) {
-                        alert("Order was made successfully!!!");
-                }, function errorCallback(response) {
-                        alert("Something went wrong!!!")
-                });
+        function closeModal() {
+            $('#orderModal').modal('hide');
         }
+
+        function eraseBasket() {
+            $scope.basket.address = "";
+            $scope.basket.count = [];
+            $scope.basket.movies = [];
+            $scope.basket.name = "";
+            $scope.basket.phone = "";
+            $scope.basket.summaryCost = 0;
+            isOrderable = false;
+        }
+
+
     });

@@ -35,15 +35,19 @@ public class OrderController {
         if (principal != null) {
             @SuppressWarnings("unchecked")
             Map<Long, Integer> basket = (Map<Long, Integer>)session.getAttribute("basket");
-            return orderService.prepareDTO(basket);
+            String name = userService.findUser(principal.getName()).getFirstName();
+            OrderDTO dto = orderService.prepareDTO(basket);
+            dto.setName(name);
+            return dto;
         }
         return null;
     }
 
     @RequestMapping(value = "/makeOrder", method = RequestMethod.POST)
     public
-    @ResponseBody HttpStatus makeOrder(@RequestBody String data, Principal principal) throws IOException, ParseException {
+    @ResponseBody HttpStatus makeOrder(@RequestBody String data, Principal principal, HttpSession session) throws IOException, ParseException {
         if (principal != null) {
+            session.removeAttribute("basket");
             ObjectMapper mapper = new ObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             OrderDTO dto = mapper.readValue(data, OrderDTO.class);
