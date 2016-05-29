@@ -13,239 +13,239 @@
 
 </head>
 <body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/postDirective.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/profileController.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/postController.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/tagCloudController.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/TrustController.js"></script>
+<%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/postDirective.js"></script>--%>
+<%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/profileController.js"></script>--%>
+<%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/postController.js"></script>--%>
+<%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/tagCloudController.js"></script>--%>
+<%--<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/app/TrustController.js"></script>--%>
 
 
-<div ng-controller="TestCtrl">
-    <div ng-app="myApp" ng-controller="profileController">
-        <div ng-controller="postController" class="l-inner-page-container">
-            <div class="col-md-9" style="margin: 0 12.5% 0 12.5%">
-                <div class="row">
-                    <div class="col-md-9 col-md-push-3">
-                        <div class="navbar navbar-default" style="margin-bottom: 15px;">
-                            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                                <ul class="nav navbar-nav">
-                                    <li>
-                                        <a href="javascript:void(0)" ng-click="showTemplate()" aria-expanded="false">
-                                            <spring:message code="label.user.templates"/></a>
-                                    </li>
-                                    <li>
-                                        <a href="${pageContext.request.contextPath}/user/templates">
-                                            <spring:message code="label.user.edit.posts"/></a>
-                                    </li>
-                                </ul>
-                                <ul class="nav navbar-nav navbar-right" ng-show="showField">
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"
-                                           role="button" aria-expanded="false"><spring:message code="label.user.template.type"/><span class="caret"></span></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="javascript:void(0)" ng-click="setTemplate(0)"><spring:message code="label.user.template.image"/></a>
-                                            </li>
-                                            <li><a href="javascript:void(0)" ng-click="setTemplate(1)"><spring:message code="label.user.template.video"/></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div ng-show="showField">
-                            <div class="panel panel-primary" style="border: 1px solid #bbb">
-                                <form class="form-horizontal" name="newArticle">
-                                    <fieldset style="padding: 0 3% 0 3%">
-                                        <div class="form-group" ng-show="templateType == 0">
-                                            <h4><spring:message code="label.post.upload"/></h4>
-                                            <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
-                                                 file="postImage" file-name="imageFileName" data-max-file-size="3">
-                                                <h4><spring:message code="label.post.dropzone"/></h4>
-                                            </div>
-                                            <div class="postImageContainer">
-                                                <img ng-src="{{postImage}}"/>
-                                            </div>
-                                        </div>
+<%--<div ng-controller="TestCtrl">--%>
+    <%--<div ng-app="myApp" ng-controller="profileController">--%>
+        <%--<div ng-controller="postController" class="l-inner-page-container">--%>
+            <%--<div class="col-md-9" style="margin: 0 12.5% 0 12.5%">--%>
+                <%--<div class="row">--%>
+                    <%--<div class="col-md-9 col-md-push-3">--%>
+                        <%--<div class="navbar navbar-default" style="margin-bottom: 15px;">--%>
+                            <%--<div class="collapse navbar-collapse navbar-ex1-collapse">--%>
+                                <%--<ul class="nav navbar-nav">--%>
+                                    <%--<li>--%>
+                                        <%--<a href="javascript:void(0)" ng-click="showTemplate()" aria-expanded="false">--%>
+                                            <%--<spring:message code="label.user.templates"/></a>--%>
+                                    <%--</li>--%>
+                                    <%--<li>--%>
+                                        <%--<a href="${pageContext.request.contextPath}/user/templates">--%>
+                                            <%--<spring:message code="label.user.edit.posts"/></a>--%>
+                                    <%--</li>--%>
+                                <%--</ul>--%>
+                                <%--<ul class="nav navbar-nav navbar-right" ng-show="showField">--%>
+                                    <%--<li class="dropdown">--%>
+                                        <%--<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"--%>
+                                           <%--role="button" aria-expanded="false"><spring:message code="label.user.template.type"/><span class="caret"></span></a>--%>
+                                        <%--<ul class="dropdown-menu" role="menu">--%>
+                                            <%--<li><a href="javascript:void(0)" ng-click="setTemplate(0)"><spring:message code="label.user.template.image"/></a>--%>
+                                            <%--</li>--%>
+                                            <%--<li><a href="javascript:void(0)" ng-click="setTemplate(1)"><spring:message code="label.user.template.video"/></a>--%>
+                                            <%--</li>--%>
+                                        <%--</ul>--%>
+                                    <%--</li>--%>
+                                <%--</ul>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div ng-show="showField">--%>
+                            <%--<div class="panel panel-primary" style="border: 1px solid #bbb">--%>
+                                <%--<form class="form-horizontal" name="newArticle">--%>
+                                    <%--<fieldset style="padding: 0 3% 0 3%">--%>
+                                        <%--<div class="form-group" ng-show="templateType == 0">--%>
+                                            <%--<h4><spring:message code="label.post.upload"/></h4>--%>
+                                            <%--<div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"--%>
+                                                 <%--file="postImage" file-name="imageFileName" data-max-file-size="3">--%>
+                                                <%--<h4><spring:message code="label.post.dropzone"/></h4>--%>
+                                            <%--</div>--%>
+                                            <%--<div class="postImageContainer">--%>
+                                                <%--<img ng-src="{{postImage}}"/>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
 
-                                        <div class="form-group" ng-show="templateType == 1" ng-controller="TrustController">
-                                            <h4><spring:message code="label.post.youtube"/></h4>
-                                            <input maxlength="150" class="form-control" ng-model="video">
-                                            <div class="embed-responsive embed-responsive-16by9"
-                                                 style="margin: 15px 0 0 0 ">
-                                                <iframe class="embed-responsive-item"
-                                                        ng-src="{{trustSrc(handleYouTube(video))}}"
-                                                        frameborder="0" allowfullscreen></iframe>
-                                            </div>
-                                        </div>
+                                        <%--<div class="form-group" ng-show="templateType == 1" ng-controller="TrustController">--%>
+                                            <%--<h4><spring:message code="label.post.youtube"/></h4>--%>
+                                            <%--<input maxlength="150" class="form-control" ng-model="video">--%>
+                                            <%--<div class="embed-responsive embed-responsive-16by9"--%>
+                                                 <%--style="margin: 15px 0 0 0 ">--%>
+                                                <%--<iframe class="embed-responsive-item"--%>
+                                                        <%--ng-src="{{trustSrc(handleYouTube(video))}}"--%>
+                                                        <%--frameborder="0" allowfullscreen></iframe>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
 
-                                        <div class="form-group">
-                                            <h4><spring:message code="label.post.title"/></h4>
-                                            <input maxlength="150" class="form-control" id="inputTitle" ng-model="title"
-                                                   required>
-                                        </div>
+                                        <%--<div class="form-group">--%>
+                                            <%--<h4><spring:message code="label.post.title"/></h4>--%>
+                                            <%--<input maxlength="150" class="form-control" id="inputTitle" ng-model="title"--%>
+                                                   <%--required>--%>
+                                        <%--</div>--%>
 
-                                        <div class="form-group">
-                                            <h4><spring:message code="label.post.category"/></h4>
-                                            <select class="form-control" id="category" ng-model="category">
-                                                <option selected><spring:message code="label.art"/></option>
-                                                <option><spring:message code="label.medicine"/></option>
-                                                <option><spring:message code="label.transport"/></option>
-                                                <option><spring:message code="label.finance"/></option>
-                                                <option><spring:message code="label.sport"/></option>
-                                                <option><spring:message code="label.music"/></option>
-                                                <option><spring:message code="label.business"/></option>
-                                                <option><spring:message code="label.building"/></option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <h4><spring:message code="label.post.tags"/></h4>
-                                            <div ng-controller="tagsController">
-                                                <tags-input ng-model="tags"
-                                                            display-property="text"
-                                                            placeholder="Add a tag"
-                                                            replace-spaces-with-dashes="false"
-                                                            min-length="0"
-                                                            max-length="10"
-                                                            max-tags="10">
-                                                    <auto-complete source="loadTags($query)"
-                                                                   load-on-focus="true"
-                                                                   max-tags="10"
-                                                                   load-on-empty="true"
-                                                                   max-results-to-show="32"
-                                                                   template="my-tags-template">
+                                        <%--<div class="form-group">--%>
+                                            <%--<h4><spring:message code="label.post.category"/></h4>--%>
+                                            <%--<select class="form-control" id="category" ng-model="category">--%>
+                                                <%--<option selected><spring:message code="label.art"/></option>--%>
+                                                <%--<option><spring:message code="label.medicine"/></option>--%>
+                                                <%--<option><spring:message code="label.transport"/></option>--%>
+                                                <%--<option><spring:message code="label.finance"/></option>--%>
+                                                <%--<option><spring:message code="label.sport"/></option>--%>
+                                                <%--<option><spring:message code="label.music"/></option>--%>
+                                                <%--<option><spring:message code="label.business"/></option>--%>
+                                                <%--<option><spring:message code="label.building"/></option>--%>
+                                            <%--</select>--%>
+                                        <%--</div>--%>
+                                        <%--<div class="form-group">--%>
+                                            <%--<h4><spring:message code="label.post.tags"/></h4>--%>
+                                            <%--<div ng-controller="tagsController">--%>
+                                                <%--<tags-input ng-model="tags"--%>
+                                                            <%--display-property="text"--%>
+                                                            <%--placeholder="Add a tag"--%>
+                                                            <%--replace-spaces-with-dashes="false"--%>
+                                                            <%--min-length="0"--%>
+                                                            <%--max-length="10"--%>
+                                                            <%--max-tags="10">--%>
+                                                    <%--<auto-complete source="loadTags($query)"--%>
+                                                                   <%--load-on-focus="true"--%>
+                                                                   <%--max-tags="10"--%>
+                                                                   <%--load-on-empty="true"--%>
+                                                                   <%--max-results-to-show="32"--%>
+                                                                   <%--template="my-tags-template">--%>
 
-                                                    </auto-complete>
-                                                </tags-input>
-                                                <script type="text/ng-template" id="my-tags-template">
-                                                    <div class="right-panel">
-                                                        <span ng-bind-html="$highlight($getDisplayText())"></span>
-                                                        <span>({{data.weight}})</span>
-                                                    </div>
-                                                </script>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-group">
-                                            <h4><spring:message code="label.post.article"/></h4>
-                                            <div id="editor">
-                                                <textarea ng-model="text" id="editor1" rows="20" class="form-control"
-                                                          style="width: 100%;"></textarea>
-                                                <script type="text/javascript">
-                                                    CKEDITOR.replace('editor1');
-                                                </script>
-                                            </div>
-                                        </div>
-                                        <div  class="form-group">
-                                            <div ng-show="isUploading" class="progress progress-striped active">
-                                                <div class="progress-bar" style="width: 100%"></div>
-                                            </div>
-                                            <button style="margin:5px 0 5px 0"
-                                                    class="btn btn-primary btn-block" type="submit"
-                                                    ng-disabled="newArticle.$invalid || isUploading"
-                                                    ng-click="newPost();"><spring:message
-                                                    code="label.post.publish"/></button>
-                                        </div>
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </div>
-                        <div infinite-scroll='extendList()' infinite-scroll-disabled='busy'>
-                            <div ng-repeat="post in posts" ng-hide="$index > postListLen+2">
-                                <div class="panel panel-default">
+                                                    <%--</auto-complete>--%>
+                                                <%--</tags-input>--%>
+                                                <%--<script type="text/ng-template" id="my-tags-template">--%>
+                                                    <%--<div class="right-panel">--%>
+                                                        <%--<span ng-bind-html="$highlight($getDisplayText())"></span>--%>
+                                                        <%--<span>({{data.weight}})</span>--%>
+                                                    <%--</div>--%>
+                                                <%--</script>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                        <%--<hr>--%>
+                                        <%--<div class="form-group">--%>
+                                            <%--<h4><spring:message code="label.post.article"/></h4>--%>
+                                            <%--<div id="editor">--%>
+                                                <%--<textarea ng-model="text" id="editor1" rows="20" class="form-control"--%>
+                                                          <%--style="width: 100%;"></textarea>--%>
+                                                <%--<script type="text/javascript">--%>
+                                                    <%--CKEDITOR.replace('editor1');--%>
+                                                <%--</script>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                        <%--<div  class="form-group">--%>
+                                            <%--<div ng-show="isUploading" class="progress progress-striped active">--%>
+                                                <%--<div class="progress-bar" style="width: 100%"></div>--%>
+                                            <%--</div>--%>
+                                            <%--<button style="margin:5px 0 5px 0"--%>
+                                                    <%--class="btn btn-primary btn-block" type="submit"--%>
+                                                    <%--ng-disabled="newArticle.$invalid || isUploading"--%>
+                                                    <%--ng-click="newPost();"><spring:message--%>
+                                                    <%--code="label.post.publish"/></button>--%>
+                                        <%--</div>--%>
+                                    <%--</fieldset>--%>
+                                <%--</form>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div infinite-scroll='extendList()' infinite-scroll-disabled='busy'>--%>
+                            <%--<div ng-repeat="post in posts" ng-hide="$index > postListLen+2">--%>
+                                <%--<div class="panel panel-default">--%>
 
-                                    <div class="article-header" ng-show="post.template == 0">
-                                        <img ng-src="{{post.image}}" alt="">
-                                    </div>
+                                    <%--<div class="article-header" ng-show="post.template == 0">--%>
+                                        <%--<img ng-src="{{post.image}}" alt="">--%>
+                                    <%--</div>--%>
 
-                                    <div class="embed-responsive embed-responsive-16by9" style="margin: 15px 0 15px 0"
-                                        ng-show="post.template == 1" ng-controller="TrustController">
-                                        <iframe class="embed-responsive-item"
-                                                ng-src="{{trustSrc(post.image)}}"
-                                                frameborder="0" allowfullscreen></iframe>
-                                    </div>
+                                    <%--<div class="embed-responsive embed-responsive-16by9" style="margin: 15px 0 15px 0"--%>
+                                        <%--ng-show="post.template == 1" ng-controller="TrustController">--%>
+                                        <%--<iframe class="embed-responsive-item"--%>
+                                                <%--ng-src="{{trustSrc(post.image)}}"--%>
+                                                <%--frameborder="0" allowfullscreen></iframe>--%>
+                                    <%--</div>--%>
 
-                                    <div class="article">
-                                        <div class="article-body">
-                                            <a href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}"
-                                               class="article-title article-title-1 article-title-font">
-                                                {{post.title}}
-                                            </a>
+                                    <%--<div class="article">--%>
+                                        <%--<div class="article-body">--%>
+                                            <%--<a href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}"--%>
+                                               <%--class="article-title article-title-1 article-title-font">--%>
+                                                <%--{{post.title}}--%>
+                                            <%--</a>--%>
 
-                                            <div class="article-info">
-                                                <spring:message code="label.post.postCategory"/>:
-                                                <a href="${pageContext.request.contextPath}/user/home/category={{post.category}}"
-                                                   class="text-primary">{{post.category}}</a>,
-                                                <spring:message code="label.post.PostDate"/>: {{convertDate(post.date)}}
-                                                <div style="float: right;"><a
-                                                        href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}"
-                                                        class="text-primary">
-                                                    <i class="icon-comment"></i> {{post.comments.length}}
-                                                    <spring:message
-                                                            code="label.post.comments"/></a></div>
-                                            </div>
+                                            <%--<div class="article-info">--%>
+                                                <%--<spring:message code="label.post.postCategory"/>:--%>
+                                                <%--<a href="${pageContext.request.contextPath}/user/home/category={{post.category}}"--%>
+                                                   <%--class="text-primary">{{post.category}}</a>,--%>
+                                                <%--<spring:message code="label.post.PostDate"/>: {{convertDate(post.date)}}--%>
+                                                <%--<div style="float: right;"><a--%>
+                                                        <%--href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}"--%>
+                                                        <%--class="text-primary">--%>
+                                                    <%--<i class="icon-comment"></i> {{post.comments.length}}--%>
+                                                    <%--<spring:message--%>
+                                                            <%--code="label.post.comments"/></a></div>--%>
+                                            <%--</div>--%>
 
-                                            <div>
-                                                <a ng-repeat="tag in post.tags"
-                                                   href="${pageContext.request.contextPath}/user/home/tags={{post.tags[$index].text}}"
-                                                   class="tag label label-primary" style="margin-right: 4px;">
-                                                    {{post.tags[$index].text}}
-                                                </a>
-                                            </div>
-                                            <hr>
+                                            <%--<div>--%>
+                                                <%--<a ng-repeat="tag in post.tags"--%>
+                                                   <%--href="${pageContext.request.contextPath}/user/home/tags={{post.tags[$index].text}}"--%>
+                                                   <%--class="tag label label-primary" style="margin-right: 4px;">--%>
+                                                    <%--{{post.tags[$index].text}}--%>
+                                                <%--</a>--%>
+                                            <%--</div>--%>
+                                            <%--<hr>--%>
 
-                                            <div style="max-height: 400px; text-overflow:ellipsis; overflow:hidden;">
-                                                <posttext-directive></posttext-directive>
-                                            </div>
-                                            <div class="article-info">
-                                                <a href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}"
-                                                   class="text-primary"><spring:message code="label.post.readMore"/>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                            <%--<div style="max-height: 400px; text-overflow:ellipsis; overflow:hidden;">--%>
+                                                <%--<posttext-directive></posttext-directive>--%>
+                                            <%--</div>--%>
+                                            <%--<div class="article-info">--%>
+                                                <%--<a href="${pageContext.request.contextPath}/user/singlePost/{{post.id}}"--%>
+                                                   <%--class="text-primary"><spring:message code="label.post.readMore"/>--%>
+                                                <%--</a>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
-                    </div>
-                    <div class="col-md-3 col-md-pull-9">
-                        <div style="width: 100%; text-align: center">
-                            <img alt="Avatar" ng-src="{{profile.photo}}"
-                                 class="img-thumbnail">
-                        </div>
-                        <h5><spring:message code="label.user.firstName"/>: {{profile.firstName}}</h5>
-                        <h5><spring:message code="label.user.lastName"/>: {{profile.lastName}}</h5>
-                        <h5><spring:message code="label.user.email"/>: {{profile.email}}</h5>
-                        <h5><spring:message code="label.user.datebirth"/>: {{convertDate(birthday)}} </h5>
-                        <h5><spring:message code="label.user.city"/>: {{profile.city}}</h5>
-                        <h5><spring:message code="label.user.education"/>: {{profile.education}}</h5>
-                        <h5><spring:message code="label.user.interests"/>: {{profile.interests}}</h5>
-                        <h5><spring:message code="label.user.skype"/>: {{profile.skype}}</h5>
+                    <%--</div>--%>
+                    <%--<div class="col-md-3 col-md-pull-9">--%>
+                        <%--<div style="width: 100%; text-align: center">--%>
+                            <%--<img alt="Avatar" ng-src="{{profile.photo}}"--%>
+                                 <%--class="img-thumbnail">--%>
+                        <%--</div>--%>
+                        <%--<h5><spring:message code="label.user.firstName"/>: {{profile.firstName}}</h5>--%>
+                        <%--<h5><spring:message code="label.user.lastName"/>: {{profile.lastName}}</h5>--%>
+                        <%--<h5><spring:message code="label.user.email"/>: {{profile.email}}</h5>--%>
+                        <%--<h5><spring:message code="label.user.datebirth"/>: {{convertDate(birthday)}} </h5>--%>
+                        <%--<h5><spring:message code="label.user.city"/>: {{profile.city}}</h5>--%>
+                        <%--<h5><spring:message code="label.user.education"/>: {{profile.education}}</h5>--%>
+                        <%--<h5><spring:message code="label.user.interests"/>: {{profile.interests}}</h5>--%>
+                        <%--<h5><spring:message code="label.user.skype"/>: {{profile.skype}}</h5>--%>
 
-                        <a href="${pageContext.request.contextPath}/user/profilePage" class="btn btn-primary btn-block">
-                            <spring:message code="label.user.edit"/>
-                        </a>
+                        <%--<a href="${pageContext.request.contextPath}/user/profilePage" class="btn btn-primary btn-block">--%>
+                            <%--<spring:message code="label.user.edit"/>--%>
+                        <%--</a>--%>
 
-                        <div class="col-md-12 sidebar" style="margin-top: 20px;">
-                            <h4 class="sidebar-block-header nav-tabs">
-                                <spring:message code="label.user.achievements"/></h4>
+                        <%--<div class="col-md-12 sidebar" style="margin-top: 20px;">--%>
+                            <%--<h4 class="sidebar-block-header nav-tabs">--%>
+                                <%--<spring:message code="label.user.achievements"/></h4>--%>
 
-                            <div class="col-md-6 medal"
-                                 ng-repeat="achiva in achievements">
-                                <img data-toggle="tooltip" title="{{achiva.description}}" width="100%"
-                                     ng-src="{{achiva.value}}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script>
+                            <%--<div class="col-md-6 medal"--%>
+                                 <%--ng-repeat="achiva in achievements">--%>
+                                <%--<img data-toggle="tooltip" title="{{achiva.description}}" width="100%"--%>
+                                     <%--ng-src="{{achiva.value}}">--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
+<%--<script>--%>
+    <%--$(document).ready(function () {--%>
+        <%--$('[data-toggle="tooltip"]').tooltip();--%>
+    <%--});--%>
+<%--</script>--%>
 </body>
 </html>

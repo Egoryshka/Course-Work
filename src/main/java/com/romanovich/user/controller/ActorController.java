@@ -28,16 +28,6 @@ public class ActorController {
     public List<Actor> getAllActors(){
         return actorService.getAllActors();
     }
-
-    @RequestMapping(value = "/getActorsIds",method = RequestMethod.GET)
-    public ArrayList<Long> getMovieActorIds(@RequestParam Long movieId){
-        List<Actor> allActors= movieService.findOne(movieId).getActors();
-        ArrayList<Long> actorsIds = new ArrayList<Long>();
-        for(Actor actor : allActors ){
-            actorsIds.add(actor.getId());
-        }
-        return actorsIds;
-    }
 }
 
 

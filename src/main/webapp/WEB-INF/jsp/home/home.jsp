@@ -41,7 +41,7 @@
                             <p>Страна: {{movie.country}}</p>
                             <p>Жанр: {{getMovieGenres($index)}}</p>
                             <p>В ролях: {{getMovieActors($index)}}</p>
-                            <p>{{movie.notice}}</p>
+                            <p align="justify">{{movie.notice}}</p>
                         </div>
                     </div>
                 </div>

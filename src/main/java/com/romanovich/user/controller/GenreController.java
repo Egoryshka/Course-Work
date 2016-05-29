@@ -33,16 +33,6 @@ public class GenreController {
     public List<Genre> getGenresList(){
         return genreService.getAllGenres();
     }
-
-    @RequestMapping(value = "/getGenresIds",method = RequestMethod.GET)
-    public ArrayList<Long> getMovieGenresIds(@RequestParam Long movieId){
-        List<Genre> allGenres = movieService.findOne(movieId).getGenres();
-        ArrayList<Long> genresIds = new ArrayList<Long>();
-        for(Genre genre : allGenres ){
-            genresIds.add(genre.getId());
-        }
-        return genresIds;
-    }
 }
 
 

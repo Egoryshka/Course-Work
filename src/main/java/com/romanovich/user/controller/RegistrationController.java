@@ -43,7 +43,6 @@ public class RegistrationController {
     @Autowired
     public RegistrationController(UserService service) {
         this.service = service;
-
     }
 
     /**

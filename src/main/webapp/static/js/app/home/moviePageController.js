@@ -41,10 +41,10 @@ angular.module('myApp')
             if (typeof video !== 'undefined') {
                 var readyYouTube = video.replace('https://www.youtube.com/watch?v=','');
                 readyYouTube = readyYouTube.replace('https://www.youtube.com/embed/','');
-                $scope.readyYouTube.replace('&index=18&', '?');
-                $scope.readyYouTube.replace('&', '?');
-                $scope.readyYouTube = "https://www.youtube.com/embed/" + $scope.readyYouTube;
-                return $scope.readyYouTube;
+                readyYouTube.replace('&index=18&', '?');
+                readyYouTube.replace('&', '?');
+                readyYouTube = "https://www.youtube.com/embed/" + readyYouTube;
+                return readyYouTube;
             }
             return "";
         }
