@@ -15,13 +15,13 @@ public class HomeController {
     protected static final String VIEW_NAME_HOMEPAGE = "home/home";
 
     @RequestMapping(value="/", method = RequestMethod.GET)
-    public String showHomePage() {
+    public String showStartPage() {
         LOGGER.debug("Rendering home page.");
         return VIEW_NAME_HOMEPAGE;
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String showLoginPage() {
+    public String showHomePage() {
         LOGGER.debug("Rendering home page.");
         return VIEW_NAME_HOMEPAGE;
     }

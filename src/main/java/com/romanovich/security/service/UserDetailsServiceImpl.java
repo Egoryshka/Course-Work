@@ -23,12 +23,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.repository = repository;
     }
 
-    /**
-     * Loads the user information.
-     * @param username  The username of the requested user.
-     * @return  The information of the user.
-     * @throws UsernameNotFoundException    Thrown if no user is found with the given username.
-     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         LOGGER.debug("Loading user by username: {}", username);
@@ -39,8 +33,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("No user found with username: " + username);
         }
-//        if(user.getBaned())
-//            throw new UsernameNotFoundException("Account is blocked!");
 
         ExampleUserDetails principal = ExampleUserDetails.getBuilder()
                 .firstName(user.getFirstName())

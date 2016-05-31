@@ -38,7 +38,7 @@ public class PagesController {
     }
 
     @RequestMapping(value = "/home/movie/{id}", method = RequestMethod.GET)
-    public String showSinglePost(@PathVariable Long id,WebRequest webRequest) {
+    public String showMovie(@PathVariable Long id,WebRequest webRequest) {
         LOGGER.debug("Rendering movie page.");
         return VIEW_NAME_MOVIE_PAGE;
     }

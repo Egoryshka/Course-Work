@@ -15,9 +15,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-/**
- * @author Petri Kainulainen
- */
+
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {WebAppContext.class, UnitTestContext.class})
 @WebAppConfiguration

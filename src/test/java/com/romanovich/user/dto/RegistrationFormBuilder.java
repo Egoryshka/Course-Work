@@ -1,7 +1,5 @@
 package com.romanovich.user.dto;
 
-import com.romanovich.user.model.SocialMediaService;
-
 public class RegistrationFormBuilder {
 
     private RegistrationForm dto;
@@ -32,11 +30,6 @@ public class RegistrationFormBuilder {
 
     public RegistrationFormBuilder passwordVerification(String passwordVerification) {
         dto.setPasswordVerification(passwordVerification);
-        return this;
-    }
-
-    public RegistrationFormBuilder isSocialSignInViaSignInProvider(SocialMediaService signInProvider) {
-        dto.setSignInProvider(signInProvider);
         return this;
     }
 

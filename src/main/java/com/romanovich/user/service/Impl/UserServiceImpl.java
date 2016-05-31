@@ -50,9 +50,9 @@ public class UserServiceImpl implements UserService {
                 .lastName(userAccountData.getLastName())
                 .password(encodedPassword);
 
-        if (userAccountData.isSocialSignIn()) {
-            user.signInProvider(userAccountData.getSignInProvider());
-        }
+//        if (userAccountData.isSocialSignIn()) {
+//            user.signInProvider(userAccountData.getSignInProvider());
+//        }
 
         User registered = user.build();
 

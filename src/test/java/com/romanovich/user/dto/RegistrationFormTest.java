@@ -8,9 +8,7 @@ public class RegistrationFormTest {
     @Test
     public void RegistrationTest() {
         RegistrationForm dto = new RegistrationFormBuilder().build();
-
         boolean isNormalRegistration = dto.isNormalRegistration();
-
         assertThat(isNormalRegistration).isTrue();
     }
 }
